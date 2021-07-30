@@ -13,7 +13,7 @@ class HomeHeader extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: getProportionateScreenWidth(25)),
       child: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
           Image.asset(

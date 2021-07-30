@@ -61,12 +61,16 @@ class AddNewPlaceCard extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenWidth(53),
             width: getProportionateScreenWidth(53),
-            child: FlatButton(
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(60),
+            child: TextButton(
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(EdgeInsets.zero),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60),
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all(kPrimaryColor),
               ),
-              color: kPrimaryColor,
               onPressed: () {},
               child: Icon(
                 Icons.add,

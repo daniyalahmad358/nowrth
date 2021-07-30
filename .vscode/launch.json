@@ -8,24 +8,12 @@
             "name": "nowrth",
             "request": "launch",
             "type": "dart",
-            "args": [
-                "-d",
-                "web-server",
-                "--web-port",
-                "49430"
-            ],
         },
         {
             "name": "nowrth (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": [
-                "-d",
-                "web-server",
-                "--web-port",
-                "49430"
-            ],
         },
     ]
 }
