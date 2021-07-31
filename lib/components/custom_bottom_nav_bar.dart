@@ -1,3 +1,5 @@
+// import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nowrth/screens/events/events_screen.dart';
@@ -44,6 +46,13 @@ class CustomBottonNavBar extends StatelessWidget {
                 title: "Friends",
                 press: () {},
               ),
+              NavItem(
+                // icon: IconTheme(Icons.home),
+
+                icondata: Icon(Icons.home),
+                title: "Home",
+                press: () {},
+              )
             ],
           ),
         ),
@@ -52,22 +61,48 @@ class CustomBottonNavBar extends StatelessWidget {
   }
 }
 
-class NavItem extends StatelessWidget {
+class NavItem extends StatefulWidget {
   const NavItem({
     Key key,
-    @required this.icon,
     @required this.title,
     @required this.press,
+    this.icon,
+    this.icondata,
     this.isActive = false,
   }) : super(key: key);
+
   final String icon, title;
   final GestureTapCallback press;
   final bool isActive;
+  final icondata;
+
+  @override
+  _NavItemState createState() => _NavItemState();
+}
+
+class _NavItemState extends State<NavItem> {
+  var iconToBeShown;
+
+  SvgPicture assetIconUsed() {
+    var svgpic = SvgPicture.asset(
+      widget.icon,
+      color: kTextColor,
+      height: 28,
+    );
+
+    return svgpic;
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.icon != null) {
+      iconToBeShown = assetIconUsed();
+    } else {
+      iconToBeShown = widget.icondata;
+    }
+
     return InkWell(
-      onTap: press,
+      onTap: widget.press,
       child: Container(
         padding: EdgeInsets.all(5),
         height: getProportionateScreenWidth(60),
@@ -75,18 +110,19 @@ class NavItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [if (isActive) kDefualtShadow],
+          boxShadow: [if (widget.isActive) kDefualtShadow],
         ),
         child: Column(
           children: [
-            SvgPicture.asset(
-              icon,
-              color: kTextColor,
-              height: 28,
-            ),
+            iconToBeShown,
+            // SvgPicture.asset(
+            //   icon,
+            //   color: kTextColor,
+            //   height: 28,
+            // ),
             Spacer(),
             Text(
-              title,
+              widget.title,
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.bold,
