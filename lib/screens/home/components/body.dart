@@ -3,7 +3,7 @@ import 'package:nowrth/size_config.dart';
 
 import 'home_header.dart';
 import 'popular_places.dart';
-import 'top_travelers.dart';
+import 'top_guides.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
             VerticalSpacing(),
             PopularPlaces(),
             VerticalSpacing(),
-            TopTravelers(),
+            TopGuides(),
             VerticalSpacing(),
           ],
         ),

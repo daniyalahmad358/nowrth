@@ -1,16 +1,25 @@
 // import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nowrth/screens/events/events_screen.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
 
+import 'package:nowrth/screens/liked/liked_screen.dart';
+import 'package:nowrth/screens/home/home_screen.dart';
+
 class CustomBottonNavBar extends StatelessWidget {
   const CustomBottonNavBar({
     Key key,
+    this.isAtHome = false,
+    this.isAtLiked = false,
   }) : super(key: key);
+
+  final bool isAtHome;
+  final bool isAtLiked;
+
+  // Icon homeIcon =
+  // isAtLiked ? Icon(Icons.favorite) : Icon(Icons.favorite_outlined);
 
   @override
   Widget build(BuildContext context) {
@@ -25,34 +34,45 @@ class CustomBottonNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               NavItem(
-                icon: "assets/icons/calendar.svg",
-                title: "Events",
+                icondata: isAtHome
+                    ? Icon(Icons.home, color: kPrimaryColor)
+                    : Icon(Icons.home_outlined, color: kPrimaryColor),
+                title: "Home",
                 press: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EventsScreen(),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
                 },
               ),
               NavItem(
-                icon: "assets/icons/chat.svg",
-                title: "Chat",
-                isActive: true,
-                press: () {},
+                // icon: "assets/icons/calendar.svg",
+                icondata: isAtLiked
+                    ? Icon(Icons.favorite, color: kPrimaryColor)
+                    : Icon(Icons.favorite_border, color: kPrimaryColor),
+                title: "Liked",
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LikedScreen(),
+                    ),
+                  );
+                },
               ),
-              NavItem(
-                icon: "assets/icons/friendship.svg",
-                title: "Friends",
-                press: () {},
-              ),
-              NavItem(
-                // icon: IconTheme(Icons.home),
-
-                icondata: Icon(Icons.home),
-                title: "Home",
-                press: () {},
-              )
+              // NavItem(
+              //   icon: "assets/icons/chat.svg",
+              //   title: "Chat",
+              //   isActive: true,
+              //   press: () {},
+              // ),
+              // NavItem(
+              //   icon: "assets/icons/friendship.svg",
+              //   title: "Friends",
+              //   press: () {},
+              // ),
             ],
           ),
         ),

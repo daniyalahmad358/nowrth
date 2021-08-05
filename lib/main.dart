@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'package:nowrth/constants.dart';
 import 'package:nowrth/providers/auth.dart';
-import 'package:nowrth/screens/initial_pages/Welcome/welcome_screen.dart';
 
-// import 'package:nowrth/screens/home/home_screen.dart';
-// import 'package:nowrth/screens/initial_pages/Welcome/welcome_screen.dart';
 import 'package:nowrth/screens/splash/splash_screen.dart';
+import 'package:nowrth/screens/initial_pages/Welcome/welcome_screen.dart';
+import 'package:nowrth/screens/home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,15 +30,16 @@ class MyApp extends StatelessWidget {
                 GoogleFonts.poppinsTextTheme().apply(displayColor: kTextColor),
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          // home: HomeScreen(),
           home: auth.isAuth
               ? WelcomeScreen()
               : FutureBuilder(
-                  // future: auth.tryautoLogin(), Original
+                  future: auth.tryautoLogin(), // Original
+                  /*
                   // Used to test splash
-                  future: Future.delayed(const Duration(seconds: 5), () {
-                    auth.tryautoLogin();
-                  }),
+                  // future: Future.delayed(const Duration(seconds: 5), () {
+                  // auth.tryautoLogin();
+                  // }),
+                  */
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()

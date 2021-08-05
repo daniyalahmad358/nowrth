@@ -75,7 +75,7 @@ class PlaceCard extends StatelessWidget {
                         travelSpot.date.year.toString(),
                   ),
                 VerticalSpacing(of: 10),
-                Travelers(
+                Guides(
                   users: travelSpot.users,
                 ),
               ],
@@ -87,8 +87,8 @@ class PlaceCard extends StatelessWidget {
   }
 }
 
-class Travelers extends StatelessWidget {
-  const Travelers({
+class Guides extends StatelessWidget {
+  const Guides({
     Key key,
     @required this.users,
   }) : super(key: key);
@@ -110,7 +110,7 @@ class Travelers extends StatelessWidget {
               totalUser++;
               return Positioned(
                 left: (22 * index).toDouble(),
-                child: buildTravelerFace(index),
+                child: buildGuideFace(index),
               );
             },
           ),
@@ -131,7 +131,7 @@ class Travelers extends StatelessWidget {
     );
   }
 
-  ClipOval buildTravelerFace(int index) {
+  ClipOval buildGuideFace(int index) {
     return ClipOval(
       child: Image.asset(
         users[index].image,

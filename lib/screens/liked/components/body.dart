@@ -2,37 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/components/place_card.dart';
 import 'package:nowrth/constants.dart';
 import 'package:nowrth/models/TravelSpot.dart';
+import 'package:nowrth/screens/details/details_screen.dart';
 import 'package:nowrth/size_config.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: SizeConfig.screenWidth,
-      child: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(25)),
-        child: SingleChildScrollView(
+    return ListView(
+      children: [
+        SizedBox(
+          width: SizeConfig.screenWidth,
           child: Padding(
-            padding: EdgeInsets.only(bottom: 25),
-            child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              runSpacing: 25,
-              children: [
-                ...List.generate(
-                  travelSpots.length,
-                  (index) => PlaceCard(
-                    travelSpot: travelSpots[index],
-                    isFullCard: true,
-                    press: () {},
-                  ),
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(25)),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 25),
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  runSpacing: 25,
+                  children: [
+                    ...List.generate(
+                      travelSpots.length,
+                      (index) => InkWell(
+                        child: PlaceCard(
+                          travelSpot: travelSpots[index],
+                          isFullCard: true,
+                          press: () {},
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return Details();
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    AddNewPlaceCard(),
+                  ],
                 ),
-                AddNewPlaceCard(),
-              ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

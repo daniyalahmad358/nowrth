@@ -23,7 +23,7 @@ List<TravelSpot> travelSpots = [
   ),
   TravelSpot(
     users: users..shuffle(),
-    name: "Megical World",
+    name: "Magical World",
     image: "assets/images/Magical_World.png",
     date: DateTime(2020, 3, 10),
   ),

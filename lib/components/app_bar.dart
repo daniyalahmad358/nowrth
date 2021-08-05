@@ -2,24 +2,28 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-AppBar buildAppBar(BuildContext context,
-    {bool isTransparent = false, String title}) {
+AppBar buildAppBar(
+  BuildContext context, {
+  double barOpacity = 1.0,
+  String title = "",
+}) {
   return AppBar(
-    backgroundColor: isTransparent ? Colors.transparent : Colors.white,
+    iconTheme: IconThemeData(color: kIconColor),
+    backgroundColor: Colors.white.withOpacity(barOpacity),
     elevation: 0,
-    leading: IconButton(
-      icon: Icon(
-        Icons.menu,
-        color: kIconColor,
-      ),
-      onPressed: () {},
+    // leading: IconButton(
+    // icon: Icon(
+    // Icons.menu,
+    // color: kIconColor,
+    // ),
+    // onPressed: () {
+    // drawer
+    // },
+    // ),
+    title: Text(
+      title,
+      style: TextStyle(color: kTextColor),
     ),
-    title: ! isTransparent
-        ? Text(
-            isTransparent ? "" : title,
-            style: TextStyle(color: kTextColor),
-          )
-        : null,
     centerTitle: true,
     actions: [
       IconButton(
