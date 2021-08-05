@@ -27,7 +27,7 @@ class HomeHeader extends StatelessWidget {
             children: [
               SizedBox(height: getProportionateScreenHeight(80)),
               Text(
-                "Travelers",
+                "Nowrth",
                 style: TextStyle(
                     fontSize: getProportionateScreenWidth(73),
                     fontWeight: FontWeight.bold,

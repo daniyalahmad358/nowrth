@@ -5,8 +5,8 @@ import 'package:nowrth/models/User.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class TopTravelers extends StatelessWidget {
-  const TopTravelers({
+class TopGuides extends StatelessWidget {
+  const TopGuides({
     Key key,
   }) : super(key: key);
 
@@ -14,7 +14,7 @@ class TopTravelers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionTitle(title: "Top Travelers on Spark", press: () {}),
+        SectionTitle(title: "Top Guides on Spark", press: () {}),
         VerticalSpacing(of: 20),
         Container(
           margin: EdgeInsets.symmetric(
@@ -31,9 +31,9 @@ class TopTravelers extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ...List.generate(
-                topTravelers.length,
+                topGuides.length,
                 (index) => UserCard(
-                  user: topTravelers[index],
+                  user: topGuides[index],
                   press: () {},
                 ),
               ),

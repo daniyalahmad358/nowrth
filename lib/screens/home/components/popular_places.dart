@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/components/place_card.dart';
 import 'package:nowrth/components/section_title.dart';
 import 'package:nowrth/models/TravelSpot.dart';
+import 'package:nowrth/screens/details/details_screen.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -15,7 +16,7 @@ class PopularPlaces extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionTitle( 
+        SectionTitle(
           title: "Right Now At Spark",
           press: () {},
         ),
@@ -30,9 +31,20 @@ class PopularPlaces extends StatelessWidget {
                 (index) => Padding(
                   padding: EdgeInsets.only(
                       left: getProportionateScreenWidth(kDefaultPadding)),
-                  child: PlaceCard(
-                    travelSpot: travelSpots[index],
-                    press: () {},
+                  child: InkWell(
+                    child: PlaceCard(
+                      travelSpot: travelSpots[index],
+                      press: () {},
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return Details();
+                          },
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
