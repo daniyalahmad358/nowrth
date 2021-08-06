@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
                   future: auth.tryautoLogin(), // Original
                   /*
                   // Used to test splash
-                  // future: Future.delayed(const Duration(seconds: 5), () {
-                  // auth.tryautoLogin();
-                  // }),
+                  future: Future.delayed(const Duration(seconds: 5), () {
+                    auth.tryautoLogin();
+                  }),
                   */
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
