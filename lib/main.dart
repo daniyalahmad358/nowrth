@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nowrth/screens/initial_pages/Login/login_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:nowrth/constants.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<Auth>(
         builder: (ctx, auth, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Nowrth App',
+          title: 'Nowrth',
           theme: ThemeData(
             brightness: Brightness.light,
             scaffoldBackgroundColor: Colors.white,
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()
-                          : WelcomeScreen(),
+                          : HomeScreen(),
                 ),
         ),
       ),

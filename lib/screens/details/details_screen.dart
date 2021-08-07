@@ -21,7 +21,7 @@ class Details extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.airplanemode_active,
+          Icons.map_outlined,
           color: Colors.white,
         ),
         backgroundColor: kPrimaryColor,

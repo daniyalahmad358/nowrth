@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -20,15 +19,14 @@ Widget buildDrawer(BuildContext context, var currentPage) {
         child: Container(
           width: 100,
           child: ClipRect(
-            child: SingleChildScrollView(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Column(
-                  children: [
-                    MyHeaderDrawer(),
-                    myDrawerList(context, currentPage),
-                  ],
-                ),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: ListView(
+                children: [
+                  MyHeaderDrawer(),
+                  myDrawerList(context, currentPage),
+                  // Text("${SizeConfig.screenHeight}")
+                ],
               ),
             ),
           ),
@@ -82,7 +80,7 @@ Widget myDrawerList(BuildContext context, var currentPage) {
           Icons.info_outlined,
           currentPage == DrawerSections.about ? true : false,
         ),
-        Text("${SizeConfig.screenHeight}"),
+        // Text("${SizeConfig.screenHeight}"),
       ],
     ),
   );
