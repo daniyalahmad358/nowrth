@@ -11,7 +11,6 @@ class Body extends StatelessWidget {
     // You have to call SizeConfig on your starting page
     SizeConfig().init(context);
     return SingleChildScrollView(
-      clipBehavior: Clip.none,
       child: SafeArea(
         top: false,
         child: Column(
