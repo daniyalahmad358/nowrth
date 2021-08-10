@@ -35,7 +35,7 @@ dependencies:
   # Allows you to easily use any of the 977 fonts
   google_fonts: ^1.1.0
   # Allow us to use .svg file
-#  flutter_svg: ^0.18.1-nullsafety.3
+  #  flutter_svg: ^0.18.1-nullsafety.3
   flutter_svg: ^0.20.0-nullsafety.3
   # Date and number formatting and parsing
   intl: ^0.16.1

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/constants.dart';
 
-import '../../../size_config.dart';
+import 'package:nowrth/size_config.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({
@@ -10,8 +11,8 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: getProportionateScreenWidth(313),
-      height: getProportionateScreenWidth(50),
+      width: getProportionateScreenWidth(260.83),
+      height: getProportionateScreenHeight(41.67),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
@@ -32,13 +33,13 @@ class SearchField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: "Search your destination…",
           hintStyle: TextStyle(
-            fontSize: getProportionateScreenWidth(12),
+            fontSize: getProportionateScreenHeight(12),
             color: Color(0xFF464A7E),
           ),
           suffixIcon: Icon(Icons.search),
           contentPadding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(20),
-            vertical: getProportionateScreenWidth(10),
+            horizontal: getProportionateScreenWidth(kDefaultPadding),
+            vertical: getProportionateScreenHeight(8.33),
           ),
         ),
       ),

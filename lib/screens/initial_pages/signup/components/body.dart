@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/screens/initial_pages/Login/login_screen.dart';
-import 'package:nowrth/screens/initial_pages/Signup/components/background.dart';
-import 'package:nowrth/screens/initial_pages/Signup/components/or_divider.dart';
-import 'package:nowrth/screens/initial_pages/Signup/components/social_icon.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
+import 'package:nowrth/screens/initial_pages/signup/components/background.dart';
+import 'package:nowrth/screens/initial_pages/signup/components/or_divider.dart';
+import 'package:nowrth/screens/initial_pages/signup/components/social_icon.dart';
 import 'package:nowrth/components/already_have_an_account_acheck.dart';
 import 'package:nowrth/components/rounded_button.dart';
 import 'package:nowrth/components/rounded_input_field.dart';
 import 'package:nowrth/components/rounded_password_field.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:nowrth/size_config.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
+
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -22,10 +24,10 @@ class Body extends StatelessWidget {
               "SIGNUP",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: SizeConfig.screenHeight * 0.03),
             SvgPicture.asset(
               "assets/icons/signup.svg",
-              height: size.height * 0.35,
+              height: SizeConfig.screenHeight * 0.35,
             ),
             RoundedInputField(
               hintText: "Your Email",
@@ -38,7 +40,7 @@ class Body extends StatelessWidget {
               text: "SIGNUP",
               press: () {},
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: SizeConfig.screenHeight * 0.03),
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {

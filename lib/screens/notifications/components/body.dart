@@ -33,7 +33,6 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-        // AddNewPlaceCard(),
       ],
     );
   }

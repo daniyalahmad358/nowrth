@@ -5,6 +5,7 @@ class SizeConfig {
   static double screenWidth;
   static double screenHeight;
   static double defaultSize;
+  static double screenProduct;
   static Orientation orientation;
 
   void init(BuildContext context) {
@@ -13,6 +14,8 @@ class SizeConfig {
     // 345
     screenHeight = _mediaQueryData.size.height;
     // 615
+
+    screenProduct = screenHeight * screenWidth;
     orientation = _mediaQueryData.orientation;
   }
 }
@@ -21,14 +24,25 @@ class SizeConfig {
 double getProportionateScreenHeight(double inputHeight) {
   double screenHeight = SizeConfig.screenHeight;
   // Our designer use iPhone 11 Pro, that's why we use 815.0
-  return (inputHeight / 815.0) * screenHeight;
+  // return (inputHeight / 815.0) * screenHeight;
+  return (inputHeight / 615) * screenHeight;
 }
 
 // Get the proportionate height as per screen size
 double getProportionateScreenWidth(double inputWidth) {
   double screenWidth = SizeConfig.screenWidth;
   // 414 is the layout width that designer use or you can say iPhone 11 Pro width
-  return (inputWidth / 414.0) * screenWidth;
+  return (inputWidth / 345) * screenWidth;
+}
+
+double percentageHeight(double inputHeight) {
+  double screenHeight = SizeConfig.screenHeight;
+  return (inputHeight * screenHeight) / 100;
+}
+
+double percentageWidth(double inputWidth) {
+  double screenWidth = SizeConfig.screenWidth;
+  return (inputWidth * screenWidth) / 100;
 }
 
 // For add free space vertically

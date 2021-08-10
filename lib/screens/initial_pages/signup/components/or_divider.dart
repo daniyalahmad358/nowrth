@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 
 class OrDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
+
     return Container(
-      margin: EdgeInsets.symmetric(vertical: size.height * 0.02),
-      width: size.width * 0.8,
+      margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight * 0.02),
+      width: SizeConfig.screenWidth * 0.8,
       child: Row(
         children: <Widget>[
           buildDivider(),

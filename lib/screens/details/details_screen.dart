@@ -6,7 +6,8 @@ import 'package:nowrth/components/app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/screens/details/components/body.dart';
 import 'package:nowrth/models/TravelSpot.dart';
-// import 'package:nowrth/widgets/icon_badge.dart';
+
+import 'package:nowrth/size_config.dart';
 
 class Details extends StatelessWidget {
   final travelSpotName = travelSpots[0].name;
@@ -50,7 +51,7 @@ class Details extends StatelessWidget {
               child: Image.asset(
                 travelSpot.image,
                 height: 250.0,
-                width: MediaQuery.of(context).size.width - 40.0,
+                width: SizeConfig.screenWidth - 40.0,
                 fit: BoxFit.cover,
               ),
             ),

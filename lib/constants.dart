@@ -6,7 +6,7 @@ const kIconColor = Color(0xFF5E5E5E);
 // const kPrimaryColor = Color(0xFF6F35A5);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
 
-const kDefaultPadding = 20.0;
+const kDefaultPadding = 16.67;
 
 final kDefualtShadow = BoxShadow(
   offset: Offset(5, 5),

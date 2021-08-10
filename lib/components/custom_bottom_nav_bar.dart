@@ -1,9 +1,7 @@
-// import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../constants.dart';
-import '../size_config.dart';
+import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 
 import 'package:nowrth/screens/liked/liked_screen.dart';
 import 'package:nowrth/screens/home/home_screen.dart';
@@ -18,9 +16,6 @@ class CustomBottonNavBar extends StatelessWidget {
   final bool isAtHome;
   final bool isAtLiked;
 
-  // Icon homeIcon =
-  // isAtLiked ? Icon(Icons.favorite) : Icon(Icons.favorite_outlined);
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -28,15 +23,18 @@ class CustomBottonNavBar extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(kDefaultPadding),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               NavItem(
-                icondata: isAtHome
-                    ? Icon(Icons.home, color: kPrimaryColor)
-                    : Icon(Icons.home_outlined, color: kPrimaryColor),
+                icondata: Icon(
+                  isAtHome ? Icons.home : Icons.home_outlined,
+                  color: kPrimaryColor,
+                  size: SizeConfig.screenHeight / 24.6,
+                ),
                 title: "Home",
                 press: () {
                   Navigator.push(
@@ -48,10 +46,11 @@ class CustomBottonNavBar extends StatelessWidget {
                 },
               ),
               NavItem(
-                // icon: "assets/icons/calendar.svg",
-                icondata: isAtLiked
-                    ? Icon(Icons.favorite, color: kPrimaryColor)
-                    : Icon(Icons.favorite_border, color: kPrimaryColor),
+                icondata: Icon(
+                  isAtLiked ? Icons.favorite : Icons.favorite_border,
+                  color: kPrimaryColor,
+                  size: SizeConfig.screenHeight / 24.6,
+                ),
                 title: "Liked",
                 press: () {
                   Navigator.push(
@@ -107,9 +106,8 @@ class _NavItemState extends State<NavItem> {
     var svgpic = SvgPicture.asset(
       widget.icon,
       color: kTextColor,
-      height: 28,
+      height: SizeConfig.screenHeight / 24.6,
     );
-
     return svgpic;
   }
 
@@ -125,8 +123,8 @@ class _NavItemState extends State<NavItem> {
       onTap: widget.press,
       child: Container(
         padding: EdgeInsets.all(5),
-        height: getProportionateScreenWidth(60),
-        width: getProportionateScreenWidth(60),
+        height: SizeConfig.screenHeight / (11.18),
+        width: getProportionateScreenWidth(55),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -135,16 +133,12 @@ class _NavItemState extends State<NavItem> {
         child: Column(
           children: [
             iconToBeShown,
-            // SvgPicture.asset(
-            //   icon,
-            //   color: kTextColor,
-            //   height: 28,
-            // ),
             Spacer(),
             Text(
-              widget.title,
+              // widget.title,
+              "${SizeConfig.screenWidth},${SizeConfig.screenHeight}", // TODO
               style: TextStyle(
-                fontSize: 11,
+                fontSize: SizeConfig.screenHeight / 55.91,
                 fontWeight: FontWeight.bold,
               ),
             )

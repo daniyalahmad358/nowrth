@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/components/section_title.dart';
-import 'package:nowrth/models/User.dart';
+import 'package:nowrth/models/Guide.dart';
 
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 
 class TopGuides extends StatelessWidget {
   const TopGuides({
@@ -20,8 +20,8 @@ class TopGuides extends StatelessWidget {
           margin: EdgeInsets.symmetric(
             horizontal: getProportionateScreenWidth(kDefaultPadding),
           ),
-          padding: EdgeInsets.all(getProportionateScreenWidth(24)),
-          // height: getProportionateScreenWidth(143),
+          padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+          // height: getProportionateScreenHeight(119.17),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -32,7 +32,7 @@ class TopGuides extends StatelessWidget {
             children: [
               ...List.generate(
                 topGuides.length,
-                (index) => UserCard(
+                (index) => GuideCard(
                   user: topGuides[index],
                   press: () {},
                 ),
@@ -45,14 +45,14 @@ class TopGuides extends StatelessWidget {
   }
 }
 
-class UserCard extends StatelessWidget {
-  const UserCard({
+class GuideCard extends StatelessWidget {
+  const GuideCard({
     Key key,
     @required this.user,
     @required this.press,
   }) : super(key: key);
 
-  final User user;
+  final Guide user;
   final GestureTapCallback press;
 
   @override
@@ -64,8 +64,8 @@ class UserCard extends StatelessWidget {
           ClipOval(
             child: Image.asset(
               user.image,
-              height: getProportionateScreenWidth(55),
-              width: getProportionateScreenWidth(55),
+              height: getProportionateScreenWidth(45.83),
+              width: getProportionateScreenWidth(45.83),
               fit: BoxFit.cover,
             ),
           ),

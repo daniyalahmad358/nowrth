@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:nowrth/models/TravelSpot.dart';
-import 'package:nowrth/models/User.dart';
 
-import '../constants.dart';
-import '../size_config.dart';
+import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
+
+import 'package:nowrth/models/TravelSpot.dart';
+import 'package:nowrth/models/Guide.dart';
+import 'package:nowrth/screens/details/details_screen.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({
@@ -20,69 +21,88 @@ class PlaceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: getProportionateScreenWidth(isFullCard ? 158 : 137),
-      child: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: isFullCard ? 1.09 : 1.29,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                image: DecorationImage(
-                    image: AssetImage(travelSpot.image), fit: BoxFit.cover),
-              ),
-            ),
-          ),
-          Container(
-            width: getProportionateScreenWidth(isFullCard ? 158 : 137),
-            padding: EdgeInsets.all(
-              getProportionateScreenWidth(kDefaultPadding),
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [kDefualtShadow],
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              ),
-            ),
-            child: Column(
+    SizeConfig().init(context);
+    return InkWell(
+      borderRadius: BorderRadius.all(Radius.circular(20)),
+      child: SizedBox(
+        width: percentageWidth(isFullCard ? 38.165 : 33.09),
+        child: Column(
+          children: [
+            Stack(
               children: [
-                Text(
-                  travelSpot.name,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: isFullCard ? 17 : 12,
+                AspectRatio(
+                  aspectRatio: isFullCard ? 1.09 : 1.29,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                      image: DecorationImage(
+                          image: AssetImage(travelSpot.image),
+                          fit: BoxFit.cover),
+                    ),
                   ),
                 ),
                 if (isFullCard)
-                  Text(
-                    travelSpot.date.day.toString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4
-                        .copyWith(fontWeight: FontWeight.bold),
+                  Positioned(
+                    right: 0.0,
+                    top: 0.0,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.close_rounded,
+                      ),
+                      color: Colors.white,
+                      iconSize: percentageHeight(4.065),
+                      splashRadius: 21,
+                      onPressed: () {},
+                    ),
                   ),
-                if (isFullCard)
-                  Text(
-                    DateFormat.MMMM().format(travelSpot.date) +
-                        " " +
-                        travelSpot.date.year.toString(),
-                  ),
-                VerticalSpacing(of: 10),
-                Guides(
-                  users: travelSpot.users,
-                ),
               ],
             ),
-          )
-        ],
+            Container(
+              width: percentageWidth(isFullCard ? 38.165 : 33.09),
+              padding: EdgeInsets.all(
+                getProportionateScreenWidth(kDefaultPadding),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [kDefualtShadow],
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    travelSpot.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: isFullCard
+                          ? getProportionateScreenHeight(17)
+                          : getProportionateScreenHeight(12),
+                    ),
+                  ),
+                  VerticalSpacing(of: 10),
+                  Guides(
+                    guides: travelSpot.guides,
+                    isCardSizeFull: isFullCard,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return Details();
+            },
+          ),
+        );
+      },
     );
   }
 }
@@ -90,42 +110,43 @@ class PlaceCard extends StatelessWidget {
 class Guides extends StatelessWidget {
   const Guides({
     Key key,
-    @required this.users,
+    @required this.guides,
+    this.isCardSizeFull = false,
   }) : super(key: key);
 
-  final List<User> users;
+  final bool isCardSizeFull;
+  final List<Guide> guides;
 
   @override
   Widget build(BuildContext context) {
-    int totalUser = 0;
     return SizedBox(
-      width: double.infinity,
-      height: getProportionateScreenWidth(30),
+      height: percentageWidth(6.762),
       child: Stack(
-        alignment: Alignment.center,
         children: [
           ...List.generate(
-            users.length,
+            isCardSizeFull ? 5 : 4,
             (index) {
-              totalUser++;
+              // totalGuide++;
               return Positioned(
-                left: (22 * index).toDouble(),
+                left: isCardSizeFull
+                    ? (percentageWidth(5) * index).toDouble()
+                    : (percentageWidth(5) * index).toDouble(),
                 child: buildGuideFace(index),
               );
             },
           ),
-          Positioned(
-            left: (22 * totalUser).toDouble(),
-            child: Container(
-              height: getProportionateScreenWidth(28),
-              width: getProportionateScreenWidth(28),
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(Icons.add, color: Colors.white),
-            ),
-          )
+          // Positioned(
+          //   left: (percentageWidth(5) * totalGuide).toDouble(),
+          //   child: Container(
+          //     height: percentageWidth(6.762),
+          //     width: percentageWidth(6.762),
+          //     decoration: BoxDecoration(
+          //       color: kPrimaryColor,
+          //       shape: BoxShape.circle,
+          //     ),
+          //     child: Icon(Icons.add, color: Colors.white),
+          //   ),
+          // )
         ],
       ),
     );
@@ -134,9 +155,9 @@ class Guides extends StatelessWidget {
   ClipOval buildGuideFace(int index) {
     return ClipOval(
       child: Image.asset(
-        users[index].image,
-        height: getProportionateScreenWidth(28),
-        width: getProportionateScreenWidth(28),
+        guides[index].image,
+        height: percentageWidth(6.762),
+        width: percentageWidth(6.762),
         fit: BoxFit.cover,
       ),
     );

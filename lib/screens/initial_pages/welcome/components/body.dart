@@ -1,43 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/screens/initial_pages/Login/components/background.dart';
-import 'package:nowrth/screens/initial_pages/Signup/signup_screen.dart';
-import 'package:nowrth/components/already_have_an_account_acheck.dart';
+import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
+import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
+import 'package:nowrth/screens/initial_pages/welcome/components/background.dart';
 import 'package:nowrth/components/rounded_button.dart';
-import 'package:nowrth/components/rounded_input_field.dart';
-import 'package:nowrth/components/rounded_password_field.dart';
+import 'package:nowrth/constants.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nowrth/screens/home/home_screen.dart';
+import 'package:nowrth/size_config.dart';
 
 class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
+
     return Background(
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "LOGIN",
+              "WELCOME TO NOWRTH",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: SizeConfig.screenHeight * 0.05),
             SvgPicture.asset(
-              "assets/icons/login.svg",
-              height: size.height * 0.35,
+              "assets/icons/chat_people.svg",
+              height: SizeConfig.screenHeight * 0.45,
             ),
-            SizedBox(height: size.height * 0.03),
-            RoundedInputField(
-              hintText: "Your Email",
-              onChanged: (value) {},
-            ),
-            RoundedPasswordField(
-              onChanged: (value) {},
-            ),
+            SizedBox(height: SizeConfig.screenHeight * 0.05),
             RoundedButton(
               text: "LOGIN",
               press: () {
@@ -45,14 +34,16 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HomeScreen();
+                      return LoginScreen();
                     },
                   ),
                 );
               },
             ),
-            SizedBox(height: size.height * 0.03),
-            AlreadyHaveAnAccountCheck(
+            RoundedButton(
+              text: "SIGN UP",
+              color: kPrimaryLightColor,
+              textColor: Colors.black,
               press: () {
                 Navigator.push(
                   context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/constants.dart';
 import 'package:nowrth/size_config.dart';
 
 import 'package:nowrth/utils/places.dart';
@@ -48,7 +49,8 @@ class Body extends StatelessWidget {
                 ),
                 IconButton(
                   icon: Icon(
-                    Icons.bookmark,
+                    Icons.favorite_border,
+                    color: kPrimaryColor,
                   ),
                   onPressed: () {},
                 ),
@@ -58,7 +60,7 @@ class Body extends StatelessWidget {
               children: <Widget>[
                 Icon(
                   Icons.location_on,
-                  size: 14,
+                  size: percentageHeight(2.34),
                   color: Colors.blueGrey[300],
                 ),
                 SizedBox(width: 3),

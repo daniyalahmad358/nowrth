@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -15,10 +16,10 @@ class RoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.8,
+      width: SizeConfig.screenWidth * 0.8,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         child: TextButton(

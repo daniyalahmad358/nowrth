@@ -4,8 +4,8 @@ import 'package:nowrth/components/section_title.dart';
 import 'package:nowrth/models/TravelSpot.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 
 class PopularPlaces extends StatelessWidget {
   const PopularPlaces({
@@ -31,20 +31,9 @@ class PopularPlaces extends StatelessWidget {
                 (index) => Padding(
                   padding: EdgeInsets.only(
                       left: getProportionateScreenWidth(kDefaultPadding)),
-                  child: InkWell(
-                    child: PlaceCard(
-                      travelSpot: travelSpots[index],
-                      press: () {},
-                    ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return Details();
-                          },
-                        ),
-                      );
-                    },
+                  child: PlaceCard(
+                    travelSpot: travelSpots[index],
+                    press: () {},
                   ),
                 ),
               ),

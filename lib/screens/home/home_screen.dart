@@ -4,7 +4,7 @@ import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/components/drawer_components.dart';
 import 'package:nowrth/screens/home/components/body.dart';
 
-// import '../../size_config.dart';
+// import 'package:nowrth/size_config.dart';
 
 class HomeScreen extends StatelessWidget {
   final currentPage = DrawerSections.dashboard;

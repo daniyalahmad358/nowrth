@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/size_config.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -9,10 +10,11 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
     return Container(
-      height: size.height,
+      height: SizeConfig.screenHeight,
       width: double.infinity,
+      // Here i can use SizeConfig.screenWidth but use double.infinity because both work as a same
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -20,8 +22,8 @@ class Background extends StatelessWidget {
             top: 0,
             left: 0,
             child: Image.asset(
-              "assets/images/login_signup/main_top.png",
-              width: size.width * 0.3,
+              "assets/images/login_signup/signup_top.png",
+              width: SizeConfig.screenWidth * 0.35,
             ),
           ),
           Positioned(
@@ -29,7 +31,7 @@ class Background extends StatelessWidget {
             left: 0,
             child: Image.asset(
               "assets/images/login_signup/main_bottom.png",
-              width: size.width * 0.2,
+              width: SizeConfig.screenWidth * 0.25,
             ),
           ),
           child,

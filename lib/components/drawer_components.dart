@@ -10,7 +10,8 @@ Widget buildDrawer(BuildContext context, var currentPage) {
   SizeConfig().init(context);
 
   return Container(
-    width: SizeConfig.screenWidth * (3 / 4),
+    // width: SizeConfig.screenWidth * (3 / 4),
+    width: percentageHeight(42.073),
     child: Theme(
       data: Theme.of(context).copyWith(
         canvasColor: kPrimaryColor.withOpacity(0.5),
@@ -101,7 +102,10 @@ Widget menuItem(
         Navigator.pop(context);
       },
       child: Padding(
-        padding: EdgeInsets.all(SizeConfig.screenWidth / 23),
+        padding: EdgeInsets.symmetric(
+          vertical: percentageHeight(2.44),
+          horizontal: percentageWidth(4.35),
+        ),
         child: Row(
           children: [
             Expanded(

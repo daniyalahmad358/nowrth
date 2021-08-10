@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../size_config.dart';
+import 'package:nowrth/size_config.dart';
 import 'search_fields.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -11,7 +11,7 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: getProportionateScreenWidth(25)),
+      padding: EdgeInsets.only(bottom: getProportionateScreenWidth(20.83)),
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.center,
@@ -20,16 +20,16 @@ class HomeHeader extends StatelessWidget {
             "assets/images/home_bg.png",
             fit: BoxFit.cover,
             width: double.infinity,
-            height: getProportionateScreenHeight(315),
+            height: getProportionateScreenHeight(237.7),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: getProportionateScreenHeight(80)),
+              SizedBox(height: getProportionateScreenHeight(60.4)),
               Text(
                 "Nowrth",
                 style: TextStyle(
-                    fontSize: getProportionateScreenWidth(73),
+                    fontSize: getProportionateScreenHeight(60.83),
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     height: 0.5),
@@ -41,7 +41,7 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
           Positioned(
-            bottom: getProportionateScreenWidth(-25),
+            bottom: getProportionateScreenWidth(-20.83),
             child: SearchField(),
           )
         ],

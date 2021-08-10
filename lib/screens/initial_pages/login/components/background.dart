@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/size_config.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -9,10 +10,11 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    SizeConfig().init(context);
+
     return Container(
       width: double.infinity,
-      height: size.height,
+      height: SizeConfig.screenHeight,
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -21,7 +23,7 @@ class Background extends StatelessWidget {
             left: 0,
             child: Image.asset(
               "assets/images/login_signup/main_top.png",
-              width: size.width * 0.35,
+              width: SizeConfig.screenWidth * 0.35,
             ),
           ),
           Positioned(
@@ -29,7 +31,7 @@ class Background extends StatelessWidget {
             right: 0,
             child: Image.asset(
               "assets/images/login_signup/login_bottom.png",
-              width: size.width * 0.4,
+              width: SizeConfig.screenWidth * 0.4,
             ),
           ),
           child,

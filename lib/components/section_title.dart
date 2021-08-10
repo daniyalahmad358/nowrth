@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import '../size_config.dart';
+import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -25,7 +25,7 @@ class SectionTitle extends StatelessWidget {
             title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: getProportionateScreenWidth(16),
+              fontSize: getProportionateScreenHeight(13.33),
             ),
           ),
           Spacer(),

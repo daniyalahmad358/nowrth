@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nowrth/screens/initial_pages/Login/login_screen.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:nowrth/constants.dart';
 import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/splash/splash_screen.dart';
-import 'package:nowrth/screens/initial_pages/Welcome/welcome_screen.dart';
-import 'package:nowrth/screens/home/home_screen.dart';
+import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
+// import 'package:nowrth/screens/home/home_screen.dart';
+// import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
+// import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
+// import 'package:nowrth/screens/liked/liked_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,7 +47,7 @@ class MyApp extends StatelessWidget {
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()
-                          : HomeScreen(),
+                          : WelcomeScreen(),
                 ),
         ),
       ),

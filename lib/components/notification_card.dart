@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:nowrth/models/NotificationModel.dart';
 import 'package:nowrth/size_config.dart';
 
-import '../constants.dart';
+import 'package:nowrth/constants.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
