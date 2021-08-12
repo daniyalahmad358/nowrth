@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nowrth/screens/home/home_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()
-                          : WelcomeScreen(),
+                          // : WelcomeScreen(),
+                          : HomeScreen(),
                 ),
         ),
       ),

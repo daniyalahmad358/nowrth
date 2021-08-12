@@ -91,7 +91,7 @@ class Auth with ChangeNotifier {
     try {
       final url = '$mainUrl/accounts:$endpoint?key=$authKey';
 
-      final responce = await http.post(url,
+      final responce = await http.post(Uri.parse(url),
           body: json.encode({
             'email': email,
             'password': password,

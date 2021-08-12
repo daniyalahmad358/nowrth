@@ -7,19 +7,18 @@ import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/screens/details/components/body.dart';
 import 'package:nowrth/models/TravelSpot.dart';
 
-import 'package:nowrth/size_config.dart';
+// import 'package:nowrth/size_config.dart';
 
 class Details extends StatelessWidget {
-  final travelSpotName = travelSpots[0].name;
+  Details({@required this.travelSpot});
+
+  final TravelSpot travelSpot;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: travelSpotName, barOpacity: 0.9),
-      body: Body(
-        builtSlider: buildSlider(),
-        travelSpotName: travelSpotName,
-      ),
+      appBar: buildAppBar(context, title: travelSpot.name, barOpacity: 0.9),
+      body: Body(travelSpot: travelSpot),
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.map_outlined,
@@ -33,6 +32,7 @@ class Details extends StatelessWidget {
     );
   }
 
+/*
   buildSlider() {
     return Container(
       padding: EdgeInsets.only(left: 20),
@@ -60,4 +60,5 @@ class Details extends StatelessWidget {
       ),
     );
   }
+*/
 }

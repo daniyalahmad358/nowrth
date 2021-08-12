@@ -105,7 +105,7 @@ class _NavItemState extends State<NavItem> {
   SvgPicture assetIconUsed() {
     var svgpic = SvgPicture.asset(
       widget.icon,
-      color: kTextColor,
+      color: kPrimaryColor,
       height: SizeConfig.screenHeight / 24.6,
     );
     return svgpic;
@@ -136,10 +136,11 @@ class _NavItemState extends State<NavItem> {
             Spacer(),
             Text(
               // widget.title,
-              "${SizeConfig.screenWidth},${SizeConfig.screenHeight}", // TODO
+              "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO
               style: TextStyle(
                 fontSize: SizeConfig.screenHeight / 55.91,
                 fontWeight: FontWeight.bold,
+                color: kTextColor,
               ),
             )
           ],

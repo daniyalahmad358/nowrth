@@ -38,8 +38,9 @@ class PlaceCard extends StatelessWidget {
                         top: Radius.circular(20),
                       ),
                       image: DecorationImage(
-                          image: AssetImage(travelSpot.image),
-                          fit: BoxFit.cover),
+                        image: AssetImage(travelSpot.images[0]),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -98,7 +99,7 @@ class PlaceCard extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return Details();
+              return Details(travelSpot: travelSpot);
             },
           ),
         );
