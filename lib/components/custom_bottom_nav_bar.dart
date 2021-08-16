@@ -8,7 +8,7 @@ import 'package:nowrth/screens/home/home_screen.dart';
 
 class CustomBottonNavBar extends StatelessWidget {
   const CustomBottonNavBar({
-    Key key,
+    Key? key,
     this.isAtHome = false,
     this.isAtLiked = false,
   }) : super(key: key);
@@ -80,31 +80,25 @@ class CustomBottonNavBar extends StatelessWidget {
   }
 }
 
-class NavItem extends StatefulWidget {
-  const NavItem({
-    Key key,
-    @required this.title,
-    @required this.press,
-    this.icon,
+class NavItem extends StatelessWidget {
+  NavItem({
+    Key? key,
+    required this.title,
+    required this.press,
+    this.svgIconPath,
     this.icondata,
     this.isActive = false,
   }) : super(key: key);
 
-  final String icon, title;
+  final String? svgIconPath;
+  final String title;
   final GestureTapCallback press;
   final bool isActive;
-  final icondata;
-
-  @override
-  _NavItemState createState() => _NavItemState();
-}
-
-class _NavItemState extends State<NavItem> {
-  var iconToBeShown;
+  final Icon? icondata;
 
   SvgPicture assetIconUsed() {
     var svgpic = SvgPicture.asset(
-      widget.icon,
+      svgIconPath!,
       color: kPrimaryColor,
       height: SizeConfig.screenHeight / 24.6,
     );
@@ -113,14 +107,16 @@ class _NavItemState extends State<NavItem> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.icon != null) {
+    var iconToBeShown;
+
+    if (svgIconPath != null) {
       iconToBeShown = assetIconUsed();
     } else {
-      iconToBeShown = widget.icondata;
+      iconToBeShown = icondata;
     }
 
     return InkWell(
-      onTap: widget.press,
+      onTap: press,
       child: Container(
         padding: EdgeInsets.all(5),
         height: SizeConfig.screenHeight / (11.18),
@@ -128,7 +124,7 @@ class _NavItemState extends State<NavItem> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [if (widget.isActive) kDefualtShadow],
+          boxShadow: [if (isActive) kDefualtShadow],
         ),
         child: Column(
           children: [

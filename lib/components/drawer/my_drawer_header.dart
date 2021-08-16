@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/constants.dart';
 import 'package:nowrth/size_config.dart';
 
-class MyHeaderDrawer extends StatefulWidget {
-  @override
-  _MyHeaderDrawerState createState() => _MyHeaderDrawerState();
-}
-
-class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
+class MyHeaderDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

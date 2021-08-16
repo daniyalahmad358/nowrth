@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:nowrth/components/app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
-import 'package:nowrth/components/drawer_components.dart';
-import 'package:nowrth/screens/home/components/body.dart';
+import 'package:nowrth/components/drawer/drawer_components.dart';
 
-// import 'package:nowrth/size_config.dart';
+import 'package:nowrth/screens/home/components/home_body.dart';
 
 class HomeScreen extends StatelessWidget {
   final currentPage = DrawerSections.dashboard;
@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: buildAppBar(context, barOpacity: 0.0),
-      body: Body(),
+      body: HomeBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtHome: true),
       drawer: buildDrawer(context, currentPage),
     );

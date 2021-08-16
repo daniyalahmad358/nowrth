@@ -3,48 +3,56 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/constants.dart';
 import 'package:nowrth/size_config.dart';
 
-import 'package:nowrth/models/TravelSpot.dart';
-import 'package:nowrth/models/Guide.dart';
+import 'package:nowrth/models/travel_spot.dart';
+import 'package:nowrth/models/guide.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
-class PlaceCard extends StatelessWidget {
-  const PlaceCard({
-    Key key,
-    @required this.travelSpot,
+class TravelSpotCard extends StatefulWidget {
+  const TravelSpotCard({
+    Key? key,
+    required this.travelSpot,
     this.isFullCard = false,
-    @required this.press,
+    required this.likeControl,
+    this.unLike,
   }) : super(key: key);
 
   final TravelSpot travelSpot;
   final bool isFullCard;
-  final GestureTapCallback press;
+  final GestureTapCallback likeControl;
 
+  final Function()? unLike;
+
+  @override
+  _TravelSpotCardState createState() => _TravelSpotCardState();
+}
+
+class _TravelSpotCardState extends State<TravelSpotCard> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return InkWell(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.circular(20),
       child: SizedBox(
-        width: percentageWidth(isFullCard ? 38.165 : 33.09),
+        width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
         child: Column(
           children: [
             Stack(
               children: [
                 AspectRatio(
-                  aspectRatio: isFullCard ? 1.09 : 1.29,
+                  aspectRatio: widget.isFullCard ? 1.09 : 1.29,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(20),
                       ),
                       image: DecorationImage(
-                        image: AssetImage(travelSpot.images[0]),
+                        image: AssetImage(widget.travelSpot.images[0]),
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
-                if (isFullCard)
+                if (widget.isFullCard)
                   Positioned(
                     right: 0.0,
                     top: 0.0,
@@ -53,15 +61,21 @@ class PlaceCard extends StatelessWidget {
                         Icons.close_rounded,
                       ),
                       color: Colors.white,
-                      iconSize: percentageHeight(4.065),
-                      splashRadius: 21,
-                      onPressed: () {},
+                      iconSize: percentageHeight(3.90244),
+                      splashRadius: percentageHeight(3.4146),
+                      onPressed: () {
+                        setState(() {
+                          widget.travelSpot.isLiked = false;
+                          likedTravelSpots.remove(widget.travelSpot);
+                          widget.unLike!();
+                        });
+                      },
                     ),
                   ),
               ],
             ),
             Container(
-              width: percentageWidth(isFullCard ? 38.165 : 33.09),
+              width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
               padding: EdgeInsets.all(
                 getProportionateScreenWidth(kDefaultPadding),
               ),
@@ -75,19 +89,19 @@ class PlaceCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    travelSpot.name,
+                    widget.travelSpot.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: isFullCard
+                      fontSize: widget.isFullCard
                           ? getProportionateScreenHeight(17)
                           : getProportionateScreenHeight(12),
                     ),
                   ),
                   VerticalSpacing(of: 10),
                   Guides(
-                    guides: travelSpot.guides,
-                    isCardSizeFull: isFullCard,
+                    guides: widget.travelSpot.guides,
+                    isCardSizeFull: widget.isFullCard,
                   ),
                 ],
               ),
@@ -99,7 +113,7 @@ class PlaceCard extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return Details(travelSpot: travelSpot);
+              return Details(travelSpot: widget.travelSpot);
             },
           ),
         );
@@ -110,8 +124,8 @@ class PlaceCard extends StatelessWidget {
 
 class Guides extends StatelessWidget {
   const Guides({
-    Key key,
-    @required this.guides,
+    Key? key,
+    required this.guides,
     this.isCardSizeFull = false,
   }) : super(key: key);
 
@@ -136,18 +150,6 @@ class Guides extends StatelessWidget {
               );
             },
           ),
-          // Positioned(
-          //   left: (percentageWidth(5) * totalGuide).toDouble(),
-          //   child: Container(
-          //     height: percentageWidth(6.762),
-          //     width: percentageWidth(6.762),
-          //     decoration: BoxDecoration(
-          //       color: kPrimaryColor,
-          //       shape: BoxShape.circle,
-          //     ),
-          //     child: Icon(Icons.add, color: Colors.white),
-          //   ),
-          // )
         ],
       ),
     );

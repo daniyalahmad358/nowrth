@@ -4,8 +4,8 @@ import 'package:nowrth/size_config.dart';
 class Background extends StatelessWidget {
   final Widget child;
   const Background({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override
