@@ -2,45 +2,50 @@ import 'package:flutter/material.dart';
 
 class StopBySpot {
   final String name;
-  final stopType;
+  final String stopType;
   final IconData iconData;
+  final double rating;
   final bool isTravelSpot;
 
   StopBySpot({
-    @required this.name,
-    @required this.iconData,
-    @required this.stopType,
-    this.isTravelSpot,
+    required this.name,
+    required this.iconData,
+    required this.stopType,
+    required this.rating,
+    this.isTravelSpot = false,
   });
 }
 
-enum SpotTypes {
-  hotel,
-  restraunt,
-  travelSpot,
-  fuelStation,
-  Bank,
-}
+Map<String, String> spotTypes = {
+  "hotel": "Hotel",
+  "restaurant": "Restaurant",
+  "travelSpot": "Travel Spot",
+  "fuelStation": "Fuel Station",
+  "bank": "Bank",
+};
 
-List<StopBySpot> stopBySpots = [stopBySpot1, stopBySpot2, stopBySpot3];
+List<StopBySpot> stopBySpots = [stopBySpot0, stopBySpot1, stopBySpot2];
+
+StopBySpot stopBySpot0 = StopBySpot(
+  name: "Swat Hotel",
+  stopType: spotTypes["hotel"] ?? "Unknown",
+  iconData: Icons.fastfood,
+  rating: 2,
+  isTravelSpot: false,
+);
 
 StopBySpot stopBySpot1 = StopBySpot(
-  name: "Swat Restraunt",
-  stopType: SpotTypes.hotel,
-  iconData: Icons.fastfood,
+  name: "Naran Restraunt",
+  stopType: spotTypes["restaurant"] ?? "Unknown",
+  iconData: Icons.hotel,
+  rating: 4,
   isTravelSpot: false,
 );
 
 StopBySpot stopBySpot2 = StopBySpot(
-  name: "Magical World",
-  stopType: "Restraunt",
-  iconData: Icons.hotel,
-  isTravelSpot: false,
-);
-
-StopBySpot stopBySpot3 = StopBySpot(
-  name: "Red Mountains",
-  stopType: "PicnicSpot",
+  name: "Babusar Top",
+  stopType: spotTypes["travelSpot"] ?? "Unknown",
   iconData: Icons.landscape,
+  rating: 4.5,
   isTravelSpot: false,
 );

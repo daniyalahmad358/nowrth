@@ -11,31 +11,31 @@ class Auth with ChangeNotifier {
   var mainUrl = Api.authUrl;
   var authKey = Api.authKey;
 
-  String _token;
-  String _userId;
-  String _userEmail;
-  DateTime _expiryDate;
-  Timer _authTimer;
+  String? _token;
+  String? _userId;
+  String? _userEmail;
+  DateTime? _expiryDate;
+  Timer? _authTimer;
 
   bool get isAuth {
     return token != null;
   }
 
-  String get token {
+  String? get token {
     if (_expiryDate != null &&
-        _expiryDate.isAfter(DateTime.now()) &&
+        _expiryDate!.isAfter(DateTime.now()) &&
         _token != null) {
-      return _token;
+      return _token!;
     }
     return null;
   }
 
   String get userId {
-    return _userId;
+    return _userId!;
   }
 
   String get userEmail {
-    return _userEmail;
+    return _userEmail!;
   }
 
   Future<void> logout() async {
@@ -45,7 +45,7 @@ class Auth with ChangeNotifier {
     _expiryDate = null;
 
     if (_authTimer != null) {
-      _authTimer.cancel();
+      _authTimer!.cancel();
       _authTimer = null;
     }
 
@@ -57,9 +57,9 @@ class Auth with ChangeNotifier {
 
   void _autologout() {
     if (_authTimer != null) {
-      _authTimer.cancel();
+      _authTimer!.cancel();
     }
-    final timetoExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
+    final timetoExpiry = _expiryDate!.difference(DateTime.now()).inSeconds;
     _authTimer = Timer(Duration(seconds: timetoExpiry), logout);
   }
 
@@ -69,16 +69,17 @@ class Auth with ChangeNotifier {
       return false;
     }
 
-    final extractedUserData =
-        json.decode(pref.getString('userData')) as Map<String, Object>;
+    final extractedUserData = json.decode(pref.getString('userData') as String)
+        as Map<String, Object>;
 
-    final expiryDate = DateTime.parse(extractedUserData['expiryDate']);
+    final expiryDate =
+        DateTime.parse(extractedUserData['expiryDate'] as String);
     if (expiryDate.isBefore(DateTime.now())) {
       return false;
     }
-    _token = extractedUserData['token'];
-    _userId = extractedUserData['userId'];
-    _userEmail = extractedUserData['userEmail'];
+    _token = extractedUserData['token'] as String?;
+    _userId = extractedUserData['userId'] as String?;
+    _userEmail = extractedUserData['userEmail'] as String?;
     _expiryDate = expiryDate;
     notifyListeners();
     _autologout();
@@ -117,7 +118,7 @@ class Auth with ChangeNotifier {
         'token': _token,
         'userId': _userId,
         'userEmail': _userEmail,
-        'expiryDate': _expiryDate.toIso8601String(),
+        'expiryDate': _expiryDate!.toIso8601String(),
       });
 
       prefs.setString('userData', userData);

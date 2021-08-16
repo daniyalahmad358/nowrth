@@ -5,7 +5,7 @@ import 'search_fields.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
