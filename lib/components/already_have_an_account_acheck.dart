@@ -3,11 +3,12 @@ import 'package:nowrth/constants.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
-  final Function press;
-  const AlreadyHaveAnAccountCheck({
-    Key key,
+  final Function() press;
+
+  AlreadyHaveAnAccountCheck({
+    Key? key,
     this.login = true,
-    this.press,
+    required this.press,
   }) : super(key: key);
 
   @override

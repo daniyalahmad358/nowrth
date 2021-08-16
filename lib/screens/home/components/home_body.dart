@@ -5,7 +5,7 @@ import 'home_header.dart';
 import 'popular_places.dart';
 import 'top_guides.dart';
 
-class Body extends StatelessWidget {
+class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // You have to call SizeConfig on your starting page

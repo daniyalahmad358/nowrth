@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-import 'package:nowrth/models/NotificationModel.dart';
+import 'package:nowrth/models/notification_model.dart';
 import 'package:nowrth/size_config.dart';
 
 import 'package:nowrth/constants.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
-    Key key,
-    @required this.theNotification,
-    @required this.press,
-    @required this.notiBorderRadius,
+    Key? key,
+    required this.theNotification,
+    required this.press,
+    required this.notiBorderRadius,
   }) : super(key: key);
 
   final NotificationModel theNotification;
@@ -21,7 +21,6 @@ class NotificationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: SizeConfig.screenWidth * (4 / 5),
       height: SizeConfig.screenHeight / 12,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -41,9 +40,10 @@ class NotificationCard extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Text(
-              theNotification.title,
+              theNotification.headline,
               style: TextStyle(
                 color: theNotification.readStatus ? kIconColor : kPrimaryColor,
+                fontSize: percentageHeight(2.2764),
                 fontWeight: theNotification.readStatus
                     ? FontWeight.normal
                     : FontWeight.bold,

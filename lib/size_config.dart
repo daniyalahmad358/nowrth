@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 class SizeConfig {
-  static MediaQueryData _mediaQueryData;
-  static double screenWidth;
-  static double screenHeight;
-  static double defaultSize;
-  static double screenProduct;
-  static Orientation orientation;
+  static MediaQueryData? _mediaQueryData;
+  static double? defaultSize;
+  static Orientation orientation = _mediaQueryData!.orientation;
+  static double screenWidth = _mediaQueryData!.size.width;
+  static double screenHeight = _mediaQueryData!.size.height;
+  static double screenProduct = screenHeight * screenWidth;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
-    screenWidth = _mediaQueryData.size.width;
+    screenWidth = _mediaQueryData!.size.width;
     // 345
-    screenHeight = _mediaQueryData.size.height;
+    screenHeight = _mediaQueryData!.size.height;
     // 615
 
     screenProduct = screenHeight * screenWidth;
-    orientation = _mediaQueryData.orientation;
+    orientation = _mediaQueryData!.orientation;
   }
 }
 
@@ -48,7 +48,7 @@ double percentageWidth(double inputWidth) {
 // For add free space vertically
 class VerticalSpacing extends StatelessWidget {
   const VerticalSpacing({
-    Key key,
+    Key? key,
     this.of = 25,
   }) : super(key: key);
 

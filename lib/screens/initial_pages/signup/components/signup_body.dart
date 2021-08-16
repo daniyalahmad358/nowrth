@@ -10,7 +10,7 @@ import 'package:nowrth/components/rounded_input_field.dart';
 import 'package:nowrth/components/rounded_password_field.dart';
 import 'package:nowrth/size_config.dart';
 
-class Body extends StatelessWidget {
+class SignupBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);

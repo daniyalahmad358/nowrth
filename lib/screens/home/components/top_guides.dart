@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:nowrth/components/section_title.dart';
-import 'package:nowrth/models/Guide.dart';
+import 'package:nowrth/models/guide.dart';
 
 import 'package:nowrth/constants.dart';
 import 'package:nowrth/size_config.dart';
 
 class TopGuides extends StatelessWidget {
   const TopGuides({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -47,9 +48,9 @@ class TopGuides extends StatelessWidget {
 
 class GuideCard extends StatelessWidget {
   const GuideCard({
-    Key key,
-    @required this.user,
-    @required this.press,
+    Key? key,
+    required this.user,
+    required this.press,
   }) : super(key: key);
 
   final Guide user;
