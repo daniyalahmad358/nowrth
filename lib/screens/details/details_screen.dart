@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
+
+import 'package:nowrth/models/travel_spot.dart';
 
 import 'package:nowrth/components/app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/screens/details/components/details_body.dart';
-import 'package:nowrth/models/travel_spot.dart';
-import 'package:nowrth/screens/route/components/pdp.dart';
 import 'package:nowrth/screens/route/route_screen.dart';
-import 'package:nowrth/size_config.dart';
 
 class Details extends StatelessWidget {
   Details({required this.travelSpot});
