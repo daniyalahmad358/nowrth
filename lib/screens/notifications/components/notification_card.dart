@@ -30,7 +30,7 @@ class NotificationCard extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Expanded(
             child: Icon(
               theNotification.iconData,

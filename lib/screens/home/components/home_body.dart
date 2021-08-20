@@ -14,7 +14,7 @@ class HomeBody extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Column(
-          children: [
+          children: <Widget>[
             HomeHeader(),
             VerticalSpacing(),
             PopularPlaces(),

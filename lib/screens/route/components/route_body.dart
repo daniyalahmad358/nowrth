@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:timelines/timelines.dart';
+// import 'package:timelines/timelines.dart';
 
-import 'package:nowrth/constants.dart';
+// import 'package:nowrth/constants.dart';
+import 'package:nowrth/screens/route/components/timeline.dart';
 import 'package:nowrth/size_config.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
-import 'package:nowrth/models/stop_by_spot.dart';
 
 import 'package:nowrth/screens/route/components/stop_by_spot_card.dart';
 
@@ -27,19 +27,16 @@ class _RouteBodyState extends State<RouteBody> {
   Widget build(BuildContext context) {
     // You have to call SizeConfig on your starting page
     SizeConfig().init(context);
-    return Timeline.tileBuilder(
-      builder: TimelineTileBuilder.connectedFromStyle(
-        contentsAlign: ContentsAlign.alternating,
-        contentsBuilder: (context, index) => Padding(
-          padding: EdgeInsets.only(
-              left: getProportionateScreenWidth(kDefaultPadding)),
-          child: StopBySpotCard(
-            stopBySpot: stopBySpots[index],
+    return Timeline(
+      timelineContents: <Widget>[
+        ...List.generate(
+          widget.travelSpot.stopBySpots.length,
+          (index) => StopBySpotCard(
+            stopBySpot: widget.travelSpot.stopBySpots[index],
             // press: () {},
           ),
-        ),
-        itemCount: 3,
-      ),
+        )
+      ],
     );
   }
 }

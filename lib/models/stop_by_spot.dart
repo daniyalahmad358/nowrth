@@ -24,7 +24,7 @@ Map<String, String> spotTypes = {
   "bank": "Bank",
 };
 
-List<StopBySpot> stopBySpots = [stopBySpot0, stopBySpot1, stopBySpot2];
+// List<StopBySpot> stopBySpots = [stopBySpot0, stopBySpot1, stopBySpot2];
 
 StopBySpot stopBySpot0 = StopBySpot(
   name: "Swat Hotel",

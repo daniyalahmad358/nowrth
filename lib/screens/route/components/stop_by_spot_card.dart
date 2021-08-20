@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/components/rating_widget.dart';
-import 'package:nowrth/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-// import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
 
+import 'package:nowrth/constants.dart';
+import 'package:nowrth/size_config.dart';
 import 'package:nowrth/models/stop_by_spot.dart';
-// import 'package:nowrth/screens/details/details_screen.dart';
+
+import 'package:nowrth/components/rating_widget.dart';
 
 class StopBySpotCard extends StatefulWidget {
   const StopBySpotCard({
@@ -53,7 +52,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
     SizeConfig().init(context);
     return SizedBox(
       child: Stack(
-        children: [
+        children: <Widget>[
           if (showInfo)
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -65,13 +64,13 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: <Widget>[
                   SizedBox(
                     width: percentageHeight(9.75),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       Text(widget.stopBySpot.name),
                       Text(widget.stopBySpot.stopType),
                       RatingBar(

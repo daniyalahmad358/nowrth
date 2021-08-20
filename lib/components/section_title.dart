@@ -20,7 +20,7 @@ class SectionTitle extends StatelessWidget {
         horizontal: getProportionateScreenWidth(kDefaultPadding),
       ),
       child: Row(
-        children: [
+        children: <Widget>[
           Text(
             title,
             style: TextStyle(

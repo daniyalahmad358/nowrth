@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: buildAppBar(context, barOpacity: 0.0),
+      appBar: CustomAppBar(context, barOpacity: 0.0),
       body: HomeBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtHome: true),
       drawer: buildDrawer(context, currentPage),

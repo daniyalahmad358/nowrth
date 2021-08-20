@@ -19,7 +19,7 @@ class _LikedBodyState extends State<LikedBody> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
+      children: <Widget>[
         SizedBox(
           width: SizeConfig.screenWidth,
           child: Padding(
@@ -53,7 +53,7 @@ class _LikedBodyState extends State<LikedBody> {
                     if (likedTravelSpots.length == 2) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                        children: <Widget>[
                           Container(child: likedTravelSpotCards[0]),
                           Container(child: likedTravelSpotCards[1]),
                         ],

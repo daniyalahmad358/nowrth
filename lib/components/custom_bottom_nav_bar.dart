@@ -28,7 +28,7 @@ class CustomBottonNavBar extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+            children: <Widget>[
               NavItem(
                 icondata: Icon(
                   isAtHome ? Icons.home : Icons.home_outlined,
@@ -127,11 +127,11 @@ class NavItem extends StatelessWidget {
           boxShadow: [if (isActive) kDefualtShadow],
         ),
         child: Column(
-          children: [
+          children: <Widget>[
             iconToBeShown,
             Spacer(),
             Text(
-              // widget.title,
+              // title,
               "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO
               style: TextStyle(
                 fontSize: SizeConfig.screenHeight / 55.91,

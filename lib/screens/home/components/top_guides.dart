@@ -14,7 +14,7 @@ class TopGuides extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         SectionTitle(title: "Top Guides on Spark", press: () {}),
         VerticalSpacing(of: 20),
         Container(
@@ -30,7 +30,7 @@ class TopGuides extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               ...List.generate(
                 topGuides.length,
                 (index) => GuideCard(
@@ -61,7 +61,7 @@ class GuideCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Column(
-        children: [
+        children: <Widget>[
           ClipOval(
             child: Image.asset(
               user.image,

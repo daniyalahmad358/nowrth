@@ -11,7 +11,7 @@ class MyHeaderDrawer extends StatelessWidget {
       padding: EdgeInsets.only(top: SizeConfig.screenHeight / 35),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Container(
             margin: EdgeInsets.only(bottom: SizeConfig.screenHeight / 62),
             height: SizeConfig.screenHeight / 9,

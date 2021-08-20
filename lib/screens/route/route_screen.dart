@@ -14,10 +14,11 @@ class RouteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: travelSpot.name, barOpacity: 0.9),
+      appBar:
+          CustomAppBar(context, titleText: travelSpot.name, barOpacity: 0.9),
       body: RouteBody(travelSpot: travelSpot),
       bottomNavigationBar: CustomBottonNavBar(),
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
     );
   }
 }
