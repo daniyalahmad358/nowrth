@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()
-                          // : WelcomeScreen(),
-                          : HomeScreen(),
+                          : WelcomeScreen(),
+                  // : HomeScreen(),
                 ),
         ),
       ),
