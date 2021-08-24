@@ -11,9 +11,9 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(
+      appBar: CustomAppBar(
         context,
-        title: "Notifications",
+        titleText: "Notifications",
         barOpacity: 0.9,
         onNotiPage: true,
       ),

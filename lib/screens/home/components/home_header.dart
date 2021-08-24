@@ -15,7 +15,7 @@ class HomeHeader extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.center,
-        children: [
+        children: <Widget>[
           Image.asset(
             "assets/images/home_bg.png",
             fit: BoxFit.cover,
@@ -24,7 +24,7 @@ class HomeHeader extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               SizedBox(height: getProportionateScreenHeight(60.4)),
               Text(
                 "Nowrth",

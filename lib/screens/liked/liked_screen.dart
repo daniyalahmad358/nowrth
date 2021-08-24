@@ -11,7 +11,7 @@ class LikedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: "Liked Spots", barOpacity: 0.9),
+      appBar: CustomAppBar(context, titleText: "Liked Spots", barOpacity: 0.9),
       body: LikedBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtLiked: true),
       extendBodyBehindAppBar: true,

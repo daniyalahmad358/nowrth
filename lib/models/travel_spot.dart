@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:nowrth/models/guide.dart';
 import 'package:nowrth/models/stop_by_spot.dart';
 

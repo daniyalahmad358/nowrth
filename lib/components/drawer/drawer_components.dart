@@ -23,7 +23,7 @@ Widget buildDrawer(BuildContext context, var currentPage) {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: ListView(
-                children: [
+                children: <Widget>[
                   MyHeaderDrawer(),
                   myDrawerList(context, currentPage),
                   // Text("${SizeConfig.screenHeight}")
@@ -44,7 +44,7 @@ Widget myDrawerList(BuildContext context, var currentPage) {
     ),
     child: Column(
       // shows the list of menu drawer
-      children: [
+      children: <Widget>[
         menuItem(context, currentPage, 1, "Dashboard", Icons.dashboard_outlined,
             currentPage == DrawerSections.dashboard ? true : false),
         menuItem(context, currentPage, 2, "Liked", Icons.favorite_border,
@@ -107,7 +107,7 @@ Widget menuItem(
           horizontal: percentageWidth(4.35),
         ),
         child: Row(
-          children: [
+          children: <Widget>[
             Expanded(
               child: Icon(
                 icon,

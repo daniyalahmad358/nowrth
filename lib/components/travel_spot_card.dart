@@ -35,9 +35,9 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
       child: SizedBox(
         width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
         child: Column(
-          children: [
+          children: <Widget>[
             Stack(
-              children: [
+              children: <Widget>[
                 AspectRatio(
                   aspectRatio: widget.isFullCard ? 1.09 : 1.29,
                   child: Container(
@@ -87,7 +87,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
                 ),
               ),
               child: Column(
-                children: [
+                children: <Widget>[
                   Text(
                     widget.travelSpot.name,
                     textAlign: TextAlign.center,
@@ -137,7 +137,7 @@ class Guides extends StatelessWidget {
     return SizedBox(
       height: percentageWidth(6.762),
       child: Stack(
-        children: [
+        children: <Widget>[
           ...List.generate(
             isCardSizeFull ? 5 : 4,
             (index) {

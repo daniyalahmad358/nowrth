@@ -8,7 +8,7 @@ class NotificationsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
+      children: <Widget>[
         ...List.generate(
           theNotifications.length,
           (index) => Padding(

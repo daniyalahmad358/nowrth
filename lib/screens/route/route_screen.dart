@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/components/custom_floating_action_button.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
 import 'package:nowrth/components/app_bar.dart';
@@ -14,9 +15,14 @@ class RouteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: travelSpot.name, barOpacity: 0.9),
+      appBar:
+          CustomAppBar(context, titleText: travelSpot.name, barOpacity: 0.9),
       body: RouteBody(travelSpot: travelSpot),
       bottomNavigationBar: CustomBottonNavBar(),
+      floatingActionButton: CustomFloatingActionButton(
+        iconData: Icons.map_outlined,
+        onPressed: () {},
+      ),
       extendBodyBehindAppBar: true,
     );
   }

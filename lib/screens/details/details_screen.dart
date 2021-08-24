@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/components/custom_floating_action_button.dart';
+// import 'package:nowrth/components/mdIcons/material_design_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
 
@@ -18,28 +19,19 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: travelSpot.name, barOpacity: 0.9),
+      appBar:
+          CustomAppBar(context, titleText: travelSpot.name, barOpacity: 0.9),
       body: DetailsBody(travelSpot: travelSpot),
-      floatingActionButton: SizedBox(
-        height: percentageHeight(8.13),
-        width: percentageHeight(8.13),
-        child: FittedBox(
-          child: FloatingActionButton(
-            child: Icon(
-              Icons.map_outlined,
-              color: Colors.white,
+      floatingActionButton: CustomFloatingActionButton(
+        iconData: Icons.timeline,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RouteScreen(travelSpot: travelSpot),
             ),
-            backgroundColor: kPrimaryColor,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RouteScreen(travelSpot: travelSpot),
-                ),
-              );
-            },
-          ),
-        ),
+          );
+        },
       ),
       bottomNavigationBar: CustomBottonNavBar(),
       extendBodyBehindAppBar: true,

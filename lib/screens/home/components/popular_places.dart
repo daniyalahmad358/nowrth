@@ -15,7 +15,7 @@ class PopularPlaces extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         SectionTitle(
           title: "Right Now At Spark",
           press: () {},
@@ -25,7 +25,7 @@ class PopularPlaces extends StatelessWidget {
           clipBehavior: Clip.none,
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: [
+            children: <Widget>[
               ...List.generate(
                 travelSpots.length,
                 (index) => Padding(

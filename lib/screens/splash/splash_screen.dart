@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) => ListView(
-          children: [
+          children: <Widget>[
             Container(
               padding: const EdgeInsets.all(20.0),
               constraints: BoxConstraints(

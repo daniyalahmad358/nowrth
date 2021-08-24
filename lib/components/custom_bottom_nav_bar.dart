@@ -28,7 +28,7 @@ class CustomBottonNavBar extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+            children: <Widget>[
               NavItem(
                 icondata: Icon(
                   isAtHome ? Icons.home : Icons.home_outlined,
@@ -119,7 +119,7 @@ class NavItem extends StatelessWidget {
       onTap: press,
       child: Container(
         padding: EdgeInsets.all(5),
-        height: SizeConfig.screenHeight / (11.18),
+        height: percentageHeight(9),
         width: getProportionateScreenWidth(55),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -127,7 +127,7 @@ class NavItem extends StatelessWidget {
           boxShadow: [if (isActive) kDefualtShadow],
         ),
         child: Column(
-          children: [
+          children: <Widget>[
             iconToBeShown,
             Spacer(),
             Text(
