@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       elevation: 0,
-      toolbarHeight: percentageHeight(9.106),
+      toolbarHeight: percentageHeight(9),
       title: Text(
         titleText,
         style: TextStyle(color: kTextColor, fontSize: percentageHeight(3.25)),

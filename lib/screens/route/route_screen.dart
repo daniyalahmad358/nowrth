@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/components/custom_floating_action_button.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
 import 'package:nowrth/components/app_bar.dart';
@@ -18,7 +19,11 @@ class RouteScreen extends StatelessWidget {
           CustomAppBar(context, titleText: travelSpot.name, barOpacity: 0.9),
       body: RouteBody(travelSpot: travelSpot),
       bottomNavigationBar: CustomBottonNavBar(),
-      // extendBodyBehindAppBar: true,
+      floatingActionButton: CustomFloatingActionButton(
+        iconData: Icons.map_outlined,
+        onPressed: () {},
+      ),
+      extendBodyBehindAppBar: true,
     );
   }
 }

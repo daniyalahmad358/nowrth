@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:timelines/timelines.dart';
 
 // import 'package:nowrth/constants.dart';
-import 'package:nowrth/screens/route/components/timeline.dart';
+import 'package:nowrth/screens/route/components/custom_timeline.dart';
 import 'package:nowrth/size_config.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
@@ -27,11 +27,12 @@ class _RouteBodyState extends State<RouteBody> {
   Widget build(BuildContext context) {
     // You have to call SizeConfig on your starting page
     SizeConfig().init(context);
-    return Timeline(
+    return CustomTimeline(
       timelineContents: <Widget>[
         ...List.generate(
           widget.travelSpot.stopBySpots.length,
           (index) => StopBySpotCard(
+            heroTag: "stopBySpot_$index",
             stopBySpot: widget.travelSpot.stopBySpots[index],
             // press: () {},
           ),

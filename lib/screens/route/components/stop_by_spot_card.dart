@@ -8,12 +8,14 @@ import 'package:nowrth/models/stop_by_spot.dart';
 import 'package:nowrth/components/rating_widget.dart';
 
 class StopBySpotCard extends StatefulWidget {
+  final StopBySpot stopBySpot;
+  final String heroTag;
+
   const StopBySpotCard({
     Key? key,
     required this.stopBySpot,
+    required this.heroTag,
   }) : super(key: key);
-
-  final StopBySpot stopBySpot;
 
   @override
   _StopBySpotCardState createState() => _StopBySpotCardState();
@@ -25,7 +27,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
     return Container(
       height: percentageHeight(8.13),
       width: percentageHeight(8.13),
-      margin: EdgeInsets.only(left: 10),
+      margin: EdgeInsets.symmetric(horizontal: 10),
       // decoration: BoxDecoration(boxShadow: [kDefualtShadow]),
       child: FittedBox(
         child: GestureDetector(
@@ -35,6 +37,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
             });
           },
           child: FloatingActionButton(
+            heroTag: widget.heroTag,
             backgroundColor: Colors.white,
             onPressed: () {},
             child: Icon(
@@ -55,7 +58,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
         children: <Widget>[
           if (showInfo)
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
@@ -71,8 +74,8 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(widget.stopBySpot.name),
                       Text(widget.stopBySpot.stopType),
+                      Text(widget.stopBySpot.areaName),
                       RatingBar(
                         itemSize: percentageHeight(2.5),
                         allowHalfRating: true,
