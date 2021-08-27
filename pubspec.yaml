@@ -27,6 +27,7 @@ dependencies:
   cupertino_icons: ^1.0.3
   google_fonts: ^2.1.0
   flutter_svg: ^0.22.0
+  flutter_svg_provider: ^0.1.10
   community_material_icon: ^5.9.55
   # material_design_icons_flutter: ^4.0.5955
   lottie: ^1.1.0
