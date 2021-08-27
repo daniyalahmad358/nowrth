@@ -52,8 +52,7 @@ linux
 test
 
 # Pubspec related
-# pubspec.lock
-# TODO
+pubspec.lock
 
 
 # Exceptions to above rules.
