@@ -33,7 +33,6 @@ class PopularPlaces extends StatelessWidget {
                       left: getProportionateScreenWidth(kDefaultPadding)),
                   child: TravelSpotCard(
                     travelSpot: travelSpots[index],
-                    likeControl: () {},
                   ),
                 ),
               ),
