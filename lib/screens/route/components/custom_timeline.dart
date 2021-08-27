@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:nowrth/constants.dart';
+import 'package:nowrth/screens/route/components/content_widget.dart';
+import 'package:nowrth/screens/route/services/sides.dart';
 import 'package:nowrth/size_config.dart';
 
 class CustomTimeline extends StatelessWidget {
-  final List<Widget> timelineContents;
+  final List<TimelineContent> timelineContents;
 
   const CustomTimeline({
     Key? key,
@@ -15,9 +17,12 @@ class CustomTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double connectorBarHeight =
-        (percentageHeight(78) / (timelineContents.length + 2)).roundToDouble();
-    return Container(
+    double connectorBarHeight = (timelineContents.length > 4)
+        ? (percentageHeight(78) / (6)).roundToDouble()
+        : (percentageHeight(78) / (timelineContents.length + 2))
+            .roundToDouble();
+    return SingleChildScrollView(
+      reverse: true,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         verticalDirection: VerticalDirection.up,
@@ -36,9 +41,7 @@ class CustomTimeline extends StatelessWidget {
                     connectorType: ConnectorType.content,
                     contentWidget: timelineContents[index],
                     barHeight: connectorBarHeight,
-                    contentSide: (index % 2 == 0)
-                        ? (ContentSide.right)
-                        : (ContentSide.left),
+                    contentSide: timelineContents[index].contentSide,
                   ),
                 ],
               );
@@ -57,8 +60,8 @@ class CustomTimeline extends StatelessWidget {
 class TimelineConnector extends StatelessWidget {
   final ConnectorType connectorType;
   final double barHeight;
-  final Widget? contentWidget;
-  final ContentSide? contentSide;
+  final TimelineContent? contentWidget;
+  final Side? contentSide;
   // final Widget? contentWidget;
   // TODO: preferred side
 
@@ -73,10 +76,9 @@ class TimelineConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Container connectorCircle = Container(
-      height: 10,
-      width: 10,
+      height: percentageHeight(1.65),
+      width: percentageHeight(1.65),
       decoration: BoxDecoration(
-        // color: kPrimaryColor,
         color: kTextColor,
         shape: BoxShape.circle,
       ),
@@ -99,30 +101,30 @@ class TimelineConnector extends StatelessWidget {
                     : null,
             height: barHeight,
             width: 2,
-            color: Colors.grey,
+            // color: kPrimaryColor,
+            color: Colors.blueGrey[200],
           ),
           if (contentWidget != null)
             Stack(
               alignment: AlignmentDirectional.center,
               children: [
                 Container(
-                  margin: (contentSide == ContentSide.right)
+                  margin: (contentSide == Side.right)
                       ? EdgeInsets.only(left: percentageHeight(10))
                       : EdgeInsets.only(right: percentageHeight(10)),
                   height: 2,
                   width: percentageHeight(10),
-                  color: Colors.grey,
+                  color: Colors.blueGrey[200],
                 ),
-                connectorCircle,
                 Container(
-                  margin: (contentSide == ContentSide.right)
-                      ? EdgeInsets.only(left: percentageHeight(15))
-                      : EdgeInsets.only(right: percentageHeight(15)),
+                  margin: (contentSide == Side.right)
+                      ? EdgeInsets.only(left: percentageHeight(30))
+                      : EdgeInsets.only(right: percentageHeight(30)),
                   child: contentWidget!,
                 ),
               ],
             ),
-          if (contentWidget == null) connectorCircle,
+          connectorCircle,
         ],
       ),
     );
@@ -133,9 +135,4 @@ enum ConnectorType {
   start,
   content,
   end,
-}
-
-enum ContentSide {
-  left,
-  right,
 }

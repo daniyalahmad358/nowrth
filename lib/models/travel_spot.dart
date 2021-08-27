@@ -96,7 +96,15 @@ List<Guide> guidesList1 = [guide0, guide1, guide2, guide3, guide4];
 List<Guide> guidesList2 = [guide0, guide1, guide2, guide3, guide4];
 List<Guide> guidesList3 = [guide0, guide1, guide2, guide3, guide4];
 
-List<StopBySpot> stopBySpotsList0 = [stopBySpot0, stopBySpot1, stopBySpot2];
+List<StopBySpot> stopBySpotsList0 = [
+  stopBySpot0,
+  stopBySpot1,
+  stopBySpot2,
+  stopBySpot1,
+  stopBySpot2,
+  stopBySpot0,
+  stopBySpot0,
+];
 List<StopBySpot> stopBySpotsList1 = [stopBySpot0, stopBySpot1, stopBySpot2];
 List<StopBySpot> stopBySpotsList2 = [stopBySpot0, stopBySpot1, stopBySpot2];
 List<StopBySpot> stopBySpotsList3 = [stopBySpot0, stopBySpot1, stopBySpot2];

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:nowrth/screens/route/components/content_widget.dart';
 
-// import 'package:timelines/timelines.dart';
-
-// import 'package:nowrth/constants.dart';
 import 'package:nowrth/screens/route/components/custom_timeline.dart';
+import 'package:nowrth/screens/route/services/content_side_decider.dart';
 import 'package:nowrth/size_config.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
@@ -27,17 +27,34 @@ class _RouteBodyState extends State<RouteBody> {
   Widget build(BuildContext context) {
     // You have to call SizeConfig on your starting page
     SizeConfig().init(context);
-    return CustomTimeline(
-      timelineContents: <Widget>[
-        ...List.generate(
-          widget.travelSpot.stopBySpots.length,
-          (index) => StopBySpotCard(
-            heroTag: "stopBySpot_$index",
-            stopBySpot: widget.travelSpot.stopBySpots[index],
-            // press: () {},
-          ),
-        )
-      ],
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: Svg('assets/images/map_illustration.svg'),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.linearToSrgbGamma(),
+        ),
+      ),
+      child: CustomTimeline(
+        timelineContents: <TimelineContent>[
+          ...List.generate(
+            widget.travelSpot.stopBySpots.length,
+            (index) => TimelineContent(
+              contentSide: stopBySpotCardSideDecider(
+                widget.travelSpot.stopBySpots[index].stopType,
+              ),
+              child: StopBySpotCard(
+                heroTag: "stopBySpot_$index",
+                stopBySpot: widget.travelSpot.stopBySpots[index],
+                spotButtonSide: spotButtonSideDecider(stopBySpotCardSideDecider(
+                  widget.travelSpot.stopBySpots[index].stopType,
+                )),
+                // press: () {},
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

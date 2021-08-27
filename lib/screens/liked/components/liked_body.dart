@@ -34,7 +34,6 @@ class _LikedBodyState extends State<LikedBody> {
                       TravelSpotCard travelSpotCard = TravelSpotCard(
                         travelSpot: likedTravelSpots[index],
                         isFullCard: true,
-                        likeControl: () {},
                         unLike: refresh,
                       );
                       return travelSpotCard;

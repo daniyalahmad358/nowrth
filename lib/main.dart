@@ -8,7 +8,7 @@ import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/splash/splash_screen.dart';
 import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
-// import 'package:nowrth/screens/home/home_screen.dart';
+import 'package:nowrth/screens/home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()
-                          : WelcomeScreen(),
-                  // : HomeScreen(),
+                          // : WelcomeScreen(),
+                          : HomeScreen(),
                 ),
         ),
       ),

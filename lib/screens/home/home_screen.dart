@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
       appBar: CustomAppBar(context, barOpacity: 0.0),
       body: HomeBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtHome: true),
-      drawer: buildDrawer(context, currentPage),
+      drawer: CustomDrawer(currentPage: currentPage),
     );
   }
 }

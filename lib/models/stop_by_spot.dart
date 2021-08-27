@@ -1,51 +1,88 @@
 import 'package:flutter/material.dart';
 
 class StopBySpot {
-  final String stopType;
+  final StopBySpotType stopType;
   final String areaName;
-  final IconData iconData;
   final double rating;
-  final bool isTravelSpot;
+
+  String? stopText;
+  IconData? iconData;
+  bool? isTravelSpot = false;
 
   StopBySpot({
     required this.stopType,
     required this.areaName,
-    required this.iconData,
     required this.rating,
-    this.isTravelSpot = false,
-  });
+  }) {
+    // if (this.spotType == )
+    switch (this.stopType) {
+      case StopBySpotType.travelSpot:
+        {
+          this.stopText = "Travel Spot";
+          this.iconData = Icons.landscape;
+          this.isTravelSpot = true;
+        }
+        break;
+      case StopBySpotType.hotel:
+        {
+          this.stopText = "Hotel";
+          this.iconData = Icons.hotel;
+        }
+        break;
+      case StopBySpotType.restaurant:
+        {
+          this.stopText = "Restaurant";
+          this.iconData = Icons.fastfood;
+        }
+        break;
+      case StopBySpotType.fuelStation:
+        {
+          this.stopText = "Fuel Station";
+          this.iconData = Icons.local_gas_station;
+        }
+        break;
+      case StopBySpotType.bank:
+        {
+          this.stopText = "Bank";
+          this.iconData = Icons.money;
+        }
+        break;
+    }
+  }
 }
 
-Map<String, String> spotTypes = {
-  "hotel": "Hotel",
-  "restaurant": "Restaurant",
-  "travelSpot": "Travel Spot",
-  "fuelStation": "Fuel Station",
-  "bank": "Bank",
-};
+enum StopBySpotType {
+  travelSpot,
+  hotel,
+  restaurant,
+  fuelStation,
+  bank,
+}
+
+// Map<String, String> spotTypes = {
+//   "hotel": "Hotel",
+//   "restaurant": "Restaurant",
+//   "travelSpot": "Travel Spot",
+//   "fuelStation": "Fuel Station",
+//   "bank": "Bank",
+// };
 
 // List<StopBySpot> stopBySpots = [stopBySpot0, stopBySpot1, stopBySpot2];
 
 StopBySpot stopBySpot0 = StopBySpot(
-  stopType: spotTypes["hotel"] ?? "Unknown",
+  stopType: StopBySpotType.hotel,
   areaName: "Kaghan",
-  iconData: Icons.hotel,
   rating: 2,
-  isTravelSpot: false,
 );
 
 StopBySpot stopBySpot1 = StopBySpot(
-  stopType: spotTypes["restaurant"] ?? "Unknown",
+  stopType: StopBySpotType.restaurant,
   areaName: "Naran",
-  iconData: Icons.fastfood,
   rating: 4,
-  isTravelSpot: false,
 );
 
 StopBySpot stopBySpot2 = StopBySpot(
-  stopType: spotTypes["travelSpot"] ?? "Unknown",
+  stopType: StopBySpotType.travelSpot,
   areaName: "Babusar Top",
-  iconData: Icons.landscape,
   rating: 4.5,
-  isTravelSpot: false,
 );

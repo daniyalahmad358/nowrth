@@ -15,7 +15,7 @@ class LikedScreen extends StatelessWidget {
       body: LikedBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtLiked: true),
       extendBodyBehindAppBar: true,
-      drawer: buildDrawer(context, currentPage),
+      drawer: CustomDrawer(currentPage: currentPage),
     );
   }
 }

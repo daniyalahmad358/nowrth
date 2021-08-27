@@ -142,7 +142,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 child: RatingBar(
                   itemSize: percentageHeight(3.252),
                   allowHalfRating: true,
-                  ratingWidget: customRatingStars,
+                  ratingWidget: CustomRatingStars(),
                   initialRating: widget.travelSpot.rating,
                   ignoreGestures: true,
                   onRatingUpdate: (rating) {},

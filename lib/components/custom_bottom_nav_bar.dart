@@ -131,8 +131,8 @@ class NavItem extends StatelessWidget {
             iconToBeShown,
             Spacer(),
             Text(
-              title,
-              // "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO
+              // title,
+              "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO
               style: TextStyle(
                 fontSize: SizeConfig.screenHeight / 55.91,
                 fontWeight: FontWeight.bold,

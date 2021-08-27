@@ -12,13 +12,11 @@ class TravelSpotCard extends StatefulWidget {
     Key? key,
     required this.travelSpot,
     this.isFullCard = false,
-    required this.likeControl,
     this.unLike,
   }) : super(key: key);
 
   final TravelSpot travelSpot;
   final bool isFullCard;
-  final GestureTapCallback likeControl;
 
   final Function()? unLike;
 
@@ -31,9 +29,13 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      child: SizedBox(
+      borderRadius: BorderRadius.circular(5),
+      child: Container(
         width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey[500]!, width: 0.2),
+          borderRadius: BorderRadius.circular(5),
+        ),
         child: Column(
           children: <Widget>[
             Stack(
@@ -43,7 +45,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(20),
+                        top: Radius.circular(5),
                       ),
                       image: DecorationImage(
                         image: AssetImage(widget.travelSpot.images[0]),
@@ -83,7 +85,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
                 color: Colors.white,
                 boxShadow: [kDefualtShadow],
                 borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
+                  bottom: Radius.circular(5),
                 ),
               ),
               child: Column(
