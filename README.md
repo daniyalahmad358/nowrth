@@ -1,5 +1,5 @@
 # nowrth
-A Tourism app created with Flutter.
+A tourism app made with Flutter.
 
 ## Getting Started
 

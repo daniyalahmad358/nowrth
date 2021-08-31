@@ -1,6 +1,6 @@
 class Guide {
   // ignore: unused_field
-  int? _id;
+  // int? _id;
   String? _username;
   String? _password;
 

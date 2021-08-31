@@ -4,7 +4,7 @@ import 'package:nowrth/screens/route/components/content_widget.dart';
 
 import 'package:nowrth/screens/route/components/custom_timeline.dart';
 import 'package:nowrth/screens/route/services/content_side_decider.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
 

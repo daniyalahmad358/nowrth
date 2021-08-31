@@ -12,7 +12,6 @@ class Constants {
   static Color darkBG = Colors.black;
   static Color badgeColor = Colors.red;
 
-/*
   static ThemeData lightTheme = ThemeData(
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
@@ -31,6 +30,7 @@ class Constants {
     ),
   );
 
+/*
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     backgroundColor: darkBG,

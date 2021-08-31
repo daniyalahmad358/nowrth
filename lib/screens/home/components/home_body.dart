@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 import 'home_header.dart';
 import 'top_travel_spots.dart';
@@ -20,7 +20,7 @@ class HomeBody extends StatelessWidget {
             image: DecorationImage(
               image: Svg("assets/images/map_illustration.svg"),
               colorFilter: ColorFilter.linearToSrgbGamma(),
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
           ),
           child: Column(

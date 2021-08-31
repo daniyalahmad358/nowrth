@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nowrth/components/rating_widget.dart';
 
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/models/travel_spot.dart';
+import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
 class DetailsBody extends StatefulWidget {
@@ -23,13 +24,13 @@ class DetailsBody extends StatefulWidget {
 class _DetailsBodyState extends State<DetailsBody> {
   final _controller = ScrollController();
   void likeTravelSpot() {
-    widget.travelSpot.isLiked = true;
-    likedTravelSpots.add(widget.travelSpot);
+    // widget.travelSpot.isLiked = true;
+    likedSpots.add(widget.travelSpot);
   }
 
   void dislikeTravelSpot() {
-    widget.travelSpot.isLiked = false;
-    likedTravelSpots.remove(widget.travelSpot);
+    // widget.travelSpot.isLiked = false;
+    likedSpots.remove(widget.travelSpot);
   }
 
   @override
@@ -98,14 +99,14 @@ class _DetailsBodyState extends State<DetailsBody> {
                   ),
                   IconButton(
                     icon: Icon(
-                      widget.travelSpot.isLiked
+                      (likedSpots.contains(widget.travelSpot))
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: kPrimaryColor,
                     ),
                     onPressed: () {
                       setState(() {
-                        (widget.travelSpot.isLiked)
+                        (likedSpots.contains(widget.travelSpot))
                             ? dislikeTravelSpot()
                             : likeTravelSpot();
                       });

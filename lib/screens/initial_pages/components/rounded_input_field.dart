@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/components/text_field_container.dart';
-import 'package:nowrth/constants.dart';
 
-class RoundedPasswordField extends StatelessWidget {
+import 'package:nowrth/constants/app_colors.dart';
+
+import 'package:nowrth/screens/initial_pages/components/text_field_container.dart';
+
+class RoundedInputField extends StatelessWidget {
+  final String? hintText;
+  final IconData icon;
   final ValueChanged<String> onChanged;
-  const RoundedPasswordField({
+  const RoundedInputField({
     Key? key,
     required this.onChanged,
+    this.hintText,
+    this.icon = Icons.person,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
-        obscureText: true,
         onChanged: onChanged,
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
-          hintText: "Password",
           icon: Icon(
-            Icons.lock,
+            icon,
             color: kPrimaryColor,
           ),
-          suffixIcon: Icon(
-            Icons.visibility,
-            color: kPrimaryColor,
-          ),
+          hintText: hintText,
           border: InputBorder.none,
         ),
       ),

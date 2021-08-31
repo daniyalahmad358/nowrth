@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({

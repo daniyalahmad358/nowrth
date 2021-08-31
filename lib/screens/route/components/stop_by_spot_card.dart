@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:nowrth/constants.dart';
+import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/screens/route/services/sides.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/size_config.dart';
 import 'package:nowrth/models/stop_by_spot.dart';
 
 import 'package:nowrth/components/rating_widget.dart';
@@ -42,7 +43,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: isInfoShown ? Colors.white : Colors.transparent,
-              // borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(20),
               boxShadow: isInfoShown ? [kDefualtShadow] : null,
               border:
                   isInfoShown ? Border.all(color: Colors.blueGrey[100]!) : null,

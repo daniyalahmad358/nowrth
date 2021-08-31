@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants.dart';
+import 'package:nowrth/constants/app_colors.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;

@@ -2,6 +2,7 @@ import 'package:nowrth/models/guide.dart';
 import 'package:nowrth/models/stop_by_spot.dart';
 
 class TravelSpot {
+  final String spotID;
   final String name;
   final String location;
   final double rating;
@@ -9,9 +10,10 @@ class TravelSpot {
   final List<Guide> guides;
   final List<StopBySpot> stopBySpots;
   final String details;
-  bool isLiked;
+  // bool isLiked;
 
   TravelSpot({
+    required this.spotID,
     required this.name,
     required this.location,
     required this.rating,
@@ -19,12 +21,13 @@ class TravelSpot {
     required this.guides,
     required this.stopBySpots,
     required this.details,
-    required this.isLiked,
+    // required this.isLiked,
   });
 }
 
 List<TravelSpot> travelSpots = [
   TravelSpot(
+    spotID: "0000",
     name: "Red Mountains",
     location: "London, England",
     images: images0,
@@ -32,9 +35,10 @@ List<TravelSpot> travelSpots = [
     guides: guidesList0..shuffle(),
     stopBySpots: stopBySpotsList0..shuffle(),
     details: details[0],
-    isLiked: true,
+    // isLiked: true,
   ),
   TravelSpot(
+    spotID: "0001",
     name: "Khunjerab Pass",
     location: "Gilgit, Pakistan",
     rating: 4,
@@ -42,9 +46,10 @@ List<TravelSpot> travelSpots = [
     guides: guidesList1..shuffle(),
     stopBySpots: stopBySpotsList1..shuffle(),
     details: details[1],
-    isLiked: true,
+    // isLiked: true,
   ),
   TravelSpot(
+    spotID: "0002",
     name: "Black Mountains",
     location: "Paris, France",
     rating: 3.5,
@@ -52,9 +57,9 @@ List<TravelSpot> travelSpots = [
     guides: guidesList2..shuffle(),
     stopBySpots: stopBySpotsList2..shuffle(),
     details: details[2],
-    isLiked: true,
   ),
   TravelSpot(
+    spotID: "0003",
     name: "Magical World",
     location: "Lisbon, Portugal",
     images: images3,
@@ -62,7 +67,6 @@ List<TravelSpot> travelSpots = [
     guides: guidesList3..shuffle(),
     stopBySpots: stopBySpotsList3..shuffle(),
     details: details[3],
-    isLiked: false,
   ),
 ];
 
@@ -148,5 +152,5 @@ List<String> details = [
       "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
 ];
 
-List<TravelSpot> likedTravelSpots =
-    travelSpots.where((element) => element.isLiked).toList();
+// List<TravelSpot> likedTravelSpots =
+//     travelSpots.where((element) => element.isLiked).toList();
