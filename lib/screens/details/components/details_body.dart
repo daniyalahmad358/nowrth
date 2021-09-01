@@ -3,18 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nowrth/components/rating_widget.dart';
 
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/travel_spot.dart';
+import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
 class DetailsBody extends StatefulWidget {
   DetailsBody({
-    required this.travelSpot,
+    required this.spot,
   });
 
-  final TravelSpot travelSpot;
+  final Spot spot;
+
+  void likeSpot() {
+    likedSpots.add(spot);
+  }
+
+  void dislikeSpot() {
+    likedSpots.remove(spot);
+  }
 
   @override
   _DetailsBodyState createState() => _DetailsBodyState();
@@ -22,15 +31,6 @@ class DetailsBody extends StatefulWidget {
 
 class _DetailsBodyState extends State<DetailsBody> {
   final _controller = ScrollController();
-  void likeTravelSpot() {
-    widget.travelSpot.isLiked = true;
-    likedTravelSpots.add(widget.travelSpot);
-  }
-
-  void dislikeTravelSpot() {
-    widget.travelSpot.isLiked = false;
-    likedTravelSpots.remove(widget.travelSpot);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _DetailsBodyState extends State<DetailsBody> {
           child: Row(
             children: <Widget>[
               ...List.generate(
-                widget.travelSpot.images.length,
+                widget.spot.images.length,
                 (index) => Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 4.75,
@@ -62,7 +62,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                       image: DecorationImage(
                         fit: BoxFit.fill,
                         image: AssetImage(
-                          widget.travelSpot.images[index],
+                          widget.spot.images[index],
                         ),
                       ),
                     ),
@@ -86,7 +86,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.travelSpot.name,
+                      widget.spot.spotName!,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: percentageHeight(3.252),
@@ -98,16 +98,16 @@ class _DetailsBodyState extends State<DetailsBody> {
                   ),
                   IconButton(
                     icon: Icon(
-                      widget.travelSpot.isLiked
+                      (likedSpots.contains(widget.spot))
                           ? Icons.favorite
                           : Icons.favorite_border,
                       color: kPrimaryColor,
                     ),
                     onPressed: () {
                       setState(() {
-                        (widget.travelSpot.isLiked)
-                            ? dislikeTravelSpot()
-                            : likeTravelSpot();
+                        (likedSpots.contains(widget.spot))
+                            ? widget.dislikeSpot()
+                            : widget.likeSpot();
                       });
                     },
                   ),
@@ -124,7 +124,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.travelSpot.location,
+                      widget.spot.location,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: percentageHeight(2.1138),
@@ -143,7 +143,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                   itemSize: percentageHeight(3.252),
                   allowHalfRating: true,
                   ratingWidget: CustomRatingStars(),
-                  initialRating: widget.travelSpot.rating,
+                  initialRating: widget.spot.rating,
                   ignoreGestures: true,
                   onRatingUpdate: (rating) {},
                 ),
@@ -165,7 +165,7 @@ class _DetailsBodyState extends State<DetailsBody> {
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  widget.travelSpot.details,
+                  widget.spot.details!,
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: percentageHeight(2.439),

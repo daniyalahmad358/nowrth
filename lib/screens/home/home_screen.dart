@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:nowrth/constants/app_pages.dart';
+
 import 'package:nowrth/components/app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
-import 'package:nowrth/components/drawer/drawer_components.dart';
+import 'package:nowrth/components/drawer/custom_drawer.dart';
+import 'package:nowrth/components/drawer/menu_items.dart';
 
 import 'package:nowrth/screens/home/components/home_body.dart';
 
 class HomeScreen extends StatelessWidget {
-  final currentPage = DrawerSections.dashboard;
+  final currentPage = AppPage.home;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,10 @@ class HomeScreen extends StatelessWidget {
       appBar: CustomAppBar(context, barOpacity: 0.0),
       body: HomeBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtHome: true),
-      drawer: CustomDrawer(currentPage: currentPage),
+      drawer: CustomDrawer(
+        currentPage: currentPage,
+        menuItems: menuItems(context, currentPage),
+      ),
     );
   }
 }

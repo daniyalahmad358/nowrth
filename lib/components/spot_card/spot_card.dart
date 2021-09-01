@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/constants/app_paddings.dart';
 
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/travel_spot.dart';
+import 'package:nowrth/models/spot.dart';
 import 'package:nowrth/models/guide.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
-class TravelSpotCard extends StatefulWidget {
-  const TravelSpotCard({
+class SpotCard extends StatefulWidget {
+  const SpotCard({
     Key? key,
-    required this.travelSpot,
+    required this.spot,
     this.isFullCard = false,
-    this.unLike,
+    this.topRightCornerIconData,
   }) : super(key: key);
 
-  final TravelSpot travelSpot;
-  final bool isFullCard;
+  final Spot spot;
 
-  final Function()? unLike;
+  final bool isFullCard;
+  final IconData? topRightCornerIconData;
 
   @override
-  _TravelSpotCardState createState() => _TravelSpotCardState();
+  _SpotCardState createState() => _SpotCardState();
 }
 
-class _TravelSpotCardState extends State<TravelSpotCard> {
+class _SpotCardState extends State<SpotCard> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -38,43 +39,19 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
         ),
         child: Column(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                AspectRatio(
-                  aspectRatio: widget.isFullCard ? 1.09 : 1.29,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(5),
-                      ),
-                      image: DecorationImage(
-                        image: AssetImage(widget.travelSpot.images[0]),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+            AspectRatio(
+              aspectRatio: widget.isFullCard ? 1.09 : 1.29,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(5),
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage(widget.spot.images[0]),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                if (widget.isFullCard)
-                  Positioned(
-                    right: 0.0,
-                    top: 0.0,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.close_rounded,
-                      ),
-                      color: Colors.white,
-                      iconSize: percentageHeight(3.90244),
-                      splashRadius: percentageHeight(3.4146),
-                      onPressed: () {
-                        setState(() {
-                          widget.travelSpot.isLiked = false;
-                          likedTravelSpots.remove(widget.travelSpot);
-                          widget.unLike!();
-                        });
-                      },
-                    ),
-                  ),
-              ],
+              ),
             ),
             Container(
               width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
@@ -90,19 +67,24 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
               ),
               child: Column(
                 children: <Widget>[
-                  Text(
-                    widget.travelSpot.name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: widget.isFullCard
-                          ? getProportionateScreenHeight(17)
-                          : getProportionateScreenHeight(12),
+                  SizedBox(
+                    height: widget.isFullCard
+                        ? getProportionateScreenHeight(50)
+                        : getProportionateScreenHeight(36),
+                    child: Text(
+                      widget.spot.spotName!,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: widget.isFullCard
+                            ? getProportionateScreenHeight(17)
+                            : getProportionateScreenHeight(12),
+                      ),
                     ),
                   ),
                   VerticalSpacing(of: 10),
-                  Guides(
-                    guides: widget.travelSpot.guides,
+                  GuidesInCard(
+                    guides: widget.spot.guides!,
                     isCardSizeFull: widget.isFullCard,
                   ),
                 ],
@@ -115,7 +97,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return Details(travelSpot: widget.travelSpot);
+              return Details(spot: widget.spot);
             },
           ),
         );
@@ -124,8 +106,8 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
   }
 }
 
-class Guides extends StatelessWidget {
-  const Guides({
+class GuidesInCard extends StatelessWidget {
+  const GuidesInCard({
     Key? key,
     required this.guides,
     this.isCardSizeFull = false,
@@ -145,9 +127,7 @@ class Guides extends StatelessWidget {
             (index) {
               // totalGuide++;
               return Positioned(
-                left: isCardSizeFull
-                    ? (percentageWidth(5) * index).toDouble()
-                    : (percentageWidth(5) * index).toDouble(),
+                left: (percentageWidth(5) * index).toDouble(),
                 child: buildGuideFace(index),
               );
             },

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-import 'package:nowrth/models/notification_model.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/models/in_app_notification.dart';
+import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/constants.dart';
+import 'package:nowrth/constants/app_colors.dart';
 
-class NotificationCard extends StatelessWidget {
-  const NotificationCard({
+class InAppNotificationCard extends StatelessWidget {
+  const InAppNotificationCard({
     Key? key,
-    required this.theNotification,
+    required this.inAppNotification,
     required this.press,
     required this.notiBorderRadius,
   }) : super(key: key);
 
-  final NotificationModel theNotification;
+  final InAppNotification inAppNotification;
   final GestureTapCallback press;
   final BorderRadius notiBorderRadius;
 
@@ -25,7 +26,7 @@ class NotificationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow:
-            theNotification.readStatus ? [kDefualtShadow] : [kUnreadShadow],
+            inAppNotification.readStatus ? [kDefualtShadow] : [kUnreadShadow],
         borderRadius: notiBorderRadius,
       ),
       child: Row(
@@ -33,18 +34,19 @@ class NotificationCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Icon(
-              theNotification.iconData,
-              color: theNotification.readStatus ? kIconColor : kPrimaryColor,
+              inAppNotification.iconData,
+              color: inAppNotification.readStatus ? kIconColor : kPrimaryColor,
             ),
           ),
           Expanded(
             flex: 3,
             child: Text(
-              theNotification.headline,
+              inAppNotification.headline,
               style: TextStyle(
-                color: theNotification.readStatus ? kIconColor : kPrimaryColor,
+                color:
+                    inAppNotification.readStatus ? kIconColor : kPrimaryColor,
                 fontSize: percentageHeight(2.2764),
-                fontWeight: theNotification.readStatus
+                fontWeight: inAppNotification.readStatus
                     ? FontWeight.normal
                     : FontWeight.bold,
               ),
@@ -56,7 +58,7 @@ class NotificationCard extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(SizeConfig.screenWidth / 43),
                 child: Text(
-                  DateFormat.Hm().format(theNotification.dateTime),
+                  DateFormat.Hm().format(inAppNotification.dateTime),
                   style: TextStyle(fontSize: SizeConfig.screenHeight / 60),
                 ),
               ),

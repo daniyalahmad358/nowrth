@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:nowrth/constants.dart';
+import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/screens/route/components/content_widget.dart';
 import 'package:nowrth/screens/route/services/sides.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 class CustomTimeline extends StatelessWidget {
   final List<TimelineContent> timelineContents;

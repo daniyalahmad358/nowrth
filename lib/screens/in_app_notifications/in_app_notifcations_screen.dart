@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/components/app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
-import 'package:nowrth/components/drawer/drawer_components.dart';
+import 'package:nowrth/constants/app_pages.dart';
+import 'package:nowrth/screens/in_app_notifications/components/in_app_notifications_body.dart';
 
-import 'components/notifications_body.dart';
-
-class NotificationsScreen extends StatelessWidget {
-  final currentPage = DrawerSections.liked;
+class InAppNotificationsScreen extends StatelessWidget {
+  final currentPage = AppPage.liked;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class NotificationsScreen extends StatelessWidget {
         barOpacity: 0.9,
         onNotiPage: true,
       ),
-      body: NotificationsBody(),
+      body: InAppNotificationsBody(),
       bottomNavigationBar: CustomBottonNavBar(),
       extendBodyBehindAppBar: true,
     );

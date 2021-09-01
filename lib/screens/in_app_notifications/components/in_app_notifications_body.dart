@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/screens/notifications/components/notification_card.dart';
-import 'package:nowrth/models/notification_model.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/screens/in_app_notifications/components/in_app_notification_card.dart';
+import 'package:nowrth/constants/size_config.dart';
 
-class NotificationsBody extends StatelessWidget {
+import 'package:nowrth/temp/in_app_notifications.dart';
+
+class InAppNotificationsBody extends StatelessWidget {
   final notiBorderRadius = BorderRadius.circular(SizeConfig.screenWidth / 34.5);
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
         ...List.generate(
-          theNotifications.length,
+          inAppNotifications.length,
           (index) => Padding(
             padding: EdgeInsets.symmetric(
               vertical: SizeConfig.screenHeight / 120,
@@ -19,8 +20,8 @@ class NotificationsBody extends StatelessWidget {
             child: Container(
               child: InkWell(
                 borderRadius: notiBorderRadius,
-                child: NotificationCard(
-                  theNotification: theNotifications[index],
+                child: InAppNotificationCard(
+                  inAppNotification: inAppNotifications[index],
                   press: () {},
                   notiBorderRadius: notiBorderRadius,
                 ),

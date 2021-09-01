@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:nowrth/components/travel_spot_card.dart';
-import 'package:nowrth/components/section_title.dart';
-import 'package:nowrth/models/travel_spot.dart';
-// import 'package:nowrth/screens/details/details_screen.dart';
+import 'package:flutter/widgets.dart';
+import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/components/spot_card/spot_card.dart';
+import 'package:nowrth/components/section_title.dart';
+
+import 'package:nowrth/temp/spot/spot.dart';
 
 class PopularPlaces extends StatelessWidget {
   const PopularPlaces({
@@ -31,8 +31,8 @@ class PopularPlaces extends StatelessWidget {
                 (index) => Padding(
                   padding: EdgeInsets.only(
                       left: getProportionateScreenWidth(kDefaultPadding)),
-                  child: TravelSpotCard(
-                    travelSpot: travelSpots[index],
+                  child: SpotCard(
+                    spot: travelSpots[index],
                   ),
                 ),
               ),
