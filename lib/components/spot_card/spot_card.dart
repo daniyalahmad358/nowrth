@@ -4,28 +4,28 @@ import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/travel_spot.dart';
+import 'package:nowrth/models/spot.dart';
 import 'package:nowrth/models/guide.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
-class TravelSpotCard extends StatefulWidget {
-  const TravelSpotCard({
+class SpotCard extends StatefulWidget {
+  const SpotCard({
     Key? key,
-    required this.travelSpot,
+    required this.spot,
     this.isFullCard = false,
     this.topRightCornerIconData,
   }) : super(key: key);
 
-  final TravelSpot travelSpot;
+  final Spot spot;
 
   final bool isFullCard;
   final IconData? topRightCornerIconData;
 
   @override
-  _TravelSpotCardState createState() => _TravelSpotCardState();
+  _SpotCardState createState() => _SpotCardState();
 }
 
-class _TravelSpotCardState extends State<TravelSpotCard> {
+class _SpotCardState extends State<SpotCard> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -47,7 +47,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
                     top: Radius.circular(5),
                   ),
                   image: DecorationImage(
-                    image: AssetImage(widget.travelSpot.images[0]),
+                    image: AssetImage(widget.spot.images[0]),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -72,7 +72,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
                         ? getProportionateScreenHeight(50)
                         : getProportionateScreenHeight(36),
                     child: Text(
-                      widget.travelSpot.name,
+                      widget.spot.spotName!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -84,7 +84,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
                   ),
                   VerticalSpacing(of: 10),
                   GuidesInCard(
-                    guides: widget.travelSpot.guides,
+                    guides: widget.spot.guides!,
                     isCardSizeFull: widget.isFullCard,
                   ),
                 ],
@@ -97,7 +97,7 @@ class _TravelSpotCardState extends State<TravelSpotCard> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return Details(travelSpot: widget.travelSpot);
+              return Details(spot: widget.spot);
             },
           ),
         );

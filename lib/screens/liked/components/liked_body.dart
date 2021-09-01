@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/components/travel_spot_card/travel_spot_card.dart';
-import 'package:nowrth/components/travel_spot_card/tr_corner_widget.dart';
+import 'package:nowrth/components/spot_card/spot_card.dart';
+import 'package:nowrth/components/spot_card/tr_corner_widget.dart';
 
 import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
 class LikedBody extends StatefulWidget {
+  const LikedBody({Key? key}) : super(key: key);
+
+  SpotCard makeLikedSpotCard(int index) {
+    SpotCard spotCard = SpotCard(
+      spot: likedSpots[index],
+      topRightCornerIconData: Icons.close_rounded,
+      isFullCard: true,
+    );
+    return spotCard;
+  }
+
   @override
   _LikedBodyState createState() => _LikedBodyState();
 }
 
 class _LikedBodyState extends State<LikedBody> {
-  TravelSpotCard makeLikedTravelSpotCard(int index) {
-    TravelSpotCard travelSpotCard = TravelSpotCard(
-      travelSpot: likedSpots[index],
-      topRightCornerIconData: Icons.close_rounded,
-      isFullCard: true,
-    );
-    return travelSpotCard;
-  }
-
   IconButton closeIconButton(index) {
     return IconButton(
       icon: Icon(
@@ -46,12 +48,12 @@ class _LikedBodyState extends State<LikedBody> {
           ? Align(
               alignment: Alignment.topLeft,
               child: TRCornerWidget(
-                mainWidget: makeLikedTravelSpotCard(index),
+                mainWidget: widget.makeLikedSpotCard(index),
                 cornerIconButton: closeIconButton(index),
               ),
             )
           : TRCornerWidget(
-              mainWidget: makeLikedTravelSpotCard(index),
+              mainWidget: widget.makeLikedSpotCard(index),
               cornerIconButton: closeIconButton(index),
             ),
     );
