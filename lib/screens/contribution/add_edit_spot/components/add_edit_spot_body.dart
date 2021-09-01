@@ -3,12 +3,13 @@ import 'package:nowrth/constants/app_colors.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 import 'package:nowrth/constants/app_pages.dart';
-import 'package:nowrth/models/spot.dart';
 
 import 'package:nowrth/screens/contribution/add_edit_spot/components/background.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/input_field.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/roundButton.dart';
+
+import 'package:nowrth/temp/spot/spot_type.dart';
 
 class AddEditSpotBody extends StatefulWidget {
   final AppPage curentPage;

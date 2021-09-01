@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/screens/in_app_notifications/components/in_app_notification_card.dart';
-import 'package:nowrth/models/in_app_notification.dart';
 import 'package:nowrth/constants/size_config.dart';
+
+import 'package:nowrth/temp/in_app_notifications.dart';
 
 class InAppNotificationsBody extends StatelessWidget {
   final notiBorderRadius = BorderRadius.circular(SizeConfig.screenWidth / 34.5);

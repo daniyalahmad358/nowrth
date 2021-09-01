@@ -7,6 +7,8 @@ import 'package:nowrth/models/guide.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 
+import 'package:nowrth/temp/top_guides.dart';
+
 class TopGuides extends StatelessWidget {
   const TopGuides({
     Key? key,

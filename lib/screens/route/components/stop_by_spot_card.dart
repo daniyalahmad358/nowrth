@@ -3,14 +3,14 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/models/spot.dart';
 import 'package:nowrth/screens/route/services/sides.dart';
 import 'package:nowrth/constants/size_config.dart';
-import 'package:nowrth/models/stop_by_spot.dart';
 
 import 'package:nowrth/components/rating_widget.dart';
 
 class StopBySpotCard extends StatefulWidget {
-  final StopBySpot stopBySpot;
+  final Spot stopBySpot;
   final String heroTag;
   final Side spotButtonSide;
 
@@ -67,7 +67,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                       ),
                     ),
                     Text(
-                      widget.stopBySpot.areaName,
+                      widget.stopBySpot.location,
                       style: TextStyle(
                         color: isInfoShown ? null : Colors.transparent,
                         fontSize: percentageHeight(2),

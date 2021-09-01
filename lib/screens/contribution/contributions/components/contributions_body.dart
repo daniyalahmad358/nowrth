@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/components/travel_spot_card/travel_spot_card.dart';
-import 'package:nowrth/components/travel_spot_card/tr_corner_widget.dart';
+import 'package:nowrth/components/spot_card/spot_card.dart';
+import 'package:nowrth/components/spot_card/tr_corner_widget.dart';
 
 import 'package:nowrth/temp/user_data.dart';
 
@@ -14,9 +14,9 @@ class ContributionsBody extends StatefulWidget {
 }
 
 class _ContributionsBodyState extends State<ContributionsBody> {
-  TravelSpotCard makeContributedSpotCard(int index) {
-    TravelSpotCard spotCard = TravelSpotCard(
-      travelSpot: contributedSpots[index],
+  SpotCard makeContributedSpotCard(int index) {
+    SpotCard spotCard = SpotCard(
+      spot: contributedSpots[index],
       isFullCard: true,
       topRightCornerIconData: Icons.edit,
     );

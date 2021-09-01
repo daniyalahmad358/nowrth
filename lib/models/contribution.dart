@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:nowrth/models/spot.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:nowrth/temp/spot/spot_type.dart';
 
 class Contribution {
   final String spotName;

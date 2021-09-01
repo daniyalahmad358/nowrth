@@ -1,12 +1,23 @@
-import 'package:nowrth/models/travel_spot.dart';
+import 'package:flutter/widgets.dart';
+import 'package:nowrth/models/spot.dart';
 
-List<String> likedSpotIds = ["0001", "0002", "0003"];
-List<String> contributedSpotIds = ["0001", "0002", "0003"];
+import 'package:nowrth/temp/spot/spot.dart';
 
-List<TravelSpot> likedSpots = travelSpots
+List<UniqueKey> likedSpotIds = [
+  travelSpots[0].spotID,
+  travelSpots[1].spotID,
+  travelSpots[2].spotID,
+];
+List<UniqueKey> contributedSpotIds = [
+  travelSpots[0].spotID,
+  travelSpots[1].spotID,
+  travelSpots[2].spotID,
+];
+
+List<Spot> likedSpots = travelSpots
     .where((element) => likedSpotIds.contains(element.spotID))
     .toList();
 
-List<TravelSpot> contributedSpots = travelSpots
+List<Spot> contributedSpots = travelSpots
     .where((element) => contributedSpotIds.contains(element.spotID))
     .toList();

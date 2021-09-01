@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nowrth/constants/app_colors.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
