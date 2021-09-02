@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:nowrth/screens/route/services/sides.dart';
 
 class TimelineContent extends StatelessWidget {

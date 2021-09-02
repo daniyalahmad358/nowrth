@@ -1,7 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/screens/liked/liked_screen.dart';
 import 'package:nowrth/screens/home/home_screen.dart';
@@ -18,61 +22,57 @@ class CustomBottonNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color colorWithOpacity = kPrimaryLightColor.withOpacity(0.9);
+
     SizeConfig().init(context);
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: getProportionateScreenWidth(kDefaultPadding),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              NavItem(
-                icondata: Icon(
-                  isAtHome ? Icons.home : Icons.home_outlined,
-                  color: kPrimaryColor,
-                  size: SizeConfig.screenHeight / 24.6,
-                ),
-                title: "Home",
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
-                },
+    return SafeArea(
+      child: ClipRect(
+        child: ColoredBox(
+          color: colorWithOpacity,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(kDefaultPadding),
               ),
-              NavItem(
-                icondata: Icon(
-                  isAtLiked ? Icons.favorite : Icons.favorite_border,
-                  color: kPrimaryColor,
-                  size: SizeConfig.screenHeight / 24.6,
-                ),
-                title: "Liked",
-                press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LikedScreen(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  NavItem(
+                    icondata: Icon(
+                      isAtHome ? Icons.home : Icons.home_outlined,
+                      color: kPrimaryColor,
+                      size: SizeConfig.screenHeight / 24.6,
                     ),
-                  );
-                },
+                    title: "Home",
+                    press: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  NavItem(
+                    icondata: Icon(
+                      isAtLiked ? Icons.favorite : Icons.favorite_border,
+                      color: kPrimaryColor,
+                      size: SizeConfig.screenHeight / 24.6,
+                    ),
+                    title: "Liked",
+                    press: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LikedScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-              // NavItem(
-              //   icon: "assets/icons/chat.svg",
-              //   title: "Chat",
-              //   isActive: true,
-              //   press: () {},
-              // ),
-              // NavItem(
-              //   icon: "assets/icons/friendship.svg",
-              //   title: "Friends",
-              //   press: () {},
-              // ),
-            ],
+            ),
           ),
         ),
       ),
@@ -81,6 +81,12 @@ class CustomBottonNavBar extends StatelessWidget {
 }
 
 class NavItem extends StatelessWidget {
+  final String? svgIconPath;
+  final String title;
+  final GestureTapCallback press;
+  final bool isActive;
+  final Icon? icondata;
+
   NavItem({
     Key? key,
     required this.title,
@@ -89,12 +95,6 @@ class NavItem extends StatelessWidget {
     this.icondata,
     this.isActive = false,
   }) : super(key: key);
-
-  final String? svgIconPath;
-  final String title;
-  final GestureTapCallback press;
-  final bool isActive;
-  final Icon? icondata;
 
   SvgPicture assetIconUsed() {
     var svgpic = SvgPicture.asset(
@@ -122,7 +122,6 @@ class NavItem extends StatelessWidget {
         height: percentageHeight(9),
         width: getProportionateScreenWidth(55),
         decoration: BoxDecoration(
-          color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [if (isActive) kDefualtShadow],
         ),
@@ -132,7 +131,7 @@ class NavItem extends StatelessWidget {
             Spacer(),
             Text(
               title,
-              // "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO
+              // "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO: show page title instead of page size
               style: TextStyle(
                 fontSize: SizeConfig.screenHeight / 55.91,
                 fontWeight: FontWeight.bold,

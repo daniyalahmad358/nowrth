@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+
+import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/constants/size_config.dart';
 
 class MyHeaderDrawer extends StatelessWidget {
   @override
@@ -25,7 +26,8 @@ class MyHeaderDrawer extends StatelessWidget {
           Text(
             "Rapid Tech",
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.grey[200],
+              // color: kPrimaryLightColor,
               fontSize: SizeConfig.screenHeight / 35,
             ),
           ),
@@ -33,6 +35,7 @@ class MyHeaderDrawer extends StatelessWidget {
             "info@rapidtech.dev",
             style: TextStyle(
               color: Colors.grey[200],
+              // color: kPrimaryLightColor,
               fontSize: SizeConfig.screenHeight / 50,
             ),
           ),

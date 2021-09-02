@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/components/section_title.dart';
+import 'package:nowrth/screens/home/components/section_title.dart';
+import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/models/guide.dart';
 
-import 'package:nowrth/constants.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:nowrth/constants/size_config.dart';
 
-class TopGuides extends StatelessWidget {
-  const TopGuides({
+import 'package:nowrth/temp/top_guides.dart';
+
+class TopGuidesFrame extends StatelessWidget {
+  const TopGuidesFrame({
     Key? key,
   }) : super(key: key);
 
@@ -73,7 +76,8 @@ class GuideCard extends StatelessWidget {
           VerticalSpacing(of: 10),
           Text(
             user.name,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 11),
+            style: TextStyle(
+                fontWeight: FontWeight.w600, fontSize: percentageWidth(3.1)),
           ),
         ],
       ),

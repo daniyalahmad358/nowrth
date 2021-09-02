@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:nowrth/constants.dart';
+import 'package:nowrth/constants/app_colors.dart';
 
 class CustomRatingStars implements RatingWidget {
   final Color? starColor;

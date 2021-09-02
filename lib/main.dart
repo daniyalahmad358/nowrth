@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:nowrth/constants.dart';
+import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/splash/splash_screen.dart';
@@ -34,12 +34,10 @@ class MyApp extends StatelessWidget {
               ? WelcomeScreen()
               : FutureBuilder(
                   future: auth.tryautoLogin(), // Original
-                  /*
                   // Used to test splash
-                  future: Future.delayed(const Duration(seconds: 5), () {
-                    auth.tryautoLogin();
-                  }),
-                  */
+                  // future: Future.delayed(const Duration(seconds: 2), () {
+                  //   auth.tryautoLogin();
+                  // }),
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
                           ? SplashScreen()

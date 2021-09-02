@@ -1,22 +1,23 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:nowrth/screens/route/components/content_widget.dart';
 
-import 'package:nowrth/screens/route/components/custom_timeline.dart';
+import 'package:nowrth/constants/size_config.dart';
+
+import 'package:nowrth/models/spot.dart';
+
 import 'package:nowrth/screens/route/services/content_side_decider.dart';
-import 'package:nowrth/size_config.dart';
 
-import 'package:nowrth/models/travel_spot.dart';
-
-import 'package:nowrth/screens/route/components/stop_by_spot_card.dart';
+import 'content_widget.dart';
+import 'custom_timeline.dart';
+import 'stop_by_spot_card.dart';
 
 // Has to be stateful
 class RouteBody extends StatefulWidget {
   RouteBody({
-    required this.travelSpot,
+    required this.destinationSpot,
   });
 
-  final TravelSpot travelSpot;
+  final Spot destinationSpot;
 
   @override
   _RouteBodyState createState() => _RouteBodyState();
@@ -38,17 +39,21 @@ class _RouteBodyState extends State<RouteBody> {
       child: CustomTimeline(
         timelineContents: <TimelineContent>[
           ...List.generate(
-            widget.travelSpot.stopBySpots.length,
+            (widget.destinationSpot.stopBySpots != null)
+                ? widget.destinationSpot.stopBySpots!.length
+                : 0,
             (index) => TimelineContent(
               contentSide: stopBySpotCardSideDecider(
-                widget.travelSpot.stopBySpots[index].stopType,
+                widget.destinationSpot.stopBySpots![index].spotType,
               ),
               child: StopBySpotCard(
                 heroTag: "stopBySpot_$index",
-                stopBySpot: widget.travelSpot.stopBySpots[index],
-                spotButtonSide: spotButtonSideDecider(stopBySpotCardSideDecider(
-                  widget.travelSpot.stopBySpots[index].stopType,
-                )),
+                stopBySpot: widget.destinationSpot.stopBySpots![index],
+                spotButtonSide: spotButtonSideDecider(
+                  stopBySpotCardSideDecider(
+                    widget.destinationSpot.stopBySpots![index].spotType,
+                  ),
+                ),
                 // press: () {},
               ),
             ),

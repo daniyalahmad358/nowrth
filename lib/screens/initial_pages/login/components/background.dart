@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:nowrth/size_config.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:nowrth/constants/size_config.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
