@@ -3,13 +3,13 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/screens/route/components/content_widget.dart';
-import 'package:nowrth/screens/route/components/custom_timeline.dart';
-import 'package:nowrth/screens/route/components/stop_by_spot_card.dart';
+import 'package:nowrth/models/spot.dart';
 
 import 'package:nowrth/screens/route/services/content_side_decider.dart';
 
-import 'package:nowrth/models/spot.dart';
+import 'content_widget.dart';
+import 'custom_timeline.dart';
+import 'stop_by_spot_card.dart';
 
 // Has to be stateful
 class RouteBody extends StatefulWidget {
@@ -39,7 +39,9 @@ class _RouteBodyState extends State<RouteBody> {
       child: CustomTimeline(
         timelineContents: <TimelineContent>[
           ...List.generate(
-            widget.destinationSpot.stopBySpots!.length,
+            (widget.destinationSpot.stopBySpots != null)
+                ? widget.destinationSpot.stopBySpots!.length
+                : 0,
             (index) => TimelineContent(
               contentSide: stopBySpotCardSideDecider(
                 widget.destinationSpot.stopBySpots![index].spotType,
@@ -47,9 +49,11 @@ class _RouteBodyState extends State<RouteBody> {
               child: StopBySpotCard(
                 heroTag: "stopBySpot_$index",
                 stopBySpot: widget.destinationSpot.stopBySpots![index],
-                spotButtonSide: spotButtonSideDecider(stopBySpotCardSideDecider(
-                  widget.destinationSpot.stopBySpots![index].spotType,
-                )),
+                spotButtonSide: spotButtonSideDecider(
+                  stopBySpotCardSideDecider(
+                    widget.destinationSpot.stopBySpots![index].spotType,
+                  ),
+                ),
                 // press: () {},
               ),
             ),

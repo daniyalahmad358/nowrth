@@ -72,7 +72,7 @@ class _SpotCardState extends State<SpotCard> {
                         ? getProportionateScreenHeight(50)
                         : getProportionateScreenHeight(36),
                     child: Text(
-                      widget.spot.spotName!,
+                      widget.spot.spotName,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -83,10 +83,11 @@ class _SpotCardState extends State<SpotCard> {
                     ),
                   ),
                   VerticalSpacing(of: 10),
-                  GuidesInCard(
-                    guides: widget.spot.guides!,
-                    isCardSizeFull: widget.isFullCard,
-                  ),
+                  if (widget.spot.guides != null)
+                    GuidesInCard(
+                      guides: widget.spot.guides!,
+                      isCardSizeFull: widget.isFullCard,
+                    ),
                 ],
               ),
             )
@@ -97,7 +98,7 @@ class _SpotCardState extends State<SpotCard> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return Details(spot: widget.spot);
+              return DetailsScreen(spot: widget.spot);
             },
           ),
         );

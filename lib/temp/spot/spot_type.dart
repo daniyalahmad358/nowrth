@@ -7,7 +7,7 @@ enum SpotType {
 }
 
 extension SpotTypeValue on SpotType {
-  String? get value {
+  String get value {
     switch (this) {
       case SpotType.travelSpot:
         return "Travel Spot";
@@ -19,26 +19,16 @@ extension SpotTypeValue on SpotType {
         return "Fuel Station";
       case SpotType.bank:
         return "Bank";
-      default:
-        return null;
     }
   }
 }
 
-// List<String> spotTypeValues = <String>[
-//   SpotType.travelSpot.value!,
-//   SpotType.hotel.value!,
-//   SpotType.restaurant.value!,
-//   SpotType.fuelStation.value!,
-//   SpotType.bank.value!,
-// ];
-
 List<String> get spotTypeValues {
   return <String>[
-    SpotType.travelSpot.value!,
-    SpotType.hotel.value!,
-    SpotType.restaurant.value!,
-    SpotType.fuelStation.value!,
-    SpotType.bank.value!,
+    SpotType.travelSpot.value,
+    SpotType.hotel.value,
+    SpotType.restaurant.value,
+    SpotType.fuelStation.value,
+    SpotType.bank.value,
   ];
 }
