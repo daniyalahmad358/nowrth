@@ -5,10 +5,11 @@ import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/screens/initial_pages/components/rounded_button.dart';
-import 'package:nowrth/screens/initial_pages/welcome/components/background.dart';
 
 import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
 import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
+
+import 'background.dart';
 
 class WelcomeBody extends StatelessWidget {
   @override

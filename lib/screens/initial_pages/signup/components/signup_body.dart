@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:nowrth/components/already_have_an_account_acheck.dart';
+import 'package:nowrth/screens/home/components/already_have_an_account_acheck.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/screens/initial_pages/components/rounded_input_field.dart';
@@ -9,9 +9,10 @@ import 'package:nowrth/screens/initial_pages/components/rounded_password_field.d
 import 'package:nowrth/screens/initial_pages/components/rounded_button.dart';
 
 import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
-import 'package:nowrth/screens/initial_pages/signup/components/background.dart';
-import 'package:nowrth/screens/initial_pages/signup/components/or_divider.dart';
-import 'package:nowrth/screens/initial_pages/signup/components/social_icon.dart';
+
+import 'background.dart';
+import 'or_divider.dart';
+import 'social_icon.dart';
 
 class SignupBody extends StatelessWidget {
   @override

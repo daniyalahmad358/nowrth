@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/components/drawer/custom_drawer.dart';
 
-import 'package:nowrth/components/drawer/services/check_on_page.dart';
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/app_pages.dart';
 
-import 'package:nowrth/screens/contribution/contributions/contributions_screen.dart';
+import 'package:nowrth/components/drawer/custom_drawer.dart';
+import 'package:nowrth/components/drawer/services/check_on_page.dart';
+
 import 'package:nowrth/screens/home/home_screen.dart';
-import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.dart';
 import 'package:nowrth/screens/liked/liked_screen.dart';
+import 'package:nowrth/screens/contribution/contributions/contributions_screen.dart';
+import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.dart';
 
 List<Widget> menuItems(BuildContext context, AppPage currentPage) {
   return <Widget>[

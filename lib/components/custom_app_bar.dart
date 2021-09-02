@@ -10,16 +10,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
   final double barOpacity;
   final String titleText;
-  final bool blurBackground;
-  final bool onNotiPage;
+  final bool isAtInAppNotifications;
 
   CustomAppBar(
     this.context, {
     Key? key,
-    this.barOpacity = 1.0,
+    this.barOpacity = 0.9,
     this.titleText = "",
-    this.blurBackground = true,
-    this.onNotiPage = false,
+    this.isAtInAppNotifications = false,
   }) : super(key: key);
 
   @override
@@ -51,7 +49,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: <Widget>[
         IconButton(
           icon: Icon(
-            onNotiPage ? Icons.notifications : Icons.notifications_outlined,
+            isAtInAppNotifications
+                ? Icons.notifications
+                : Icons.notifications_outlined,
           ),
           onPressed: () {
             Navigator.push(

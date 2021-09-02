@@ -27,9 +27,9 @@ class HomeBody extends StatelessWidget {
             children: <Widget>[
               HomeHeader(),
               VerticalSpacing(),
-              TopTravelSpots(),
+              TopTravelSpotsFrame(),
               VerticalSpacing(),
-              TopGuides(),
+              TopGuidesFrame(),
               VerticalSpacing(),
             ],
           ),

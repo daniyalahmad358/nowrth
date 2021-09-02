@@ -1,15 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:nowrth/components/spot_card/spot_card.dart';
-import 'package:nowrth/components/section_title.dart';
+import 'package:nowrth/screens/home/components/section_title.dart';
 
 import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/constants/size_config.dart';
-
 import 'package:nowrth/temp/spot/spot.dart';
 
-class TopTravelSpots extends StatelessWidget {
-  const TopTravelSpots({
+class TopTravelSpotsFrame extends StatelessWidget {
+  const TopTravelSpotsFrame({
     Key? key,
   }) : super(key: key);
 
@@ -28,12 +27,12 @@ class TopTravelSpots extends StatelessWidget {
           child: Row(
             children: <Widget>[
               ...List.generate(
-                travelSpots.length,
+                topTravelSpots.length,
                 (index) => Padding(
                   padding: EdgeInsets.only(
                       left: getProportionateScreenWidth(kDefaultPadding)),
                   child: SpotCard(
-                    spot: travelSpots[index],
+                    spot: topTravelSpots[index],
                   ),
                 ),
               ),

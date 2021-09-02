@@ -86,7 +86,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.spot.spotName!,
+                      widget.spot.spotName,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: percentageHeight(3.252),
@@ -124,7 +124,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                   Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.spot.location,
+                      widget.spot.spotLocation.fullLocation,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: percentageHeight(2.1138),
@@ -149,30 +149,32 @@ class _DetailsBodyState extends State<DetailsBody> {
                 ),
               ),
               SizedBox(height: percentageHeight(6.5041)),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Details",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: percentageHeight(2.602),
+              if (widget.spot.description != null)
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "More About " + widget.spot.spotName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: percentageHeight(2.602),
+                    ),
+                    maxLines: 1,
+                    textAlign: TextAlign.left,
                   ),
-                  maxLines: 1,
-                  textAlign: TextAlign.left,
                 ),
-              ),
               SizedBox(height: percentageHeight(1.626)),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  widget.spot.details!,
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: percentageHeight(2.439),
+              if (widget.spot.description != null)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.spot.description!,
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: percentageHeight(2.439),
+                    ),
+                    textAlign: TextAlign.left,
                   ),
-                  textAlign: TextAlign.left,
                 ),
-              ),
               SizedBox(height: percentageHeight(1.626)),
             ],
           ),

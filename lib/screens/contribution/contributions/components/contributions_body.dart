@@ -4,6 +4,7 @@ import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/components/spot_card/spot_card.dart';
 import 'package:nowrth/components/spot_card/tr_corner_widget.dart';
+import 'package:nowrth/screens/contribution/contributions/components/options_menu.dart';
 
 import 'package:nowrth/temp/user_data.dart';
 
@@ -33,10 +34,7 @@ class _ContributionsBodyState extends State<ContributionsBody> {
       splashRadius: percentageHeight(3.5),
       padding: EdgeInsets.all(2),
       alignment: Alignment.topCenter,
-      onPressed: () {
-        likedSpots.remove(likedSpots[index]);
-        setState(() {});
-      },
+      onPressed: () => bringOtionsMenu(context: context),
     );
   }
 

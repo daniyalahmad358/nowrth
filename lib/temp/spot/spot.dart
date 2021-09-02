@@ -1,58 +1,11 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:nowrth/models/guide.dart';
+import 'package:nowrth/models/spot_location.dart';
 import 'package:nowrth/models/spot.dart';
 
 import 'package:nowrth/temp/guides.dart';
 import 'package:nowrth/temp/spot/spot_type.dart';
-import 'package:nowrth/temp/spot/stop_by_spots.dart';
-
-List<Spot> travelSpots = [
-  Spot(
-    spotID: UniqueKey(),
-    spotName: "Red Mountains",
-    location: "London, England",
-    images: images0,
-    rating: 4.5,
-    guides: guidesList0..shuffle(),
-    stopBySpots: stopBySpotsList0..shuffle(),
-    details: details[0],
-    spotType: SpotType.travelSpot,
-  ),
-  Spot(
-    spotID: UniqueKey(),
-    spotName: "Khunjerab Pass",
-    location: "Gilgit, Pakistan",
-    rating: 4,
-    images: images1,
-    guides: guidesList1..shuffle(),
-    stopBySpots: stopBySpotsList1..shuffle(),
-    details: details[1],
-    spotType: SpotType.travelSpot,
-  ),
-  Spot(
-    spotID: UniqueKey(),
-    spotName: "Black Mountains",
-    location: "Paris, France",
-    rating: 3.5,
-    images: images2,
-    guides: guidesList2..shuffle(),
-    stopBySpots: stopBySpotsList2..shuffle(),
-    details: details[2],
-    spotType: SpotType.travelSpot,
-  ),
-  Spot(
-    spotID: UniqueKey(),
-    spotName: "Magical World",
-    location: "Lisbon, Portugal",
-    images: images3,
-    rating: 2.5,
-    guides: guidesList3..shuffle(),
-    stopBySpots: stopBySpotsList3..shuffle(),
-    details: details[3],
-    spotType: SpotType.travelSpot,
-  ),
-];
 
 List<String> images0 = [
   "assets/images/Red_Mountains.png",
@@ -83,31 +36,6 @@ List<Guide> guidesList0 = [guide0, guide1, guide2, guide3, guide4];
 List<Guide> guidesList1 = [guide0, guide1, guide2, guide3, guide4];
 List<Guide> guidesList2 = [guide0, guide1, guide2, guide3, guide4];
 List<Guide> guidesList3 = [guide0, guide1, guide2, guide3, guide4];
-
-List<Spot> stopBySpotsList0 = [
-  stopBySpot0,
-  stopBySpot1,
-  stopBySpot2,
-  stopBySpot1,
-  stopBySpot2,
-  stopBySpot0,
-  stopBySpot0,
-];
-List<Spot> stopBySpotsList1 = [
-  stopBySpot0,
-  stopBySpot1,
-  stopBySpot2,
-];
-List<Spot> stopBySpotsList2 = [
-  stopBySpot0,
-  stopBySpot1,
-  stopBySpot2,
-];
-List<Spot> stopBySpotsList3 = [
-  stopBySpot0,
-  stopBySpot1,
-  stopBySpot2,
-];
 
 List<String> details = [
   "Pellentesque in ipsum id orci porta dapibus. "
@@ -148,5 +76,104 @@ List<String> details = [
       "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
 ];
 
-// List<TravelSpot> likedTravelSpots =
-//     travelSpots.where((element) => element.isLiked).toList();
+List<Spot> stopBySpotsList0 = [
+  spot4,
+  spot5,
+  spot6,
+  spot5,
+  spot6,
+  spot4,
+  spot4,
+];
+List<Spot> stopBySpotsList1 = [
+  spot4,
+  spot5,
+  spot6,
+];
+List<Spot> stopBySpotsList2 = [
+  spot4,
+  spot5,
+  spot6,
+];
+List<Spot> stopBySpotsList3 = [
+  spot4,
+  spot5,
+  spot6,
+];
+
+Spot spot0 = Spot(
+  spotID: UniqueKey(),
+  spotName: "Red Mountains",
+  spotLocation: SpotLocation(cityOrTown: "London", country: "England"),
+  images: images0,
+  rating: 5,
+  guides: guidesList0..shuffle(),
+  stopBySpots: stopBySpotsList0..shuffle(),
+  description: details[0],
+  spotType: SpotType.travelSpot,
+);
+Spot spot1 = Spot(
+  spotID: UniqueKey(),
+  spotName: "Khunjerab Pass",
+  spotLocation: SpotLocation(cityOrTown: "Gilgit", country: "Pakistan"),
+  rating: 4.5,
+  images: images1,
+  guides: guidesList1..shuffle(),
+  stopBySpots: stopBySpotsList1..shuffle(),
+  description: details[1],
+  spotType: SpotType.travelSpot,
+);
+Spot spot2 = Spot(
+  spotID: UniqueKey(),
+  spotName: "Black Mountains",
+  spotLocation: SpotLocation(cityOrTown: "Paris", country: "France"),
+  rating: 4.5,
+  images: images2,
+  guides: guidesList2..shuffle(),
+  stopBySpots: stopBySpotsList2..shuffle(),
+  description: details[2],
+  spotType: SpotType.travelSpot,
+);
+Spot spot3 = Spot(
+  spotID: UniqueKey(),
+  spotName: "Magical World",
+  spotLocation: SpotLocation(cityOrTown: "Lisbon", country: "Portugal"),
+  images: images3,
+  rating: 4,
+  guides: guidesList3..shuffle(),
+  stopBySpots: stopBySpotsList3..shuffle(),
+  description: details[3],
+  spotType: SpotType.travelSpot,
+);
+Spot spot4 = Spot(
+  spotName: "Kaghan Hotel",
+  spotID: UniqueKey(),
+  spotType: SpotType.hotel,
+  spotLocation: SpotLocation(cityOrTown: "Kaghan", country: "Pakistan"),
+  rating: 2,
+  images: images1,
+);
+Spot spot5 = Spot(
+  spotName: "Naran Taste Point",
+  spotID: UniqueKey(),
+  spotType: SpotType.restaurant,
+  spotLocation: SpotLocation(cityOrTown: "Naran", country: "Pakistan"),
+  rating: 4,
+  images: images0,
+);
+Spot spot6 = Spot(
+  spotName: "Babusar Top",
+  spotID: UniqueKey(),
+  spotType: SpotType.travelSpot,
+  spotLocation: SpotLocation(cityOrTown: "Babusar Top", country: "Pakistan"),
+  rating: 3.5,
+  images: images2,
+);
+
+List<Spot> allSpots = [spot0, spot1, spot2, spot3, spot4, spot5, spot6];
+
+List<Spot> travelSpots = allSpots
+    .where((element) => element.spotType == SpotType.travelSpot)
+    .toList();
+List<Spot> topTravelSpots =
+    travelSpots.where((element) => element.rating >= 4).toList();
