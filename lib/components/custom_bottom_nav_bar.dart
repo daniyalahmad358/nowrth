@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/screens/liked/liked_screen.dart';
@@ -26,9 +26,12 @@ class CustomBottonNavBar extends StatelessWidget {
 
     SizeConfig().init(context);
     return SafeArea(
-      child: ClipRect(
-        child: ColoredBox(
+      child: Container(
+        decoration: BoxDecoration(
           color: colorWithOpacity,
+          boxShadow: [kBottomNavBarShadow],
+        ),
+        child: ClipRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Padding(

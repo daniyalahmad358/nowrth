@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/models/spot.dart';

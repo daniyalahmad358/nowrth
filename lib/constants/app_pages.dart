@@ -1,6 +1,7 @@
 enum AppPage {
   home,
   liked,
+  details,
   tours,
   settings,
   notifications,
