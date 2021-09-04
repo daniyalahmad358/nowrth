@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:nowrth/components/spot_card/spot_card.dart';
 import 'package:nowrth/screens/home/components/section_title.dart';
 
-import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/constants/size_config.dart';
 import 'package:nowrth/temp/spot/spot.dart';
 

@@ -12,11 +12,17 @@ import 'components/home_body.dart';
 class HomeScreen extends StatelessWidget {
   final currentPage = AppPage.home;
 
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: CustomAppBar(context, barOpacity: 0.0),
+      appBar: CustomAppBar(
+        context,
+        barOpacity: 0.0,
+        atPage: currentPage,
+      ),
       body: HomeBody(),
       bottomNavigationBar: CustomBottonNavBar(isAtHome: true),
       drawer: CustomDrawer(

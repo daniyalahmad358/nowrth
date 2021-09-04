@@ -15,10 +15,16 @@ import 'package:nowrth/screens/contribution/contributions/components/contributio
 class ContributionsScreen extends StatelessWidget {
   final currentPage = AppPage.contributions;
 
+  const ContributionsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context, titleText: "Contributions"),
+      appBar: CustomAppBar(
+        context,
+        titleText: "Contributions",
+        atPage: currentPage,
+      ),
       body: ContributionsBody(),
       bottomNavigationBar: CustomBottonNavBar(),
       drawer: CustomDrawer(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/app_paddings.dart';
-
 import 'package:nowrth/constants/app_shadows.dart';
+
+import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/models/spot.dart';
@@ -30,27 +30,22 @@ class _SpotCardState extends State<SpotCard> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return InkWell(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(100),
       child: Container(
         width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[500]!, width: 0.2),
-          borderRadius: BorderRadius.circular(5),
+          boxShadow: [kDefualtShadow],
+          // border: Border.all(color: Colors.grey[500]!, width: 0.2),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           children: <Widget>[
             AspectRatio(
               aspectRatio: widget.isFullCard ? 1.09 : 1.29,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(5),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage(widget.spot.images[0]),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: Image(
+                image: AssetImage(widget.spot.images[0]),
+                fit: BoxFit.cover,
               ),
             ),
             Container(
@@ -58,13 +53,7 @@ class _SpotCardState extends State<SpotCard> {
               padding: EdgeInsets.all(
                 getProportionateScreenWidth(kDefaultPadding),
               ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [kDefualtShadow],
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(5),
-                ),
-              ),
+              color: Colors.white,
               child: Column(
                 children: <Widget>[
                   SizedBox(
