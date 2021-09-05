@@ -13,13 +13,11 @@ class SpotCard extends StatefulWidget {
     Key? key,
     required this.spot,
     this.isFullCard = false,
-    this.topRightCornerIconData,
   }) : super(key: key);
 
   final Spot spot;
 
   final bool isFullCard;
-  final IconData? topRightCornerIconData;
 
   @override
   _SpotCardState createState() => _SpotCardState();

@@ -14,7 +14,6 @@ class LikedBody extends StatefulWidget {
   SpotCard makeLikedSpotCard(int index) {
     SpotCard spotCard = SpotCard(
       spot: likedSpots[index],
-      topRightCornerIconData: Icons.close_rounded,
       isFullCard: true,
     );
     return spotCard;
