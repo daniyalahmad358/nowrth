@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/models/in_app_notification.dart';
 import 'package:nowrth/constants/size_config.dart';
 
@@ -24,47 +24,53 @@ class InAppNotificationCard extends StatelessWidget {
     return Container(
       height: SizeConfig.screenHeight / 12,
       decoration: BoxDecoration(
-        color: Colors.white,
         boxShadow:
             inAppNotification.readStatus ? [kDefualtShadow] : [kUnreadShadow],
         borderRadius: notiBorderRadius,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Icon(
-              inAppNotification.iconData,
-              color: inAppNotification.readStatus ? kIconColor : kPrimaryColor,
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Text(
-              inAppNotification.headline,
-              style: TextStyle(
+      child: Card(
+        borderOnForeground: false,
+        shape: RoundedRectangleBorder(borderRadius: notiBorderRadius),
+        elevation: inAppNotification.readStatus ? 0.7 : 1.5,
+        margin: EdgeInsets.all(0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Icon(
+                inAppNotification.iconData,
                 color:
                     inAppNotification.readStatus ? kIconColor : kPrimaryColor,
-                fontSize: percentageHeight(2.2764),
-                fontWeight: inAppNotification.readStatus
-                    ? FontWeight.normal
-                    : FontWeight.bold,
               ),
             ),
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: EdgeInsets.all(SizeConfig.screenWidth / 43),
-                child: Text(
-                  DateFormat.Hm().format(inAppNotification.dateTime),
-                  style: TextStyle(fontSize: SizeConfig.screenHeight / 60),
+            Expanded(
+              flex: 3,
+              child: Text(
+                inAppNotification.headline,
+                style: TextStyle(
+                  color:
+                      inAppNotification.readStatus ? kIconColor : kPrimaryColor,
+                  fontSize: percentageHeight(2.2764),
+                  fontWeight: inAppNotification.readStatus
+                      ? FontWeight.normal
+                      : FontWeight.bold,
                 ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: EdgeInsets.all(SizeConfig.screenWidth / 43),
+                  child: Text(
+                    DateFormat.Hm().format(inAppNotification.dateTime),
+                    style: TextStyle(fontSize: SizeConfig.screenHeight / 60),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

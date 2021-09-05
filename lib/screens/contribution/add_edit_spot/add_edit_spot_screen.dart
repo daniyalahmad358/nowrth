@@ -9,10 +9,12 @@ import 'package:nowrth/screens/contribution/add_edit_spot/components/add_edit_sp
 
 class AddEditSpotScreen extends StatelessWidget {
   final AppPage addEditPage;
+
   const AddEditSpotScreen({
     Key? key,
     required this.addEditPage,
-  });
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +22,7 @@ class AddEditSpotScreen extends StatelessWidget {
         context,
         titleText:
             (addEditPage == AppPage.addContribution) ? "Add Spot" : "Edit Spot",
+        atPage: addEditPage,
       ),
       body: AddEditSpotBody(curentPage: addEditPage),
       bottomNavigationBar: CustomBottonNavBar(),

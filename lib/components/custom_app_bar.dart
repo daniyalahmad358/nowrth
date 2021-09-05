@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:nowrth/constants/app_pages.dart';
 import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
@@ -10,14 +11,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
   final double barOpacity;
   final String titleText;
-  final bool isAtInAppNotifications;
+  final AppPage atPage;
 
   CustomAppBar(
     this.context, {
+    required this.atPage,
     Key? key,
     this.barOpacity = 0.9,
     this.titleText = "",
-    this.isAtInAppNotifications = false,
   }) : super(key: key);
 
   @override
@@ -27,11 +28,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return AppBar(
+      shadowColor: kPrimaryColor.withOpacity(0.25),
+      elevation: 5,
+      toolbarHeight: percentageHeight(9),
+      centerTitle: true,
+      // backgroundColor: Colors.white.withOpacity(barOpacity),
       iconTheme: IconThemeData(
         color: kPrimaryColor,
         size: percentageHeight(3.902),
       ),
-      // backgroundColor: Colors.white.withOpacity(barOpacity),
       backgroundColor: kPrimaryLightColor.withOpacity(barOpacity),
       flexibleSpace: ClipRect(
         child: BackdropFilter(
@@ -39,17 +44,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Container(/* color: Colors.transparent, */),
         ),
       ),
-      elevation: 0,
-      toolbarHeight: percentageHeight(9),
       title: Text(
         titleText,
         style: TextStyle(color: kTextColor, fontSize: percentageHeight(3.25)),
       ),
-      centerTitle: true,
       actions: <Widget>[
         IconButton(
           icon: Icon(
-            isAtInAppNotifications
+            (atPage == AppPage.notifications)
                 ? Icons.notifications
                 : Icons.notifications_outlined,
           ),

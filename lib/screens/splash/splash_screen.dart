@@ -6,6 +6,8 @@ import 'package:lottie/lottie.dart';
 // import 'package:nowrth/size_config.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

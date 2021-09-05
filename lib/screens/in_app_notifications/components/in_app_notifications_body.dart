@@ -5,7 +5,7 @@ import 'package:nowrth/constants/size_config.dart';
 import 'package:nowrth/temp/in_app_notifications.dart';
 
 class InAppNotificationsBody extends StatelessWidget {
-  final notiBorderRadius = BorderRadius.circular(SizeConfig.screenWidth / 34.5);
+  final notiBorderRadius = BorderRadius.circular(percentageHeight(1.5));
   @override
   Widget build(BuildContext context) {
     return ListView(

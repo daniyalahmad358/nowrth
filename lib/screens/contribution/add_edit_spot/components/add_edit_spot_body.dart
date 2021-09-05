@@ -116,14 +116,34 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(
-                    Icons.location_on_outlined,
-                    color: kPrimaryColor,
+                  Expanded(
+                    flex: 2,
+                    child: InputField(
+                      hintText: "Latitude",
+                      onChanged: (value) {},
+                    ),
                   ),
-                  SizedBox(width: percentageWidth(3)),
-                  RoundButton(text: "Enter Manually", press: () {}),
-                  SizedBox(width: percentageWidth(3)),
-                  RoundButton(text: "Detect", press: () {}),
+                  Expanded(
+                    flex: 2,
+                    child: InputField(
+                      hintText: "Latitude",
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  Expanded(
+                    child: MaterialButton(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      minWidth: 46,
+                      shape: CircleBorder(),
+                      child: Icon(
+                        Icons.location_on_outlined,
+                        color: kPrimaryLightColor,
+                      ),
+                      color: kPrimaryColor,
+                      onPressed: () {},
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -133,7 +153,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                 maxLines: 6,
                 onChanged: (String value) {},
               ),
-            )
+            ),
           ],
         ),
       ),

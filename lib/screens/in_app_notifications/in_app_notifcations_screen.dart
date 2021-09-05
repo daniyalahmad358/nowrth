@@ -8,11 +8,16 @@ import 'components/in_app_notifications_body.dart';
 class InAppNotificationsScreen extends StatelessWidget {
   final currentPage = AppPage.liked;
 
+  const InAppNotificationsScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context,
-          titleText: "Notifications", isAtInAppNotifications: true),
+      appBar: CustomAppBar(
+        context,
+        titleText: "Notifications",
+        atPage: currentPage,
+      ),
       body: InAppNotificationsBody(),
       bottomNavigationBar: CustomBottonNavBar(),
       extendBodyBehindAppBar: true,
