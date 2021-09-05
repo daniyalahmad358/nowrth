@@ -19,7 +19,6 @@ class _ContributionsBodyState extends State<ContributionsBody> {
     SpotCard spotCard = SpotCard(
       spot: contributedSpots[index],
       isFullCard: true,
-      topRightCornerIconData: Icons.edit,
     );
     return spotCard;
   }
@@ -34,7 +33,10 @@ class _ContributionsBodyState extends State<ContributionsBody> {
       splashRadius: percentageHeight(3.5),
       padding: EdgeInsets.all(2),
       alignment: Alignment.topCenter,
-      onPressed: () => bringOtionsMenu(context: context),
+      onPressed: () => bringOtionsMenu(context,
+          contributedSpot: contributedSpots[index], refresher: () {
+        setState(() {});
+      }),
     );
   }
 
