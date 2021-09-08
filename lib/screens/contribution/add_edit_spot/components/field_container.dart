@@ -23,11 +23,11 @@ class FieldContainer extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(
-        horizontal: (horizontalPadding != null) ? horizontalPadding! : 20,
-        vertical: (verticalPadding != null) ? verticalPadding! : 0,
+        horizontal: horizontalPadding ?? 20,
+        vertical: verticalPadding ?? 0,
       ),
       height: height,
-      width: (width != null) ? width : percentageWidth(80),
+      width: width ?? percentageWidth(80),
       decoration: BoxDecoration(
         color: kPrimaryLightColor,
         borderRadius: BorderRadius.circular(10),

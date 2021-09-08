@@ -7,7 +7,6 @@ import 'package:nowrth/constants/app_pages.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/background.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/input_field.dart';
-import 'package:nowrth/screens/contribution/add_edit_spot/components/roundButton.dart';
 
 import 'package:nowrth/temp/spot/spot_type.dart';
 
@@ -33,7 +32,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
     SizeConfig().init(context);
 
     TextStyle dropdownTextStyle = TextStyle(
-      fontSize: percentageHeight(2),
+      fontSize: percentageHeight(2.07),
       color: kTextColor,
     );
 
@@ -111,30 +110,53 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                 ),
               ),
             ),
-            FieldContainer(
-              horizontalPadding: 10,
+            SizedBox(
+              width: 285,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
+                  SizedBox(width: 5),
                   Expanded(
-                    flex: 2,
-                    child: InputField(
-                      hintText: "Latitude",
-                      onChanged: (value) {},
+                    flex: 4,
+                    child: FieldContainer(
+                      horizontalPadding: 15,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: InputField(
+                              hintText: "Latitude",
+                              hintTextStyle: TextStyle(
+                                fontSize: percentageHeight(2.07),
+                              ),
+                              inputBorder: UnderlineInputBorder(),
+                              isDense: true,
+                              onChanged: (value) {},
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                            height: 40,
+                          ),
+                          Expanded(
+                            child: InputField(
+                              hintText: "Longitude",
+                              hintTextStyle: TextStyle(
+                                fontSize: percentageHeight(2.07),
+                              ),
+                              inputBorder: UnderlineInputBorder(),
+                              isDense: true,
+                              onChanged: (value) {},
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: InputField(
-                      hintText: "Latitude",
-                      onChanged: (value) {},
-                    ),
-                  ),
+                  // SizedBox(width: 30),
                   Expanded(
                     child: MaterialButton(
                       padding:
                           EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                      minWidth: 46,
                       shape: CircleBorder(),
                       child: Icon(
                         Icons.location_on_outlined,

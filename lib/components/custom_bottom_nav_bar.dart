@@ -133,8 +133,8 @@ class NavItem extends StatelessWidget {
             iconToBeShown,
             Spacer(),
             Text(
-              title,
-              // "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO: show page title instead of page size
+              // title,
+              "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO: show page title instead of page size
               style: TextStyle(
                 fontSize: SizeConfig.screenHeight / 55.91,
                 fontWeight: FontWeight.bold,
