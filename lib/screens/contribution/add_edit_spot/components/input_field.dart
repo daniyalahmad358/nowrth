@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
-
-// import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
+// import 'package:nowrth/constants/size_config.dart';
 
 class InputField extends StatelessWidget {
   final ValueChanged<String> onChanged;

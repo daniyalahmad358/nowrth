@@ -6,7 +6,7 @@ import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/screens/initial_pages/components/rounded_input_field.dart';
 import 'package:nowrth/screens/initial_pages/components/rounded_password_field.dart';
-import 'package:nowrth/screens/initial_pages/components/rounded_button.dart';
+import 'package:nowrth/screens/initial_pages/components/round_button.dart';
 
 import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
 
@@ -25,23 +25,23 @@ class SignupBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "SIGNUP",
+              'SIGNUP',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             SvgPicture.asset(
-              "assets/icons/signup.svg",
+              'assets/icons/signup.svg',
               height: SizeConfig.screenHeight * 0.35,
             ),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: 'Your Email',
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
-            RoundedButton(
-              text: "SIGNUP",
+            RoundButton(
+              text: 'SIGNUP',
               press: () {},
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
@@ -63,15 +63,15 @@ class SignupBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SocalIcon(
-                  iconSrc: "assets/icons/facebook.svg",
+                  iconSrc: 'assets/icons/facebook.svg',
                   press: () {},
                 ),
                 SocalIcon(
-                  iconSrc: "assets/icons/twitter.svg",
+                  iconSrc: 'assets/icons/twitter.svg',
                   press: () {},
                 ),
                 SocalIcon(
-                  iconSrc: "assets/icons/google-plus.svg",
+                  iconSrc: 'assets/icons/google-plus.svg',
                   press: () {},
                 ),
               ],

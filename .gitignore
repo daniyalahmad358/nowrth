@@ -43,8 +43,9 @@ lib/generated_plugin_registrant.dart
 
 ####################
 
-# Linux related
+# Platform related
 linux
+android
 
 ####################
 
@@ -60,3 +61,4 @@ pubspec.lock
 
 # Extra
 trash
+cspell.json

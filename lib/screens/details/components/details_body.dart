@@ -153,7 +153,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "More About " + widget.spot.spotName,
+                    'More About ' + widget.spot.spotName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: percentageHeight(2.602),

@@ -22,7 +22,7 @@ class ContributionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         context,
-        titleText: "Contributions",
+        titleText: 'Contributions',
         atPage: currentPage,
       ),
       body: ContributionsBody(),

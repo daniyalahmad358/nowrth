@@ -47,7 +47,7 @@ class CustomBottonNavBar extends StatelessWidget {
                       color: kPrimaryColor,
                       size: SizeConfig.screenHeight / 24.6,
                     ),
-                    title: "Home",
+                    title: 'Home',
                     press: () {
                       Navigator.push(
                         context,
@@ -63,7 +63,7 @@ class CustomBottonNavBar extends StatelessWidget {
                       color: kPrimaryColor,
                       size: SizeConfig.screenHeight / 24.6,
                     ),
-                    title: "Liked",
+                    title: 'Liked',
                     press: () {
                       Navigator.push(
                         context,
@@ -133,8 +133,8 @@ class NavItem extends StatelessWidget {
             iconToBeShown,
             Spacer(),
             Text(
-              // title,
-              "${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}", // TODO: show page title instead of page size
+              title,
+              // '${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}', // TODO: show page title instead of page size
               style: TextStyle(
                 fontSize: SizeConfig.screenHeight / 55.91,
                 fontWeight: FontWeight.bold,

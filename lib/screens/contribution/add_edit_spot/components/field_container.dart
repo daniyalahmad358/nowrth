@@ -7,25 +7,22 @@ class FieldContainer extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? height;
-  final double? verticalPadding;
-  final double? horizontalPadding;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   const FieldContainer({
     Key? key,
     required this.child,
     this.width,
     this.height,
-    this.verticalPadding,
-    this.horizontalPadding,
+    this.padding = const EdgeInsets.symmetric(horizontal: 20),
+    this.margin = const EdgeInsets.symmetric(vertical: 7.5),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontalPadding ?? 20,
-        vertical: verticalPadding ?? 0,
-      ),
+      margin: margin,
+      padding: padding,
       height: height,
       width: width ?? percentageWidth(80),
       decoration: BoxDecoration(

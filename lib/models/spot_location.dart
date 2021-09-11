@@ -8,6 +8,6 @@ class SpotLocation {
   });
 
   String get fullLocation {
-    return "$cityOrTown, $country";
+    return '$cityOrTown, $country';
   }
 }

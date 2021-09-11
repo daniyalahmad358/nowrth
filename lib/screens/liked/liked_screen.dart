@@ -18,7 +18,7 @@ class LikedScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         context,
-        titleText: "Liked Spots",
+        titleText: 'Liked Spots',
         atPage: currentPage,
       ),
       body: LikedBody(),

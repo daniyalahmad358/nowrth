@@ -29,11 +29,10 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter_svg_provider: ^0.1.10
   community_material_icon: ^5.9.55
-  # material_design_icons_flutter: ^4.0.5955
   lottie: ^1.1.0
   animated_splash_screen: ^1.1.0
   flutter_rating_bar: ^4.0.0
-  # timelines: ^0.1.0
+  image_picker: ^0.8.4
 
 
 dev_dependencies:

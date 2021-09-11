@@ -24,7 +24,7 @@ class MyHeaderDrawer extends StatelessWidget {
             ),
           ),
           Text(
-            "Rapid Tech",
+            'Rapid Tech',
             style: TextStyle(
               color: Colors.grey[200],
               // color: kPrimaryLightColor,
@@ -32,7 +32,7 @@ class MyHeaderDrawer extends StatelessWidget {
             ),
           ),
           Text(
-            "info@rapidtech.dev",
+            'info@rapidtech.dev',
             style: TextStyle(
               color: Colors.grey[200],
               // color: kPrimaryLightColor,

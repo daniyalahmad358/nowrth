@@ -21,7 +21,7 @@ class AddEditSpotScreen extends StatelessWidget {
       appBar: CustomAppBar(
         context,
         titleText:
-            (addEditPage == AppPage.addContribution) ? "Add Spot" : "Edit Spot",
+            (addEditPage == AppPage.addContribution) ? 'Add Spot' : 'Edit Spot',
         atPage: addEditPage,
       ),
       body: AddEditSpotBody(curentPage: addEditPage),
