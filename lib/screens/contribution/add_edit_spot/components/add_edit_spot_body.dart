@@ -8,74 +8,71 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 import 'package:nowrth/constants/app_pages.dart';
+import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/models/spot_location.dart';
 
 import 'package:nowrth/screens/contribution/add_edit_spot/components/background.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/components/custom_show_dialog.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/input_field.dart';
 
-import 'package:nowrth/temp/spot/spot_type.dart';
+import 'package:nowrth/models/spot_type.dart';
+import 'package:nowrth/screens/contribution/contributions/contributions_screen.dart';
+import 'package:nowrth/temp/spot/spot.dart';
+import 'package:nowrth/temp/user_data.dart';
 
 class AddEditSpotBody extends StatefulWidget {
   final AppPage curentPage;
+  final Spot? spotToEdit;
+  final Function()? contributionsPageRefresher;
 
   AddEditSpotBody({
     Key? key,
     required this.curentPage,
-    this.imagesFiles,
+    this.spotToEdit,
+    this.contributionsPageRefresher,
   });
-
-  final List<File?>? imagesFiles;
 
   @override
   _AddEditSpotBodyState createState() => _AddEditSpotBodyState();
 }
 
 class _AddEditSpotBodyState extends State<AddEditSpotBody> {
-  List<File?> imagesFiles = [];
+  List<Image> imagesToShow = [];
+  TextEditingController? titleController;
+  TextEditingController? latitudeController;
+  TextEditingController? longitudeController;
+  TextEditingController? descriptionController;
 
   Future pickImage() async {
-    if ((imagesFiles.length == 0) &&
-        ((widget.imagesFiles == null)
+    if ((imagesToShow.length == 0) &&
+        ((widget.spotToEdit == null)
             ? false
-            : widget.imagesFiles!.length > 0)) {
-      imagesFiles = widget.imagesFiles!;
-    } else if (imagesFiles.length == 5) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          buttonPadding: EdgeInsets.zero,
-          title: Text(
-            'Limit Reached',
-            style: TextStyle(
-              fontSize: percentageHeight(2.4),
-              fontWeight: FontWeight.w600,
-            ),
+            : widget.spotToEdit!.images.length > 0)) {
+      imagesToShow = widget.spotToEdit!.images;
+    } else if (imagesToShow.length == 5) {
+      customShowDialog(
+        context,
+        title: 'Limit Reached',
+        description: 'You cannot add more than five images for a single spot.',
+        actions: [
+          MaterialButton(
+            padding: EdgeInsets.symmetric(vertical: 15),
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          content: Text(
-            'You cannot add more than five images for a single spot',
-            style: TextStyle(
-              fontSize: percentageHeight(2.1),
-            ),
-          ),
-          actions: [
-            MaterialButton(
-              padding: EdgeInsets.symmetric(vertical: 15),
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+        ],
       );
     } else {
       try {
-        final image =
+        final XFile? image =
             await ImagePicker().pickImage(source: ImageSource.gallery);
         if (image == null) return;
 
-        final imageTemporary = File(image.path);
-        setState(() => imagesFiles.add(imageTemporary));
+        Image imageTemporary = Image.file(File(image.path));
+        setState(() => imagesToShow.add(imageTemporary));
         print('ADDING IMAGE');
       } on PlatformException catch (e) {
         print('Failed to pick image: $e');
@@ -88,7 +85,24 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
   List<String> spotTypeValuesCopy = spotTypeValues;
 
   @override
+  void initState() {
+    super.initState();
+
+    dropdownValue = widget.spotToEdit?.spotType.value ?? null;
+
+    titleController = TextEditingController(text: widget.spotToEdit?.spotName);
+    latitudeController =
+        TextEditingController(text: widget.spotToEdit?.spotLocation.latitude);
+    longitudeController =
+        TextEditingController(text: widget.spotToEdit?.spotLocation.longitude);
+    descriptionController =
+        TextEditingController(text: widget.spotToEdit?.description);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (widget.spotToEdit != null) imagesToShow = widget.spotToEdit!.images;
+
     SizeConfig().init(context);
 
     return Background(
@@ -99,17 +113,23 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 FieldContainer(
-                  margin: EdgeInsets.only(bottom: 7.5, top: 30),
+                  margin: EdgeInsets.only(
+                    bottom: 7.5,
+                    top: (Platform.isLinux) ? 7.5 : 30,
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   width: percentageWidth(44),
                   child: InputField(
                     hintText: 'Title',
-                    onChanged: (value) {},
+                    controller: titleController,
                   ),
                 ),
                 SizedBox(width: percentageWidth(3)),
                 FieldContainer(
-                  margin: EdgeInsets.only(bottom: 7.5, top: 30),
+                  margin: EdgeInsets.only(
+                    bottom: 7.5,
+                    top: (Platform.isLinux) ? 7.5 : 30,
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   width: percentageWidth(33),
                   child: DropdownButton<String>(
@@ -142,7 +162,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                 ),
               ],
             ),
-            (imagesFiles.length > 0)
+            (imagesToShow.length > 0)
                 ? Container(
                     alignment: Alignment.center,
                     clipBehavior: Clip.antiAlias,
@@ -158,34 +178,38 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           clipBehavior: Clip.antiAlias,
-                          reverse: true,
+                          // reverse: true, // TODO: set controller to scroll to the end everytime an image is added
                           child: Row(
                             children: <Widget>[
                               ...List.generate(
-                                imagesFiles.length,
+                                imagesToShow.length,
                                 (index) => Stack(
                                   children: [
                                     SizedBox(
                                       width: percentageWidth(80),
-                                      child: Image.file(imagesFiles[index]!),
+                                      child: Image(
+                                        image: imagesToShow[index].image,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                     Positioned(
                                       top: 5,
                                       right: 5,
                                       child: IconButton(
-                                          icon: Icon(
-                                            Icons.close_rounded,
-                                          ),
-                                          color: kPrimaryColor,
-                                          iconSize: percentageHeight(4),
-                                          splashRadius: percentageHeight(3.5),
-                                          padding: EdgeInsets.all(2),
-                                          alignment: Alignment.topCenter,
-                                          onPressed: () {
-                                            imagesFiles
-                                                .remove(imagesFiles[index]!);
-                                            setState(() {});
-                                          }),
+                                        icon: Icon(
+                                          Icons.close_rounded,
+                                        ),
+                                        color: kPrimaryLightColor,
+                                        iconSize: percentageHeight(4),
+                                        splashRadius: percentageHeight(3.5),
+                                        padding: EdgeInsets.all(2),
+                                        alignment: Alignment.topCenter,
+                                        onPressed: () {
+                                          imagesToShow
+                                              .remove(imagesToShow[index]);
+                                          setState(() {});
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -254,7 +278,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         ),
                         inputBorder: UnderlineInputBorder(),
                         isDense: true,
-                        onChanged: (value) {},
+                        controller: latitudeController,
                       ),
                     ),
                   ),
@@ -272,14 +296,15 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         ),
                         inputBorder: UnderlineInputBorder(),
                         isDense: true,
-                        onChanged: (value) {},
+                        controller: longitudeController,
                       ),
                     ),
                   ),
                   Expanded(
                     child: MaterialButton(
-                      padding:
-                          EdgeInsets.symmetric(vertical: percentageHeight(1.5)),
+                      padding: EdgeInsets.symmetric(
+                          vertical:
+                              percentageHeight((Platform.isLinux) ? 2.5 : 1.5)),
                       shape: CircleBorder(),
                       color: kPrimaryColor,
                       child: Icon(
@@ -296,7 +321,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
               child: InputField(
                 hintText: 'Description',
                 maxLines: 5,
-                onChanged: (String value) {},
+                controller: descriptionController,
               ),
             ),
             Container(
@@ -314,7 +339,102 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                       ? 'Add Contribution'
                       : 'Update Contribution',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.curentPage == AppPage.addContribution) {
+                    Spot newSpot = Spot(
+                      spotID: UniqueKey(),
+                      spotName: titleController!.text,
+                      spotType: SpotType.values.firstWhere(
+                        (element) => element.value == dropdownValue,
+                      ),
+                      spotLocation: SpotLocation(
+                        latitude: latitudeController!.text,
+                        longitude: longitudeController!.text,
+                      ),
+                      rating: 0,
+                      images: imagesToShow,
+                      description: descriptionController?.text,
+                    );
+
+                    allSpots.add(newSpot);
+                    contributedSpots.add(newSpot);
+
+                    customShowDialog(
+                      context,
+                      title: 'Contribution Request Sent',
+                      description:
+                          'Your request to add the spot has been sent successfully. It will be confirmed after validation.',
+                      actions: [
+                        MaterialButton(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: Text('OK'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ContributionsScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (widget.curentPage == AppPage.editContribution) {
+                    int allIndex = allSpots.indexWhere((element) =>
+                        element.spotID == widget.spotToEdit!.spotID);
+
+                    Spot updatedSpot = allSpots[allIndex];
+                    updatedSpot.spotName = titleController!.text;
+                    updatedSpot.spotType = widget.spotToEdit!.spotType;
+                    updatedSpot.spotLocation = SpotLocation(
+                      latitude: latitudeController!.text,
+                      longitude: longitudeController!.text,
+                    );
+                    updatedSpot.images = imagesToShow;
+                    updatedSpot.description = descriptionController!.text;
+
+                    int contributedIndex = contributedSpots.indexWhere(
+                      (element) => element.spotID == updatedSpot.spotID,
+                    );
+
+                    int likedIndex = likedSpots.indexWhere(
+                      (element) => element.spotID == updatedSpot.spotID,
+                    );
+
+                    int topIndex = topTravelSpots.indexWhere(
+                      (element) => element.spotID == updatedSpot.spotID,
+                    );
+
+                    contributedSpots[contributedIndex] = updatedSpot;
+
+                    if (likedIndex != -1) likedSpots[likedIndex] = updatedSpot;
+                    if (topIndex != -1) topTravelSpots[topIndex] = updatedSpot;
+
+                    customShowDialog(
+                      context,
+                      title: 'Update Request Sent',
+                      description:
+                          'Your request to update the spot has been sent successfully. It will be confirmed after validation.',
+                      actions: [
+                        MaterialButton(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: Text('OK'),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ContributionsScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  }
+                  widget.contributionsPageRefresher!();
+                },
               ),
             )
           ],

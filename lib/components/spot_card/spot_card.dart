@@ -34,7 +34,6 @@ class _SpotCardState extends State<SpotCard> {
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           boxShadow: [kDefualtShadow],
-          // border: Border.all(color: Colors.grey[500]!, width: 0.2),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -42,7 +41,7 @@ class _SpotCardState extends State<SpotCard> {
             AspectRatio(
               aspectRatio: widget.isFullCard ? 1.09 : 1.29,
               child: Image(
-                image: AssetImage(widget.spot.images[0]),
+                image: widget.spot.images[0].image,
                 fit: BoxFit.cover,
               ),
             ),

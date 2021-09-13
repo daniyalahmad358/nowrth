@@ -5,31 +5,31 @@ import 'package:nowrth/models/spot_location.dart';
 import 'package:nowrth/models/spot.dart';
 
 import 'package:nowrth/temp/guides.dart';
-import 'package:nowrth/temp/spot/spot_type.dart';
+import 'package:nowrth/models/spot_type.dart';
 
-List<String> images0 = [
-  'assets/images/Red_Mountains.png',
-  'assets/images/Magical_World.png',
-  'assets/images/Red_Mountains.png',
-  'assets/images/Magical_World.png',
+List<Image> images0 = [
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
 ];
-List<String> images1 = [
-  'assets/images/Magical_World.png',
-  'assets/images/Red_Mountains.png',
-  'assets/images/Magical_World.png',
-  'assets/images/Red_Mountains.png',
+List<Image> images1 = [
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
 ];
-List<String> images2 = [
-  'assets/images/Red_Mountains.png',
-  'assets/images/Magical_World.png',
-  'assets/images/Red_Mountains.png',
-  'assets/images/Magical_World.png',
+List<Image> images2 = [
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
 ];
-List<String> images3 = [
-  'assets/images/Magical_World.png',
-  'assets/images/Red_Mountains.png',
-  'assets/images/Magical_World.png',
-  'assets/images/Red_Mountains.png',
+List<Image> images3 = [
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
 ];
 
 List<Guide> guidesList0 = [guide0, guide1, guide2, guide3, guide4];

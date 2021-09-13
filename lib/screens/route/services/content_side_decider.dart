@@ -1,6 +1,6 @@
 import 'package:nowrth/screens/route/services/sides.dart';
 
-import 'package:nowrth/temp/spot/spot_type.dart';
+import 'package:nowrth/models/spot_type.dart';
 
 Side stopBySpotCardSideDecider(SpotType spotType) {
   if (spotType == SpotType.travelSpot) {

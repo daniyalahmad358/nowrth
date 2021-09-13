@@ -6,36 +6,40 @@ import 'package:nowrth/models/spot.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_spot_screen.dart';
 import 'package:nowrth/temp/user_data.dart';
 
-void bringOtionsMenu(
-  BuildContext context, {
-  required Spot contributedSpot,
-  required Function() refresher,
-}) {
-  showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
-      ),
-      backgroundColor: kPrimaryLightColor,
-      context: context,
-      builder: (context) {
-        return OptionsMenu(
-          contributedSpot: contributedSpot,
-          pageRefresher: refresher,
-        );
-      });
-}
-
 class OptionsMenu extends StatelessWidget {
   final Spot contributedSpot;
   final Function() pageRefresher;
+  final Spot? spotToEdit;
 
   const OptionsMenu({
     Key? key,
     required this.contributedSpot,
     required this.pageRefresher,
+    this.spotToEdit,
   }) : super(key: key);
+
+  static void showMenu(
+    BuildContext context, {
+    required Spot contributedSpot,
+    required Function() refresher,
+    required Spot? spotToEdit,
+  }) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        backgroundColor: kPrimaryLightColor,
+        context: context,
+        builder: (context) {
+          return OptionsMenu(
+            contributedSpot: contributedSpot,
+            pageRefresher: refresher,
+            spotToEdit: spotToEdit,
+          );
+        });
+  }
 
   void selectOption({
     required BuildContext context,
@@ -46,8 +50,10 @@ class OptionsMenu extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              AddEditSpotScreen(addEditPage: AppPage.editContribution),
+          builder: (context) => AddEditSpotScreen(
+              addEditPage: AppPage.editContribution,
+              spotToEdit: spotToEdit,
+              contributionsPageRefresher: pageRefresher),
         ),
       );
     } else if (selectedOption == ContributedSpotOptions.delete) {

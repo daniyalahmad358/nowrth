@@ -60,10 +60,8 @@ class _DetailsBodyState extends State<DetailsBody> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                          widget.spot.images[index],
-                        ),
+                        fit: BoxFit.cover,
+                        image: widget.spot.images[index].image,
                       ),
                     ),
                   ),

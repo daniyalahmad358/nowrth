@@ -3,29 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/models/guide.dart';
 import 'package:nowrth/models/spot_location.dart';
 
-import 'package:nowrth/temp/spot/spot_type.dart';
+import 'package:nowrth/models/spot_type.dart';
 
 class Spot {
   final UniqueKey spotID;
-  final String spotName;
-  final SpotType spotType;
-  final SpotLocation spotLocation;
-  final double rating;
-  final List<String> images;
-  final List<Guide>? guides;
-  final List<Spot>? stopBySpots;
-  final String? description;
+  String spotName;
+  SpotType spotType;
+  SpotLocation spotLocation;
+  List<Image> images;
+  double rating;
+  List<Guide>? guides;
+  List<Spot>? stopBySpots;
+  String? description;
 
   String? spotTypeDesiplayText;
   IconData? iconData;
 
   Spot({
     required this.spotID,
+    required this.spotName,
     required this.spotType,
     required this.spotLocation,
     required this.rating,
     required this.images,
-    required this.spotName,
     this.guides,
     this.description,
     this.stopBySpots,

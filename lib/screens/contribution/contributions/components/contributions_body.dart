@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/app_colors.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 
@@ -34,10 +33,14 @@ class _ContributionsBodyState extends State<ContributionsBody> {
       splashRadius: percentageHeight(3.5),
       padding: EdgeInsets.all(2),
       alignment: Alignment.topCenter,
-      onPressed: () => bringOtionsMenu(context,
-          contributedSpot: contributedSpots[index], refresher: () {
-        setState(() {});
-      }),
+      onPressed: () => OptionsMenu.showMenu(
+        context,
+        contributedSpot: contributedSpots[index],
+        spotToEdit: contributedSpots[index],
+        refresher: () {
+          setState(() {});
+        },
+      ),
     );
   }
 

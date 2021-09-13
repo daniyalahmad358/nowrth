@@ -4,15 +4,20 @@ import 'package:nowrth/constants/app_pages.dart';
 
 import 'package:nowrth/components/custom_app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
+import 'package:nowrth/models/spot.dart';
 
 import 'package:nowrth/screens/contribution/add_edit_spot/components/add_edit_spot_body.dart';
 
 class AddEditSpotScreen extends StatelessWidget {
   final AppPage addEditPage;
+  final Spot? spotToEdit;
+  final Function()? contributionsPageRefresher;
 
   const AddEditSpotScreen({
     Key? key,
     required this.addEditPage,
+    required this.contributionsPageRefresher,
+    this.spotToEdit,
   }) : super(key: key);
 
   @override
@@ -24,7 +29,11 @@ class AddEditSpotScreen extends StatelessWidget {
             (addEditPage == AppPage.addContribution) ? 'Add Spot' : 'Edit Spot',
         atPage: addEditPage,
       ),
-      body: AddEditSpotBody(curentPage: addEditPage),
+      body: AddEditSpotBody(
+        curentPage: addEditPage,
+        spotToEdit: spotToEdit,
+        contributionsPageRefresher: contributionsPageRefresher,
+      ),
       bottomNavigationBar: CustomBottonNavBar(),
       extendBodyBehindAppBar: true,
     );
