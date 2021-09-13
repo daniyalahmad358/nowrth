@@ -37,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
                     currentPage: currentPage,
                     menuItems: menuItems,
                   ),
-                  // Text("${SizeConfig.screenHeight}")
+                  // Text('${SizeConfig.screenHeight}')
                 ],
               ),
             ),

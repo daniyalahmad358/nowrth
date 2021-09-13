@@ -1,5 +1,5 @@
 String getSpotId(String? lastSpotId) {
-  lastSpotId ??= "0";
+  lastSpotId ??= '0';
   int lastSpotidInt = int.parse(lastSpotId);
 
   return (++lastSpotidInt).toString();

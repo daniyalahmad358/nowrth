@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
-
-// import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
 
 class InputField extends StatelessWidget {
-  final ValueChanged<String> onChanged;
   final int maxLines;
   final String? hintText;
   final TextStyle? hintTextStyle;
   final EdgeInsetsGeometry? innerPad;
   final InputBorder? inputBorder;
   final bool? isDense;
+  final TextEditingController? controller;
 
   const InputField({
     Key? key,
-    required this.onChanged,
+    required this.controller,
     this.maxLines = 1,
     this.hintText,
     this.hintTextStyle,
@@ -28,7 +25,7 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextField readyTextField = TextField(
-      onChanged: onChanged,
+      controller: controller,
       cursorColor: kPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(

@@ -5,31 +5,31 @@ import 'package:nowrth/models/spot_location.dart';
 import 'package:nowrth/models/spot.dart';
 
 import 'package:nowrth/temp/guides.dart';
-import 'package:nowrth/temp/spot/spot_type.dart';
+import 'package:nowrth/models/spot_type.dart';
 
-List<String> images0 = [
-  "assets/images/Red_Mountains.png",
-  "assets/images/Magical_World.png",
-  "assets/images/Red_Mountains.png",
-  "assets/images/Magical_World.png",
+List<Image> images0 = [
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
 ];
-List<String> images1 = [
-  "assets/images/Magical_World.png",
-  "assets/images/Red_Mountains.png",
-  "assets/images/Magical_World.png",
-  "assets/images/Red_Mountains.png",
+List<Image> images1 = [
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
 ];
-List<String> images2 = [
-  "assets/images/Red_Mountains.png",
-  "assets/images/Magical_World.png",
-  "assets/images/Red_Mountains.png",
-  "assets/images/Magical_World.png",
+List<Image> images2 = [
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
 ];
-List<String> images3 = [
-  "assets/images/Magical_World.png",
-  "assets/images/Red_Mountains.png",
-  "assets/images/Magical_World.png",
-  "assets/images/Red_Mountains.png",
+List<Image> images3 = [
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
+  Image.asset('assets/images/Magical_World.png'),
+  Image.asset('assets/images/Red_Mountains.png'),
 ];
 
 List<Guide> guidesList0 = [guide0, guide1, guide2, guide3, guide4];
@@ -38,42 +38,42 @@ List<Guide> guidesList2 = [guide0, guide1, guide2, guide3, guide4];
 List<Guide> guidesList3 = [guide0, guide1, guide2, guide3, guide4];
 
 List<String> details = [
-  "Pellentesque in ipsum id orci porta dapibus. "
-      "Nulla porttitor accumsan tincidunt. Donec rutrum "
-      "congue leo eget malesuada. "
-      "\n\nPraesent sapien massa, convallis a pellentesque "
-      "nec, egestas non nisi. Donec rutrum congue leo eget malesuada. "
-      "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. "
-      "Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. "
-      "\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. "
-      "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-  "Pellentesque in ipsum id orci porta dapibus. "
-      "Nulla porttitor accumsan tincidunt. Donec rutrum "
-      "congue leo eget malesuada. "
-      "\nPraesent sapien massa, convallis a pellentesque "
-      "nec, egestas non nisi. Donec rutrum congue leo eget malesuada. "
-      "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. "
-      "Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. "
-      "\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. "
-      "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-  "Pellentesque in ipsum id orci porta dapibus. "
-      "Nulla porttitor accumsan tincidunt. Donec rutrum "
-      "congue leo eget malesuada. "
-      "\n\nPraesent sapien massa, convallis a pellentesque "
-      "nec, egestas non nisi. Donec rutrum congue leo eget malesuada. "
-      "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. "
-      "Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. "
-      "\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. "
-      "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-  "Pellentesque in ipsum id orci porta dapibus. "
-      "Nulla porttitor accumsan tincidunt. Donec rutrum "
-      "congue leo eget malesuada. "
-      "\nPraesent sapien massa, convallis a pellentesque "
-      "nec, egestas non nisi. Donec rutrum congue leo eget malesuada. "
-      "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. "
-      "Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. "
-      "\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. "
-      "Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+  'Pellentesque in ipsum id orci porta dapibus. '
+      'Nulla porttitor accumsan tincidunt. Donec rutrum '
+      'congue leo eget malesuada. '
+      '\n\nPraesent sapien massa, convallis a pellentesque '
+      'nec, egestas non nisi. Donec rutrum congue leo eget malesuada. '
+      'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. '
+      'Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. '
+      '\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. '
+      'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
+  'Pellentesque in ipsum id orci porta dapibus. '
+      'Nulla porttitor accumsan tincidunt. Donec rutrum '
+      'congue leo eget malesuada. '
+      '\nPraesent sapien massa, convallis a pellentesque '
+      'nec, egestas non nisi. Donec rutrum congue leo eget malesuada. '
+      'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. '
+      'Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. '
+      '\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. '
+      'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
+  'Pellentesque in ipsum id orci porta dapibus. '
+      'Nulla porttitor accumsan tincidunt. Donec rutrum '
+      'congue leo eget malesuada. '
+      '\n\nPraesent sapien massa, convallis a pellentesque '
+      'nec, egestas non nisi. Donec rutrum congue leo eget malesuada. '
+      'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. '
+      'Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. '
+      '\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. '
+      'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
+  'Pellentesque in ipsum id orci porta dapibus. '
+      'Nulla porttitor accumsan tincidunt. Donec rutrum '
+      'congue leo eget malesuada. '
+      '\nPraesent sapien massa, convallis a pellentesque '
+      'nec, egestas non nisi. Donec rutrum congue leo eget malesuada. '
+      'Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. '
+      'Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada. '
+      '\nCurabitur arcu erat, accumsan id imperdiet et, porttitor at sem. '
+      'Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.',
 ];
 
 List<Spot> stopBySpotsList0 = [
@@ -103,8 +103,8 @@ List<Spot> stopBySpotsList3 = [
 
 Spot spot0 = Spot(
   spotID: UniqueKey(),
-  spotName: "Red Mountains",
-  spotLocation: SpotLocation(cityOrTown: "London", country: "England"),
+  spotName: 'Red Mountains',
+  spotLocation: SpotLocation(cityOrTown: 'London', country: 'England'),
   images: images0,
   rating: 5,
   guides: guidesList0..shuffle(),
@@ -114,8 +114,8 @@ Spot spot0 = Spot(
 );
 Spot spot1 = Spot(
   spotID: UniqueKey(),
-  spotName: "Khunjerab Pass",
-  spotLocation: SpotLocation(cityOrTown: "Gilgit", country: "Pakistan"),
+  spotName: 'Khunjerab Pass',
+  spotLocation: SpotLocation(cityOrTown: 'Gilgit', country: 'Pakistan'),
   rating: 4.5,
   images: images1,
   guides: guidesList1..shuffle(),
@@ -125,8 +125,8 @@ Spot spot1 = Spot(
 );
 Spot spot2 = Spot(
   spotID: UniqueKey(),
-  spotName: "Black Mountains",
-  spotLocation: SpotLocation(cityOrTown: "Paris", country: "France"),
+  spotName: 'Black Mountains',
+  spotLocation: SpotLocation(cityOrTown: 'Paris', country: 'France'),
   rating: 4.5,
   images: images2,
   guides: guidesList2..shuffle(),
@@ -136,8 +136,8 @@ Spot spot2 = Spot(
 );
 Spot spot3 = Spot(
   spotID: UniqueKey(),
-  spotName: "Magical World",
-  spotLocation: SpotLocation(cityOrTown: "Lisbon", country: "Portugal"),
+  spotName: 'Magical World',
+  spotLocation: SpotLocation(cityOrTown: 'Lisbon', country: 'Portugal'),
   images: images3,
   rating: 4,
   guides: guidesList3..shuffle(),
@@ -146,26 +146,26 @@ Spot spot3 = Spot(
   spotType: SpotType.travelSpot,
 );
 Spot spot4 = Spot(
-  spotName: "Kaghan Hotel",
+  spotName: 'Kaghan Hotel',
   spotID: UniqueKey(),
   spotType: SpotType.hotel,
-  spotLocation: SpotLocation(cityOrTown: "Kaghan", country: "Pakistan"),
+  spotLocation: SpotLocation(cityOrTown: 'Kaghan', country: 'Pakistan'),
   rating: 2,
   images: images1,
 );
 Spot spot5 = Spot(
-  spotName: "Naran Taste Point",
+  spotName: 'Naran Taste Point',
   spotID: UniqueKey(),
   spotType: SpotType.restaurant,
-  spotLocation: SpotLocation(cityOrTown: "Naran", country: "Pakistan"),
+  spotLocation: SpotLocation(cityOrTown: 'Naran', country: 'Pakistan'),
   rating: 4,
   images: images0,
 );
 Spot spot6 = Spot(
-  spotName: "Babusar Top",
+  spotName: 'Babusar Top',
   spotID: UniqueKey(),
   spotType: SpotType.travelSpot,
-  spotLocation: SpotLocation(cityOrTown: "Babusar Top", country: "Pakistan"),
+  spotLocation: SpotLocation(cityOrTown: 'Babusar Top', country: 'Pakistan'),
   rating: 3.5,
   images: images2,
 );

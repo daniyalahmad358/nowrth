@@ -33,10 +33,14 @@ class _ContributionsBodyState extends State<ContributionsBody> {
       splashRadius: percentageHeight(3.5),
       padding: EdgeInsets.all(2),
       alignment: Alignment.topCenter,
-      onPressed: () => bringOtionsMenu(context,
-          contributedSpot: contributedSpots[index], refresher: () {
-        setState(() {});
-      }),
+      onPressed: () => OptionsMenu.showMenu(
+        context,
+        contributedSpot: contributedSpots[index],
+        spotToEdit: contributedSpots[index],
+        refresher: () {
+          setState(() {});
+        },
+      ),
     );
   }
 

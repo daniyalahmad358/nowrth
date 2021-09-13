@@ -60,10 +60,8 @@ class _DetailsBodyState extends State<DetailsBody> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                          widget.spot.images[index],
-                        ),
+                        fit: BoxFit.cover,
+                        image: widget.spot.images[index].image,
                       ),
                     ),
                   ),
@@ -153,7 +151,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "More About " + widget.spot.spotName,
+                    'More About ' + widget.spot.spotName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: percentageHeight(2.602),

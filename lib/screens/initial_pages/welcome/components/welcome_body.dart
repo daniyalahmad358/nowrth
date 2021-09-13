@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/screens/initial_pages/components/rounded_button.dart';
+import 'package:nowrth/screens/initial_pages/components/round_button.dart';
 
 import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
 import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
@@ -22,17 +22,17 @@ class WelcomeBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO NOWRTH",
+              'WELCOME TO NOWRTH',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.05),
             SvgPicture.asset(
-              "assets/icons/chat_people.svg",
+              'assets/icons/chat_people.svg',
               height: SizeConfig.screenHeight * 0.45,
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.05),
-            RoundedButton(
-              text: "LOGIN",
+            RoundButton(
+              text: 'LOGIN',
               press: () {
                 Navigator.push(
                   context,
@@ -44,8 +44,8 @@ class WelcomeBody extends StatelessWidget {
                 );
               },
             ),
-            RoundedButton(
-              text: "SIGN UP",
+            RoundButton(
+              text: 'SIGN UP',
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {

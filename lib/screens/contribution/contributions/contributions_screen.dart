@@ -12,20 +12,26 @@ import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_spot_screen.d
 
 import 'package:nowrth/screens/contribution/contributions/components/contributions_body.dart';
 
-class ContributionsScreen extends StatelessWidget {
-  final currentPage = AppPage.contributions;
-
+class ContributionsScreen extends StatefulWidget {
   const ContributionsScreen({Key? key}) : super(key: key);
+
+  @override
+  _ContributionsScreenState createState() => _ContributionsScreenState();
+}
+
+class _ContributionsScreenState extends State<ContributionsScreen> {
+  final currentPage = AppPage.contributions;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
         context,
-        titleText: "Contributions",
+        titleText: 'Contributions',
         atPage: currentPage,
       ),
-      body: ContributionsBody(),
+      body: StatefulBuilder(
+          builder: (context, setStateBody) => ContributionsBody()),
       bottomNavigationBar: CustomBottonNavBar(),
       drawer: CustomDrawer(
         currentPage: currentPage,
@@ -39,6 +45,9 @@ class ContributionsScreen extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => AddEditSpotScreen(
                 addEditPage: AppPage.addContribution,
+                contributionsPageRefresher: () {
+                  setState(() {});
+                },
               ),
             ),
           );

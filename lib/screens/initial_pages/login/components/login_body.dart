@@ -7,7 +7,7 @@ import 'package:nowrth/screens/home/components/already_have_an_account_acheck.da
 
 import 'package:nowrth/screens/initial_pages/components/rounded_input_field.dart';
 import 'package:nowrth/screens/initial_pages/components/rounded_password_field.dart';
-import 'package:nowrth/screens/initial_pages/components/rounded_button.dart';
+import 'package:nowrth/screens/initial_pages/components/round_button.dart';
 import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
 import 'package:nowrth/screens/home/home_screen.dart';
 
@@ -28,24 +28,24 @@ class LoginBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "LOGIN",
+              'LOGIN',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             SvgPicture.asset(
-              "assets/icons/login.svg",
+              'assets/icons/login.svg',
               height: SizeConfig.screenHeight * 0.35,
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: 'Your Email',
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
-            RoundedButton(
-              text: "LOGIN",
+            RoundButton(
+              text: 'LOGIN',
               press: () {
                 Navigator.push(
                   context,
