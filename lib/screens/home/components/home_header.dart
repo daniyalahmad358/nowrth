@@ -18,7 +18,7 @@ class HomeHeader extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Image.asset(
-            "assets/images/home_bg.png",
+            'assets/images/home_bg.png',
             fit: BoxFit.cover,
             width: double.infinity,
             height: getProportionateScreenHeight(237.7),
@@ -28,7 +28,7 @@ class HomeHeader extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: getProportionateScreenHeight(60.4)),
               Text(
-                "Nowrth",
+                'Nowrth',
                 style: TextStyle(
                     fontSize: getProportionateScreenHeight(60.83),
                     fontWeight: FontWeight.bold,
@@ -36,7 +36,7 @@ class HomeHeader extends StatelessWidget {
                     height: 0.5),
               ),
               Text(
-                "Travel Community App",
+                'Travel Community App',
                 style: TextStyle(color: Colors.white),
               ),
             ],

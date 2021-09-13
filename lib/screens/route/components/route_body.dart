@@ -47,7 +47,7 @@ class _RouteBodyState extends State<RouteBody> {
                 widget.destinationSpot.stopBySpots![index].spotType,
               ),
               child: StopBySpotCard(
-                heroTag: "stopBySpot_$index",
+                heroTag: 'stopBySpot_$index',
                 stopBySpot: widget.destinationSpot.stopBySpots![index],
                 spotButtonSide: spotButtonSideDecider(
                   stopBySpotCardSideDecider(

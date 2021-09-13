@@ -44,7 +44,7 @@ class SplashScreen extends StatelessWidget {
 //         splashIconSize: SizeConfig.screenWidth,
 //       ),
 //       // AnimatedDefaultTextStyle(
-//       //   child: Text("Nowrth"),
+//       //   child: Text('Nowrth'),
 //       //   style: TextStyle(decorationColor: kPrimaryColor),
 //       //   duration: Duration(seconds: 2),
 //       // )

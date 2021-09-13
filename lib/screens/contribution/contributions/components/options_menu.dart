@@ -6,36 +6,40 @@ import 'package:nowrth/models/spot.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_spot_screen.dart';
 import 'package:nowrth/temp/user_data.dart';
 
-void bringOtionsMenu(
-  BuildContext context, {
-  required Spot contributedSpot,
-  required Function() refresher,
-}) {
-  showModalBottomSheet(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
-      ),
-      backgroundColor: kPrimaryLightColor,
-      context: context,
-      builder: (context) {
-        return OptionsMenu(
-          contributedSpot: contributedSpot,
-          pageRefresher: refresher,
-        );
-      });
-}
-
 class OptionsMenu extends StatelessWidget {
   final Spot contributedSpot;
   final Function() pageRefresher;
+  final Spot? spotToEdit;
 
   const OptionsMenu({
     Key? key,
     required this.contributedSpot,
     required this.pageRefresher,
+    this.spotToEdit,
   }) : super(key: key);
+
+  static void showMenu(
+    BuildContext context, {
+    required Spot contributedSpot,
+    required Function() refresher,
+    required Spot? spotToEdit,
+  }) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        backgroundColor: kPrimaryLightColor,
+        context: context,
+        builder: (context) {
+          return OptionsMenu(
+            contributedSpot: contributedSpot,
+            pageRefresher: refresher,
+            spotToEdit: spotToEdit,
+          );
+        });
+  }
 
   void selectOption({
     required BuildContext context,
@@ -46,8 +50,10 @@ class OptionsMenu extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              AddEditSpotScreen(addEditPage: AppPage.editContribution),
+          builder: (context) => AddEditSpotScreen(
+              addEditPage: AppPage.editContribution,
+              spotToEdit: spotToEdit,
+              contributionsPageRefresher: pageRefresher),
         ),
       );
     } else if (selectedOption == ContributedSpotOptions.delete) {
@@ -56,14 +62,14 @@ class OptionsMenu extends StatelessWidget {
         builder: (context) => AlertDialog(
           buttonPadding: EdgeInsets.zero,
           title: Text(
-            "Delete " + contributedSpot.spotName,
+            'Delete ' + contributedSpot.spotName,
             style: TextStyle(
               fontSize: percentageHeight(2.4),
               fontWeight: FontWeight.w600,
             ),
           ),
           content: Text(
-            "$contributedSpot will be deleted permanently",
+            '$contributedSpot will be deleted permanently',
             style: TextStyle(
               fontSize: percentageHeight(2.1),
             ),
@@ -74,7 +80,7 @@ class OptionsMenu extends StatelessWidget {
                 Expanded(
                   child: MaterialButton(
                     padding: EdgeInsets.symmetric(vertical: 15),
-                    child: Text("Cancel"),
+                    child: Text('Cancel'),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -88,7 +94,7 @@ class OptionsMenu extends StatelessWidget {
                 Expanded(
                   child: MaterialButton(
                     padding: EdgeInsets.symmetric(vertical: 15),
-                    child: Text("Confirm"),
+                    child: Text('Confirm'),
                     onPressed: () {
                       Navigator.pop(context);
                       contributedSpots.remove(contributedSpot);
@@ -107,12 +113,12 @@ class OptionsMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
-      height: percentageHeight(30),
-      child: Column(
+    return SafeArea(
+      child: Wrap(
         children: <Widget>[
           SizedBox(height: 10),
           ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
             leading: Icon(Icons.edit),
             title: Text('Edit Spot'),
             onTap: () => selectOption(
@@ -122,6 +128,7 @@ class OptionsMenu extends StatelessWidget {
           ),
           SizedBox(height: 10),
           ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
             leading: Icon(Icons.delete),
             title: Text('Delete Spot'),
             onTap: () => selectOption(
@@ -131,6 +138,7 @@ class OptionsMenu extends StatelessWidget {
           ),
           SizedBox(height: 10),
           ListTile(
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 2.5),
             leading: Icon(Icons.cancel),
             title: Text('Cancel'),
             onTap: () => selectOption(

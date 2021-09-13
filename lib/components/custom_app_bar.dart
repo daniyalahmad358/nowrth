@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.atPage,
     Key? key,
     this.barOpacity = 0.9,
-    this.titleText = "",
+    this.titleText = '',
   }) : super(key: key);
 
   @override
@@ -65,7 +65,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
         ),
         IconButton(
-          icon: ClipOval(child: Image.asset("assets/images/profile.png")),
+          icon: ClipOval(child: Image.asset('assets/images/profile.png')),
           onPressed: () {},
         )
       ],

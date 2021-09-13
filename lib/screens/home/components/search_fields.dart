@@ -31,7 +31,7 @@ class SearchField extends StatelessWidget {
       child: TextField(
         onChanged: (value) {},
         decoration: InputDecoration(
-          hintText: "Search your destination…",
+          hintText: 'Search your destination…',
           hintStyle: TextStyle(
             fontSize: getProportionateScreenHeight(12),
             color: Color(0xFF464A7E),

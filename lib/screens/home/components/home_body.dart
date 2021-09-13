@@ -18,7 +18,7 @@ class HomeBody extends StatelessWidget {
           // color: Colors.blueGrey,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: Svg("assets/images/map_illustration.svg"),
+              image: Svg('assets/images/map_illustration.svg'),
               colorFilter: ColorFilter.linearToSrgbGamma(),
               fit: BoxFit.fitHeight,
             ),

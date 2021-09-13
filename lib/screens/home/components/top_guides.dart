@@ -18,7 +18,7 @@ class TopGuidesFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SectionTitle(title: "Top Guides on Nowrth", press: () {}),
+        SectionTitle(title: 'Top Guides on Nowrth', press: () {}),
         VerticalSpacing(of: 20),
         Container(
           margin: EdgeInsets.symmetric(

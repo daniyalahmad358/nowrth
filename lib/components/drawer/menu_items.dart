@@ -14,7 +14,7 @@ import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.d
 List<Widget> menuItems(BuildContext context, AppPage currentPage) {
   return <Widget>[
     MenuItem(
-      title: "Home",
+      title: 'Home',
       iconData: Icons.home_outlined,
       selected: isOnPage(currentPage, AppPage.home),
       onTap: !isOnPage(currentPage, AppPage.home)
@@ -29,7 +29,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
           : null,
     ),
     MenuItem(
-      title: "Liked",
+      title: 'Liked',
       iconData: Icons.favorite_border,
       selected: isOnPage(currentPage, AppPage.liked),
       onTap: !isOnPage(currentPage, AppPage.liked)
@@ -44,13 +44,13 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
           : null,
     ),
     MenuItem(
-      title: "Tours",
+      title: 'Tours',
       iconData: Icons.explore_outlined,
       selected: isOnPage(currentPage, AppPage.tours),
       onTap: !isOnPage(currentPage, AppPage.tours) ? null : null,
     ),
     MenuItem(
-      title: "Contributions",
+      title: 'Contributions',
       iconData: Icons.add_circle_outline,
       selected: isOnPage(currentPage, AppPage.contributions),
       onTap: !isOnPage(currentPage, AppPage.contributions)
@@ -68,7 +68,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       color: kPrimaryColor.withOpacity(0.8),
     ),
     MenuItem(
-      title: "Notifications",
+      title: 'Notifications',
       iconData: Icons.notifications_outlined,
       selected: isOnPage(currentPage, AppPage.notifications),
       onTap: !isOnPage(currentPage, AppPage.notifications)
@@ -83,7 +83,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
           : null,
     ),
     MenuItem(
-      title: "Settings",
+      title: 'Settings',
       iconData: Icons.settings_outlined,
       selected: isOnPage(currentPage, AppPage.settings),
       onTap: !isOnPage(currentPage, AppPage.settings) ? null : null,
@@ -92,7 +92,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       color: kPrimaryColor.withOpacity(0.8),
     ),
     MenuItem(
-      title: "About",
+      title: 'About',
       iconData: Icons.info_outlined,
       selected: isOnPage(currentPage, AppPage.about),
       onTap: !isOnPage(currentPage, AppPage.about) ? null : null,

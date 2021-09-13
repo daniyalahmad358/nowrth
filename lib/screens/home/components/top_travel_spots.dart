@@ -17,7 +17,7 @@ class TopTravelSpotsFrame extends StatelessWidget {
     return Column(
       children: <Widget>[
         SectionTitle(
-          title: "Top Travel Spots on Nowrth",
+          title: 'Top Travel Spots on Nowrth',
           press: () {},
         ),
         VerticalSpacing(of: 20),

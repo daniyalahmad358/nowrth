@@ -32,6 +32,8 @@ class _LikedBodyState extends State<LikedBody> {
       color: Colors.white,
       iconSize: percentageHeight(4),
       splashRadius: percentageHeight(3.5),
+      alignment: Alignment.topRight,
+      padding: EdgeInsets.all(4),
       onPressed: () {
         likedSpots.remove(likedSpots[index]);
         setState(() {});

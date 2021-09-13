@@ -15,7 +15,7 @@ class InAppNotificationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         context,
-        titleText: "Notifications",
+        titleText: 'Notifications',
         atPage: currentPage,
       ),
       body: InAppNotificationsBody(),
