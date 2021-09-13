@@ -13,11 +13,12 @@ import 'stop_by_spot_card.dart';
 
 // Has to be stateful
 class RouteBody extends StatefulWidget {
-  RouteBody({
-    required this.destinationSpot,
-  });
-
   final Spot destinationSpot;
+
+  const RouteBody({
+    Key? key,
+    required this.destinationSpot,
+  }) : super(key: key);
 
   @override
   _RouteBodyState createState() => _RouteBodyState();
@@ -29,7 +30,7 @@ class _RouteBodyState extends State<RouteBody> {
     // You have to call SizeConfig on your starting page
     SizeConfig().init(context);
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: Svg('assets/images/map_illustration.svg'),
           fit: BoxFit.cover,

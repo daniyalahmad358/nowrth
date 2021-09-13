@@ -7,6 +7,8 @@ import 'top_travel_spots.dart';
 import 'top_guides.dart';
 
 class HomeBody extends StatelessWidget {
+  const HomeBody({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // You have to call SizeConfig on your starting page
@@ -16,7 +18,7 @@ class HomeBody extends StatelessWidget {
         top: false,
         child: Container(
           // color: Colors.blueGrey,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: Svg('assets/images/map_illustration.svg'),
               colorFilter: ColorFilter.linearToSrgbGamma(),
@@ -24,7 +26,7 @@ class HomeBody extends StatelessWidget {
             ),
           ),
           child: Column(
-            children: <Widget>[
+            children: const <Widget>[
               HomeHeader(),
               VerticalSpacing(),
               TopTravelSpotsFrame(),

@@ -11,10 +11,12 @@ import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
 // import 'package:nowrth/screens/home/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           home: auth.isAuth
-              ? WelcomeScreen()
+              ? const WelcomeScreen()
               : FutureBuilder(
                   future: auth.tryautoLogin(), // Original
                   // Used to test splash
@@ -40,9 +42,9 @@ class MyApp extends StatelessWidget {
                   // }),
                   builder: (ctx, snapshot) =>
                       snapshot.connectionState == ConnectionState.waiting
-                          ? SplashScreen()
-                          : WelcomeScreen(),
-                  // : HomeScreen(),
+                          ? const SplashScreen()
+                          : const WelcomeScreen(),
+                  // : const HomeScreen(),
                 ),
         ),
       ),

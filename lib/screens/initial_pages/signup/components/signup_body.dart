@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/home/components/already_have_an_account_acheck.dart';
 import 'package:nowrth/constants/size_config.dart';
@@ -15,8 +16,13 @@ import 'or_divider.dart';
 import 'social_icon.dart';
 
 class SignupBody extends StatelessWidget {
+  const SignupBody({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    String? email;
+    String? password;
+
     SizeConfig().init(context);
 
     return Background(
@@ -24,7 +30,7 @@ class SignupBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'SIGNUP',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -35,14 +41,20 @@ class SignupBody extends StatelessWidget {
             ),
             RoundedInputField(
               hintText: 'Your Email',
-              onChanged: (value) {},
+              onChanged: (value) {
+                email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                password = value;
+              },
             ),
             RoundButton(
               text: 'SIGNUP',
-              press: () {},
+              press: () {
+                Auth().signUp(email!, password!);
+              },
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             AlreadyHaveAnAccountCheck(
@@ -52,13 +64,13 @@ class SignupBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return const LoginScreen();
                     },
                   ),
                 );
               },
             ),
-            OrDivider(),
+            const OrDivider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

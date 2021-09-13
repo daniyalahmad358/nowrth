@@ -12,7 +12,7 @@ class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
+    return SizedBox(
       height: SizeConfig.screenHeight,
       // Here i can use SizeConfig.screenWidth but use double.infinity because both work as a same
       child: Stack(

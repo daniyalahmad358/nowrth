@@ -19,7 +19,7 @@ class InAppNotificationsScreen extends StatelessWidget {
         atPage: currentPage,
       ),
       body: InAppNotificationsBody(),
-      bottomNavigationBar: CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottonNavBar(),
       extendBodyBehindAppBar: true,
     );
   }

@@ -6,6 +6,9 @@ import 'package:nowrth/temp/in_app_notifications.dart';
 
 class InAppNotificationsBody extends StatelessWidget {
   final notiBorderRadius = BorderRadius.circular(percentageHeight(1.5));
+
+  InAppNotificationsBody({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -17,16 +20,14 @@ class InAppNotificationsBody extends StatelessWidget {
               vertical: SizeConfig.screenHeight / 120,
               horizontal: SizeConfig.screenWidth / 15,
             ),
-            child: Container(
-              child: InkWell(
-                borderRadius: notiBorderRadius,
-                child: InAppNotificationCard(
-                  inAppNotification: inAppNotifications[index],
-                  press: () {},
-                  notiBorderRadius: notiBorderRadius,
-                ),
-                onTap: () {},
+            child: InkWell(
+              borderRadius: notiBorderRadius,
+              child: InAppNotificationCard(
+                inAppNotification: inAppNotifications[index],
+                press: () {},
+                notiBorderRadius: notiBorderRadius,
               ),
+              onTap: () {},
             ),
           ),
         ),

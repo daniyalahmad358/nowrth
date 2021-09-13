@@ -52,7 +52,7 @@ class CustomBottonNavBar extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
+                          builder: (context) => const HomeScreen(),
                         ),
                       );
                     },
@@ -68,7 +68,7 @@ class CustomBottonNavBar extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LikedScreen(),
+                          builder: (context) => const LikedScreen(),
                         ),
                       );
                     },
@@ -90,7 +90,7 @@ class NavItem extends StatelessWidget {
   final bool isActive;
   final Icon? icondata;
 
-  NavItem({
+  const NavItem({
     Key? key,
     required this.title,
     required this.press,
@@ -110,7 +110,7 @@ class NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var iconToBeShown;
+    Widget? iconToBeShown;
 
     if (svgIconPath != null) {
       iconToBeShown = assetIconUsed();
@@ -121,7 +121,7 @@ class NavItem extends StatelessWidget {
     return InkWell(
       onTap: press,
       child: Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         height: percentageHeight(9),
         width: getProportionateScreenWidth(55),
         decoration: BoxDecoration(
@@ -130,8 +130,8 @@ class NavItem extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            iconToBeShown,
-            Spacer(),
+            iconToBeShown!,
+            const Spacer(),
             Text(
               title,
               // '${(SizeConfig.screenWidth).round()},${(SizeConfig.screenHeight).round()}', // TODO: show page title instead of page size

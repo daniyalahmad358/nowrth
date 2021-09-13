@@ -12,6 +12,8 @@ import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
 import 'background.dart';
 
 class WelcomeBody extends StatelessWidget {
+  const WelcomeBody({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -21,7 +23,7 @@ class WelcomeBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'WELCOME TO NOWRTH',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -38,7 +40,7 @@ class WelcomeBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return const LoginScreen();
                     },
                   ),
                 );
@@ -53,7 +55,7 @@ class WelcomeBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return SignUpScreen();
+                      return const SignUpScreen();
                     },
                   ),
                 );

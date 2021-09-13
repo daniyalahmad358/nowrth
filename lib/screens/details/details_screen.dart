@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/components/custom_floating_action_button.dart';
 import 'package:nowrth/constants/app_pages.dart';
-// import 'package:nowrth/components/mdIcons/material_design_icons_flutter.dart';
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:nowrth/models/spot.dart';
 
@@ -40,7 +38,7 @@ class DetailsScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottonNavBar(),
       extendBodyBehindAppBar: true,
     );
   }

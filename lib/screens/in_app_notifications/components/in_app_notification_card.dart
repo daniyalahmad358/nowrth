@@ -32,7 +32,7 @@ class InAppNotificationCard extends StatelessWidget {
         borderOnForeground: false,
         shape: RoundedRectangleBorder(borderRadius: notiBorderRadius),
         elevation: inAppNotification.readStatus ? 0.7 : 1.5,
-        margin: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

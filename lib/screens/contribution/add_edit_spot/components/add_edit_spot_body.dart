@@ -26,12 +26,12 @@ class AddEditSpotBody extends StatefulWidget {
   final Spot? spotToEdit;
   final Function()? contributionsPageRefresher;
 
-  AddEditSpotBody({
+  const AddEditSpotBody({
     Key? key,
     required this.curentPage,
     this.spotToEdit,
     this.contributionsPageRefresher,
-  });
+  }) : super(key: key);
 
   @override
   _AddEditSpotBodyState createState() => _AddEditSpotBodyState();
@@ -45,10 +45,10 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
   TextEditingController? descriptionController;
 
   Future pickImage() async {
-    if ((imagesToShow.length == 0) &&
+    if ((imagesToShow.isEmpty) &&
         ((widget.spotToEdit == null)
             ? false
-            : widget.spotToEdit!.images.length > 0)) {
+            : widget.spotToEdit!.images.isNotEmpty)) {
       imagesToShow = widget.spotToEdit!.images;
     } else if (imagesToShow.length == 5) {
       customShowDialog(
@@ -57,8 +57,8 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
         description: 'You cannot add more than five images for a single spot.',
         actions: [
           MaterialButton(
-            padding: EdgeInsets.symmetric(vertical: 15),
-            child: Text('OK'),
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: const Text('OK'),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -73,9 +73,22 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
 
         Image imageTemporary = Image.file(File(image.path));
         setState(() => imagesToShow.add(imageTemporary));
-        print('ADDING IMAGE');
+        // print('ADDING IMAGE');
       } on PlatformException catch (e) {
-        print('Failed to pick image: $e');
+        customShowDialog(
+          context,
+          title: 'Failed',
+          description: 'Failed to pick image: $e',
+          actions: [
+            MaterialButton(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
       }
     }
   }
@@ -88,7 +101,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
   void initState() {
     super.initState();
 
-    dropdownValue = widget.spotToEdit?.spotType.value ?? null;
+    dropdownValue = widget.spotToEdit?.spotType.value;
 
     titleController = TextEditingController(text: widget.spotToEdit?.spotName);
     latitudeController =
@@ -117,7 +130,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                     bottom: 7.5,
                     top: (Platform.isLinux) ? 7.5 : 30,
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: percentageWidth(44),
                   child: InputField(
                     hintText: 'Title',
@@ -130,7 +143,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                     bottom: 7.5,
                     top: (Platform.isLinux) ? 7.5 : 30,
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: percentageWidth(33),
                   child: DropdownButton<String>(
                     items: spotTypeValuesCopy
@@ -140,7 +153,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         child: Text(value),
                       );
                     }).toList(),
-                    hint: Text(
+                    hint: const Text(
                       'Spot Type',
                     ),
                     style: TextStyle(
@@ -162,7 +175,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                 ),
               ],
             ),
-            (imagesToShow.length > 0)
+            (imagesToShow.isNotEmpty)
                 ? Container(
                     alignment: Alignment.center,
                     clipBehavior: Clip.antiAlias,
@@ -170,7 +183,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                       color: kPrimaryLightColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    margin: EdgeInsets.symmetric(vertical: 10),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     height: percentageHeight(25),
                     width: percentageWidth(80),
                     child: Stack(
@@ -196,13 +209,13 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                                       top: 5,
                                       right: 5,
                                       child: IconButton(
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.close_rounded,
                                         ),
                                         color: kPrimaryLightColor,
                                         iconSize: percentageHeight(4),
                                         splashRadius: percentageHeight(3.5),
-                                        padding: EdgeInsets.all(2),
+                                        padding: const EdgeInsets.all(2),
                                         alignment: Alignment.topCenter,
                                         onPressed: () {
                                           imagesToShow
@@ -224,7 +237,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                             mini: true,
                             backgroundColor: kPrimaryColor,
                             onPressed: pickImage,
-                            child: Icon(
+                            child: const Icon(
                               Icons.add,
                               color: kPrimaryLightColor,
                             ),
@@ -270,13 +283,14 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                   Expanded(
                     flex: 2,
                     child: FieldContainer(
-                      padding: EdgeInsets.only(bottom: 5, left: 15, right: 15),
+                      padding:
+                          const EdgeInsets.only(bottom: 5, left: 15, right: 15),
                       child: InputField(
                         hintText: 'Latitude',
                         hintTextStyle: TextStyle(
                           fontSize: percentageHeight(2.07),
                         ),
-                        inputBorder: UnderlineInputBorder(),
+                        inputBorder: const UnderlineInputBorder(),
                         isDense: true,
                         controller: latitudeController,
                       ),
@@ -288,13 +302,14 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                   Expanded(
                     flex: 2,
                     child: FieldContainer(
-                      padding: EdgeInsets.only(bottom: 5, left: 15, right: 15),
+                      padding:
+                          const EdgeInsets.only(bottom: 5, left: 15, right: 15),
                       child: InputField(
                         hintText: 'Longitude',
                         hintTextStyle: TextStyle(
                           fontSize: percentageHeight(2.07),
                         ),
-                        inputBorder: UnderlineInputBorder(),
+                        inputBorder: const UnderlineInputBorder(),
                         isDense: true,
                         controller: longitudeController,
                       ),
@@ -305,9 +320,9 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                       padding: EdgeInsets.symmetric(
                           vertical:
                               percentageHeight((Platform.isLinux) ? 2.5 : 1.5)),
-                      shape: CircleBorder(),
+                      shape: const CircleBorder(),
                       color: kPrimaryColor,
-                      child: Icon(
+                      child: const Icon(
                         Icons.location_on_outlined,
                         color: kPrimaryLightColor,
                       ),
@@ -325,13 +340,13 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 7.5),
+              margin: const EdgeInsets.symmetric(vertical: 7.5),
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
                 minWidth: percentageWidth(79.5),
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 color: kPrimaryColor,
                 textColor: Colors.white,
                 child: Text(
@@ -366,14 +381,15 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                           'Your request to add the spot has been sent successfully. It will be confirmed after validation.',
                       actions: [
                         MaterialButton(
-                          padding: EdgeInsets.symmetric(vertical: 15),
-                          child: Text('OK'),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: const Text('OK'),
                           onPressed: () {
                             Navigator.pop(context);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ContributionsScreen(),
+                                builder: (context) =>
+                                    const ContributionsScreen(),
                               ),
                             );
                           },
@@ -418,14 +434,15 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                           'Your request to update the spot has been sent successfully. It will be confirmed after validation.',
                       actions: [
                         MaterialButton(
-                          padding: EdgeInsets.symmetric(vertical: 15),
-                          child: Text('OK'),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: const Text('OK'),
                           onPressed: () {
                             Navigator.pop(context);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ContributionsScreen(),
+                                builder: (context) =>
+                                    const ContributionsScreen(),
                               ),
                             );
                           },

@@ -23,8 +23,8 @@ class HomeScreen extends StatelessWidget {
         barOpacity: 0.0,
         atPage: currentPage,
       ),
-      body: HomeBody(),
-      bottomNavigationBar: CustomBottonNavBar(isAtHome: true),
+      body: const HomeBody(),
+      bottomNavigationBar: const CustomBottonNavBar(isAtHome: true),
       drawer: CustomDrawer(
         currentPage: currentPage,
         menuItems: menuItems(context, currentPage),

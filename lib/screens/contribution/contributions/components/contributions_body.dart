@@ -10,6 +10,8 @@ import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
 class ContributionsBody extends StatefulWidget {
+  const ContributionsBody({Key? key}) : super(key: key);
+
   @override
   _ContributionsBodyState createState() => _ContributionsBodyState();
 }
@@ -25,13 +27,13 @@ class _ContributionsBodyState extends State<ContributionsBody> {
 
   IconButton optionsIconButton(index) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.more_horiz,
       ),
       color: Colors.white,
       iconSize: percentageHeight(4),
       splashRadius: percentageHeight(3.5),
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       alignment: Alignment.topCenter,
       onPressed: () => OptionsMenu.showMenu(
         context,

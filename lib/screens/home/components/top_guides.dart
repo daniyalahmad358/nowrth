@@ -19,7 +19,7 @@ class TopGuidesFrame extends StatelessWidget {
     return Column(
       children: <Widget>[
         SectionTitle(title: 'Top Guides on Nowrth', press: () {}),
-        VerticalSpacing(of: 20),
+        const VerticalSpacing(of: 20),
         Container(
           margin: EdgeInsets.symmetric(
             horizontal: getProportionateScreenWidth(kDefaultPadding),
@@ -73,7 +73,7 @@ class GuideCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          VerticalSpacing(of: 10),
+          const VerticalSpacing(of: 10),
           Text(
             user.name,
             style: TextStyle(

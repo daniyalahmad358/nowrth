@@ -30,35 +30,35 @@ class Spot {
     this.description,
     this.stopBySpots,
   }) {
-    switch (this.spotType) {
+    switch (spotType) {
       case SpotType.travelSpot:
         {
-          this.spotTypeDesiplayText = 'Travel Spot';
-          this.iconData = Icons.landscape;
+          spotTypeDesiplayText = 'Travel Spot';
+          iconData = Icons.landscape;
         }
         break;
       case SpotType.hotel:
         {
-          this.spotTypeDesiplayText = 'Hotel';
-          this.iconData = Icons.hotel;
+          spotTypeDesiplayText = 'Hotel';
+          iconData = Icons.hotel;
         }
         break;
       case SpotType.restaurant:
         {
-          this.spotTypeDesiplayText = 'Restaurant';
-          this.iconData = Icons.fastfood;
+          spotTypeDesiplayText = 'Restaurant';
+          iconData = Icons.fastfood;
         }
         break;
       case SpotType.fuelStation:
         {
-          this.spotTypeDesiplayText = 'Fuel Station';
-          this.iconData = Icons.local_gas_station;
+          spotTypeDesiplayText = 'Fuel Station';
+          iconData = Icons.local_gas_station;
         }
         break;
       case SpotType.bank:
         {
-          this.spotTypeDesiplayText = 'Bank';
-          this.iconData = Icons.money;
+          spotTypeDesiplayText = 'Bank';
+          iconData = Icons.money;
         }
         break;
     }

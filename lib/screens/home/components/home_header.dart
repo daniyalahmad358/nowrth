@@ -35,7 +35,7 @@ class HomeHeader extends StatelessWidget {
                     color: Colors.white,
                     height: 0.5),
               ),
-              Text(
+              const Text(
                 'Travel Community App',
                 style: TextStyle(color: Colors.white),
               ),
@@ -43,7 +43,7 @@ class HomeHeader extends StatelessWidget {
           ),
           Positioned(
             bottom: getProportionateScreenWidth(-20.83),
-            child: SearchField(),
+            child: const SearchField(),
           )
         ],
       ),

@@ -7,7 +7,7 @@ class CustomFloatingActionButton extends StatelessWidget {
   final IconData iconData;
   final Function() onPressed;
 
-  CustomFloatingActionButton({
+  const CustomFloatingActionButton({
     Key? key,
     required this.iconData,
     required this.onPressed,

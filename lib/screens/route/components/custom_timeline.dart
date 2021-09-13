@@ -67,7 +67,7 @@ class TimelineConnector extends StatelessWidget {
   // final Widget? contentWidget;
   // TODO: preferred side
 
-  TimelineConnector({
+  const TimelineConnector({
     Key? key,
     required this.connectorType,
     required this.barHeight,
@@ -80,55 +80,51 @@ class TimelineConnector extends StatelessWidget {
     Container connectorCircle = Container(
       height: percentageHeight(1.65),
       width: percentageHeight(1.65),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: kTextColor,
         shape: BoxShape.circle,
       ),
     );
 
-    return Container(
-      // color: Colors.red,
-      child: Stack(
-        alignment: (connectorType == ConnectorType.start)
-            ? AlignmentDirectional.bottomCenter
-            : (connectorType == ConnectorType.end)
-                ? AlignmentDirectional.topCenter
-                : AlignmentDirectional.center,
-        children: [
-          Container(
-            margin: (connectorType == ConnectorType.start)
-                ? EdgeInsets.only(bottom: 10)
-                : (connectorType == ConnectorType.end)
-                    ? EdgeInsets.only(top: 10)
-                    : null,
-            height: barHeight,
-            width: 2,
-            // color: kPrimaryColor,
-            color: Colors.blueGrey[200],
+    return Stack(
+      alignment: (connectorType == ConnectorType.start)
+          ? AlignmentDirectional.bottomCenter
+          : (connectorType == ConnectorType.end)
+              ? AlignmentDirectional.topCenter
+              : AlignmentDirectional.center,
+      children: [
+        Container(
+          margin: (connectorType == ConnectorType.start)
+              ? const EdgeInsets.only(bottom: 10)
+              : (connectorType == ConnectorType.end)
+                  ? const EdgeInsets.only(top: 10)
+                  : null,
+          height: barHeight,
+          width: 2,
+          color: Colors.blueGrey[200],
+        ),
+        if (contentWidget != null)
+          Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Container(
+                margin: (contentSide == Side.right)
+                    ? EdgeInsets.only(left: percentageHeight(10))
+                    : EdgeInsets.only(right: percentageHeight(10)),
+                height: 2,
+                width: percentageHeight(10),
+                color: Colors.blueGrey[200],
+              ),
+              Container(
+                margin: (contentSide == Side.right)
+                    ? EdgeInsets.only(left: percentageHeight(30))
+                    : EdgeInsets.only(right: percentageHeight(30)),
+                child: contentWidget!,
+              ),
+            ],
           ),
-          if (contentWidget != null)
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  margin: (contentSide == Side.right)
-                      ? EdgeInsets.only(left: percentageHeight(10))
-                      : EdgeInsets.only(right: percentageHeight(10)),
-                  height: 2,
-                  width: percentageHeight(10),
-                  color: Colors.blueGrey[200],
-                ),
-                Container(
-                  margin: (contentSide == Side.right)
-                      ? EdgeInsets.only(left: percentageHeight(30))
-                      : EdgeInsets.only(right: percentageHeight(30)),
-                  child: contentWidget!,
-                ),
-              ],
-            ),
-          connectorCircle,
-        ],
-      ),
+        connectorCircle,
+      ],
     );
   }
 }
