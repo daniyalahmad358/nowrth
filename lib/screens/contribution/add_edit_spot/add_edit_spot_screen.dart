@@ -34,7 +34,7 @@ class AddEditSpotScreen extends StatelessWidget {
         spotToEdit: spotToEdit,
         contributionsPageRefresher: contributionsPageRefresher,
       ),
-      bottomNavigationBar: CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottonNavBar(),
       extendBodyBehindAppBar: true,
     );
   }

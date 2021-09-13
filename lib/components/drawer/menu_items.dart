@@ -22,7 +22,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
+                  builder: (context) => const HomeScreen(),
                 ),
               );
             }
@@ -37,7 +37,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LikedScreen(),
+                  builder: (context) => const LikedScreen(),
                 ),
               );
             }
@@ -58,7 +58,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ContributionsScreen(),
+                  builder: (context) => const ContributionsScreen(),
                 ),
               );
             }
@@ -76,7 +76,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => InAppNotificationsScreen(),
+                  builder: (context) => const InAppNotificationsScreen(),
                 ),
               );
             }

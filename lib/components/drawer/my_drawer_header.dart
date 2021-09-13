@@ -4,6 +4,8 @@ import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 class MyHeaderDrawer extends StatelessWidget {
+  const MyHeaderDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +18,7 @@ class MyHeaderDrawer extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(bottom: SizeConfig.screenHeight / 62),
             height: SizeConfig.screenHeight / 9,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: AssetImage('assets/images/profile.jpg'),

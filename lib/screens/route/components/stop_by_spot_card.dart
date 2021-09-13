@@ -52,7 +52,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
               );
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: isInfoShown ? Colors.white : Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
@@ -140,7 +140,7 @@ class SpotButton extends StatelessWidget {
     return Container(
       height: percentageHeight(7),
       width: percentageHeight(7),
-      margin: EdgeInsets.symmetric(horizontal: 7),
+      margin: const EdgeInsets.symmetric(horizontal: 7),
       // decoration: BoxDecoration(boxShadow: [kDefualtShadow]),
       child: FittedBox(
         child: FloatingActionButton(

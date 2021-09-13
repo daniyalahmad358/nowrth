@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
 
+// TODO: remove this file if unused
 class RoundButton extends StatelessWidget {
   final String text;
   final Function() press;
@@ -19,14 +20,14 @@ class RoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       // width: SizeConfig.screenWidth * 0.8,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         child: TextButton(
           style: ButtonStyle(
             padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
             ),
             backgroundColor: MaterialStateProperty.all(color),
           ),

@@ -31,8 +31,8 @@ class _ContributionsScreenState extends State<ContributionsScreen> {
         atPage: currentPage,
       ),
       body: StatefulBuilder(
-          builder: (context, setStateBody) => ContributionsBody()),
-      bottomNavigationBar: CustomBottonNavBar(),
+          builder: (context, setStateBody) => const ContributionsBody()),
+      bottomNavigationBar: const CustomBottonNavBar(),
       drawer: CustomDrawer(
         currentPage: currentPage,
         menuItems: menuItems(context, currentPage),

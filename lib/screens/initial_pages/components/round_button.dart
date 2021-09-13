@@ -19,14 +19,14 @@ class RoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       width: SizeConfig.screenWidth * 0.8,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
         child: TextButton(
           style: ButtonStyle(
             padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+              const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
             ),
             backgroundColor: MaterialStateProperty.all(color),
           ),

@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nowrth/utils/api.dart';
-import 'package:http/http.dart' as http;
 import 'package:nowrth/utils/http_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'http_client_provider.dart';
+
 class Auth with ChangeNotifier {
-  var mainUrl = Api.authUrl;
   var authKey = Api.authKey;
+  ApiProvider apiProvider = ApiProvider();
 
   String? _token;
   String? _userId;
@@ -90,17 +91,19 @@ class Auth with ChangeNotifier {
   Future<void> authentication(
       String email, String password, String endpoint) async {
     try {
-      final url = '$mainUrl/accounts:$endpoint?key=$authKey';
+      final url = 'authentication/$endpoint';
 
-      final responce = await http.post(Uri.parse(url),
-          body: json.encode({
-            'email': email,
-            'password': password,
-            'returnSecureToken': true
-          }));
+      final response = await apiProvider.post(
+        url: url,
+        body: {
+          "userName": email,
+          "email": email,
+          "password": password,
+        },
+      );
 
-      final responceData = json.decode(responce.body);
-      print(responceData);
+      final responceData = json.decode(response.body);
+      // print(responceData);
       if (responceData['error'] != null) {
         throw HttpException(responceData['error']['message']);
       }
@@ -123,17 +126,17 @@ class Auth with ChangeNotifier {
 
       prefs.setString('userData', userData);
 
-      print('check' + userData.toString());
+      // print('check' + userData.toString());
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> login(String email, String password) {
-    return authentication(email, password, 'signInWithPassword');
+    return authentication(email, password, 'login');
   }
 
   Future<void> signUp(String email, String password) {
-    return authentication(email, password, 'signUp');
+    return authentication(email, password, 'register');
   }
 }

@@ -68,7 +68,7 @@ class _SpotCardState extends State<SpotCard> {
                       ),
                     ),
                   ),
-                  VerticalSpacing(of: 10),
+                  const VerticalSpacing(of: 10),
                   if (widget.spot.guides != null)
                     GuidesInCard(
                       guides: widget.spot.guides!,

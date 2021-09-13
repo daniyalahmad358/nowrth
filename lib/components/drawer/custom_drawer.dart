@@ -20,7 +20,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Container(
+    return SizedBox(
       width: percentageHeight(35),
       child: Theme(
         data: Theme.of(context).copyWith(
@@ -32,7 +32,7 @@ class CustomDrawer extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: ListView(
                 children: <Widget>[
-                  MyHeaderDrawer(),
+                  const MyHeaderDrawer(),
                   CustomDrawerMenu(
                     currentPage: currentPage,
                     menuItems: menuItems,

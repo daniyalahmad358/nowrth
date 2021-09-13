@@ -26,14 +26,14 @@ class LikedBody extends StatefulWidget {
 class _LikedBodyState extends State<LikedBody> {
   IconButton closeIconButton(index) {
     return IconButton(
-      icon: Icon(
+      icon: const Icon(
         Icons.close_rounded,
       ),
       color: Colors.white,
       iconSize: percentageHeight(4),
       splashRadius: percentageHeight(3.5),
       alignment: Alignment.topRight,
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       onPressed: () {
         likedSpots.remove(likedSpots[index]);
         setState(() {});

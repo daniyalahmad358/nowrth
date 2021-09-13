@@ -104,7 +104,7 @@ List<Spot> stopBySpotsList3 = [
 Spot spot0 = Spot(
   spotID: UniqueKey(),
   spotName: 'Red Mountains',
-  spotLocation: SpotLocation(cityOrTown: 'London', country: 'England'),
+  spotLocation: const SpotLocation(cityOrTown: 'London', country: 'England'),
   images: images0,
   rating: 5,
   guides: guidesList0..shuffle(),
@@ -115,7 +115,7 @@ Spot spot0 = Spot(
 Spot spot1 = Spot(
   spotID: UniqueKey(),
   spotName: 'Khunjerab Pass',
-  spotLocation: SpotLocation(cityOrTown: 'Gilgit', country: 'Pakistan'),
+  spotLocation: const SpotLocation(cityOrTown: 'Gilgit', country: 'Pakistan'),
   rating: 4.5,
   images: images1,
   guides: guidesList1..shuffle(),
@@ -126,7 +126,7 @@ Spot spot1 = Spot(
 Spot spot2 = Spot(
   spotID: UniqueKey(),
   spotName: 'Black Mountains',
-  spotLocation: SpotLocation(cityOrTown: 'Paris', country: 'France'),
+  spotLocation: const SpotLocation(cityOrTown: 'Paris', country: 'France'),
   rating: 4.5,
   images: images2,
   guides: guidesList2..shuffle(),
@@ -137,7 +137,7 @@ Spot spot2 = Spot(
 Spot spot3 = Spot(
   spotID: UniqueKey(),
   spotName: 'Magical World',
-  spotLocation: SpotLocation(cityOrTown: 'Lisbon', country: 'Portugal'),
+  spotLocation: const SpotLocation(cityOrTown: 'Lisbon', country: 'Portugal'),
   images: images3,
   rating: 4,
   guides: guidesList3..shuffle(),
@@ -149,7 +149,7 @@ Spot spot4 = Spot(
   spotName: 'Kaghan Hotel',
   spotID: UniqueKey(),
   spotType: SpotType.hotel,
-  spotLocation: SpotLocation(cityOrTown: 'Kaghan', country: 'Pakistan'),
+  spotLocation: const SpotLocation(cityOrTown: 'Kaghan', country: 'Pakistan'),
   rating: 2,
   images: images1,
 );
@@ -157,7 +157,7 @@ Spot spot5 = Spot(
   spotName: 'Naran Taste Point',
   spotID: UniqueKey(),
   spotType: SpotType.restaurant,
-  spotLocation: SpotLocation(cityOrTown: 'Naran', country: 'Pakistan'),
+  spotLocation: const SpotLocation(cityOrTown: 'Naran', country: 'Pakistan'),
   rating: 4,
   images: images0,
 );
@@ -165,7 +165,8 @@ Spot spot6 = Spot(
   spotName: 'Babusar Top',
   spotID: UniqueKey(),
   spotType: SpotType.travelSpot,
-  spotLocation: SpotLocation(cityOrTown: 'Babusar Top', country: 'Pakistan'),
+  spotLocation:
+      const SpotLocation(cityOrTown: 'Babusar Top', country: 'Pakistan'),
   rating: 3.5,
   images: images2,
 );

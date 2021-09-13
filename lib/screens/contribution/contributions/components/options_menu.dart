@@ -25,7 +25,7 @@ class OptionsMenu extends StatelessWidget {
     required Spot? spotToEdit,
   }) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(20),
           ),
@@ -79,8 +79,8 @@ class OptionsMenu extends StatelessWidget {
               children: [
                 Expanded(
                   child: MaterialButton(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    child: Text('Cancel'),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: const Text('Cancel'),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -93,8 +93,8 @@ class OptionsMenu extends StatelessWidget {
                 ),
                 Expanded(
                   child: MaterialButton(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    child: Text('Confirm'),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: const Text('Confirm'),
                     onPressed: () {
                       Navigator.pop(context);
                       contributedSpots.remove(contributedSpot);
@@ -116,31 +116,34 @@ class OptionsMenu extends StatelessWidget {
     return SafeArea(
       child: Wrap(
         children: <Widget>[
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-            leading: Icon(Icons.edit),
-            title: Text('Edit Spot'),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            leading: const Icon(Icons.edit),
+            title: const Text('Edit Spot'),
             onTap: () => selectOption(
               context: context,
               selectedOption: ContributedSpotOptions.edit,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-            leading: Icon(Icons.delete),
-            title: Text('Delete Spot'),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+            leading: const Icon(Icons.delete),
+            title: const Text('Delete Spot'),
             onTap: () => selectOption(
               context: context,
               selectedOption: ContributedSpotOptions.delete,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 2.5),
-            leading: Icon(Icons.cancel),
-            title: Text('Cancel'),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 2.5),
+            leading: const Icon(Icons.cancel),
+            title: const Text('Cancel'),
             onTap: () => selectOption(
               context: context,
               selectedOption: ContributedSpotOptions.cancel,

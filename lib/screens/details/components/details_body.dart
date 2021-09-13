@@ -10,12 +10,14 @@ import 'package:nowrth/models/spot.dart';
 import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
-class DetailsBody extends StatefulWidget {
-  DetailsBody({
-    required this.spot,
-  });
 
+class DetailsBody extends StatefulWidget {
   final Spot spot;
+
+  const DetailsBody({
+    Key? key,
+    required this.spot,
+  }) : super(key: key);
 
   void likeSpot() {
     likedSpots.add(spot);
@@ -41,13 +43,13 @@ class _DetailsBodyState extends State<DetailsBody> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           controller: _controller,
-          padding: EdgeInsets.symmetric(horizontal: 4.75),
+          padding: const EdgeInsets.symmetric(horizontal: 4.75),
           child: Row(
             children: <Widget>[
               ...List.generate(
                 widget.spot.images.length,
                 (index) => Padding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 4.75,
                   ),
                   child: Container(
@@ -71,111 +73,109 @@ class _DetailsBodyState extends State<DetailsBody> {
           ),
         ),
         SizedBox(height: percentageHeight(3.252)),
-        Container(
-          child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: percentageHeight(3.252)),
-            primary: false,
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      widget.spot.spotName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: percentageHeight(3.252),
-                        color: kTextColor,
-                      ),
-                      maxLines: 2,
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      (likedSpots.contains(widget.spot))
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: kPrimaryColor,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        (likedSpots.contains(widget.spot))
-                            ? widget.dislikeSpot()
-                            : widget.likeSpot();
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.location_on,
-                    size: percentageHeight(2.34),
-                    color: Colors.blueGrey[300],
-                  ),
-                  SizedBox(width: percentageHeight(0.488)),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      widget.spot.spotLocation.fullLocation,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: percentageHeight(2.1138),
-                        color: Colors.blueGrey[300],
-                      ),
-                      maxLines: 1,
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: percentageHeight(3.252)),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: RatingBar(
-                  itemSize: percentageHeight(3.252),
-                  allowHalfRating: true,
-                  ratingWidget: CustomRatingStars(),
-                  initialRating: widget.spot.rating,
-                  ignoreGestures: true,
-                  onRatingUpdate: (rating) {},
-                ),
-              ),
-              SizedBox(height: percentageHeight(6.5041)),
-              if (widget.spot.description != null)
+        ListView(
+          padding: EdgeInsets.symmetric(horizontal: percentageHeight(3.252)),
+          primary: false,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'More About ' + widget.spot.spotName,
+                    widget.spot.spotName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: percentageHeight(3.252),
+                      color: kTextColor,
+                    ),
+                    maxLines: 2,
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    (likedSpots.contains(widget.spot))
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: kPrimaryColor,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      (likedSpots.contains(widget.spot))
+                          ? widget.dislikeSpot()
+                          : widget.likeSpot();
+                    });
+                  },
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Icon(
+                  Icons.location_on,
+                  size: percentageHeight(2.34),
+                  color: Colors.blueGrey[300],
+                ),
+                SizedBox(width: percentageHeight(0.488)),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.spot.spotLocation.fullLocation,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: percentageHeight(2.602),
+                      fontSize: percentageHeight(2.1138),
+                      color: Colors.blueGrey[300],
                     ),
                     maxLines: 1,
                     textAlign: TextAlign.left,
                   ),
                 ),
-              SizedBox(height: percentageHeight(1.626)),
-              if (widget.spot.description != null)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    widget.spot.description!,
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: percentageHeight(2.439),
-                    ),
-                    textAlign: TextAlign.left,
+              ],
+            ),
+            SizedBox(height: percentageHeight(3.252)),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: RatingBar(
+                itemSize: percentageHeight(3.252),
+                allowHalfRating: true,
+                ratingWidget: const CustomRatingStars(),
+                initialRating: widget.spot.rating,
+                ignoreGestures: true,
+                onRatingUpdate: (rating) {},
+              ),
+            ),
+            SizedBox(height: percentageHeight(6.5041)),
+            if (widget.spot.description != null)
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'More About ' + widget.spot.spotName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: percentageHeight(2.602),
                   ),
+                  maxLines: 1,
+                  textAlign: TextAlign.left,
                 ),
-              SizedBox(height: percentageHeight(1.626)),
-            ],
-          ),
+              ),
+            SizedBox(height: percentageHeight(1.626)),
+            if (widget.spot.description != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.spot.description!,
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: percentageHeight(2.439),
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+            SizedBox(height: percentageHeight(1.626)),
+          ],
         ),
       ],
     );

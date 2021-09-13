@@ -26,7 +26,7 @@ class RouteScreen extends StatelessWidget {
         atPage: currentPage,
       ),
       body: RouteBody(destinationSpot: destinationSpot),
-      bottomNavigationBar: CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottonNavBar(),
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.map_outlined,
         onPressed: () {},

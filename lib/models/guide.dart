@@ -18,7 +18,7 @@ class Guide {
   String? get password => _password;
 
   Map<String, dynamic> toMap() {
-    var map = new Map<String, dynamic>();
+    var map = <String, dynamic>{};
     map['username'] = _username;
     map['password'] = _password;
     return map;

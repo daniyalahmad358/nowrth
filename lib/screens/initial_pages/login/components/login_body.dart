@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/home/components/already_have_an_account_acheck.dart';
 
@@ -20,6 +21,9 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? email;
+    String? password;
+
     SizeConfig().init(context);
 
     return Background(
@@ -27,7 +31,7 @@ class LoginBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'LOGIN',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -39,19 +43,25 @@ class LoginBody extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             RoundedInputField(
               hintText: 'Your Email',
-              onChanged: (value) {},
+              onChanged: (value) {
+                email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                password = value;
+              },
             ),
             RoundButton(
               text: 'LOGIN',
               press: () {
+                Auth().login(email!, password!);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HomeScreen();
+                      return const HomeScreen();
                     },
                   ),
                 );
@@ -64,7 +74,7 @@ class LoginBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return SignUpScreen();
+                      return const SignUpScreen();
                     },
                   ),
                 );

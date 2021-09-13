@@ -13,7 +13,7 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: SizeConfig.screenHeight,
       child: Stack(

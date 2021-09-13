@@ -20,7 +20,7 @@ class TopTravelSpotsFrame extends StatelessWidget {
           title: 'Top Travel Spots on Nowrth',
           press: () {},
         ),
-        VerticalSpacing(of: 20),
+        const VerticalSpacing(of: 20),
         SingleChildScrollView(
           clipBehavior: Clip.none,
           scrollDirection: Axis.horizontal,

@@ -21,8 +21,8 @@ class LikedScreen extends StatelessWidget {
         titleText: 'Liked Spots',
         atPage: currentPage,
       ),
-      body: LikedBody(),
-      bottomNavigationBar: CustomBottonNavBar(isAtLiked: true),
+      body: const LikedBody(),
+      bottomNavigationBar: const CustomBottonNavBar(isAtLiked: true),
       extendBodyBehindAppBar: true,
       drawer: CustomDrawer(
         currentPage: currentPage,
