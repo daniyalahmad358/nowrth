@@ -21,9 +21,8 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? email;
-    String? password;
-
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     SizeConfig().init(context);
 
     return Background(
@@ -43,19 +42,15 @@ class LoginBody extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             RoundedInputField(
               hintText: 'Your Email',
-              onChanged: (value) {
-                email = value;
-              },
+              controller: emailController,
             ),
             RoundedPasswordField(
-              onChanged: (value) {
-                password = value;
-              },
+              controller: passwordController,
             ),
             RoundButton(
               text: 'LOGIN',
               press: () {
-                Auth().login(email!, password!);
+                Auth().login(emailController.text, passwordController.text);
 
                 Navigator.push(
                   context,

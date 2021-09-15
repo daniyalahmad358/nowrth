@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,19 +8,25 @@ import 'package:nowrth/constants/app_colors.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:nowrth/constants/size_config.dart';
-import 'package:nowrth/constants/app_pages.dart';
-import 'package:nowrth/models/spot.dart';
-import 'package:nowrth/models/spot_location.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
+import 'package:nowrth/models/classes/contribution.dart';
+import 'package:nowrth/models/classes/spot.dart';
+import 'package:nowrth/models/classes/spot_location.dart';
+import 'package:nowrth/providers/contribution_provider.dart';
 
 import 'package:nowrth/screens/contribution/add_edit_spot/components/background.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/custom_show_dialog.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/input_field.dart';
 
-import 'package:nowrth/models/spot_type.dart';
+import 'package:nowrth/models/enums/spot_type.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/components/location_screen.dart';
 import 'package:nowrth/screens/contribution/contributions/contributions_screen.dart';
 import 'package:nowrth/temp/spot/spot.dart';
 import 'package:nowrth/temp/user_data.dart';
+import 'package:flutter/foundation.dart';
+import 'package:file_selector/file_selector.dart';
+// import 'package:nowrth/utils/file_picker.dart';
 
 class AddEditSpotBody extends StatefulWidget {
   final AppPage curentPage;
@@ -33,6 +40,17 @@ class AddEditSpotBody extends StatefulWidget {
     this.contributionsPageRefresher,
   }) : super(key: key);
 
+  List<String> base64Images(imagesToShowFiles) {
+    return [
+      ...List<String>.generate(imagesToShowFiles.length, (index) {
+        List<int> imageBytes = imagesToShowFiles[0].readAsBytesSync();
+        String base64Image = base64Encode(imageBytes);
+
+        return base64Image;
+      }),
+    ];
+  }
+
   @override
   _AddEditSpotBodyState createState() => _AddEditSpotBodyState();
 }
@@ -43,14 +61,16 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
   TextEditingController? latitudeController;
   TextEditingController? longitudeController;
   TextEditingController? descriptionController;
+  bool reverseImageScroll = false;
+  List<File> imagesToShowFiles = [];
 
-  Future pickImage() async {
+  Future<void> pickImageFile() async {
     if ((imagesToShow.isEmpty) &&
         ((widget.spotToEdit == null)
             ? false
             : widget.spotToEdit!.images.isNotEmpty)) {
       imagesToShow = widget.spotToEdit!.images;
-    } else if (imagesToShow.length == 5) {
+    } else if (imagesToShow.length >= 5) {
       customShowDialog(
         context,
         title: 'Limit Reached',
@@ -66,29 +86,53 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
         ],
       );
     } else {
-      try {
-        final XFile? image =
-            await ImagePicker().pickImage(source: ImageSource.gallery);
-        if (image == null) return;
+      if (Platform.isAndroid || Platform.isIOS) {
+        try {
+          final XFile? imageXFile =
+              await ImagePicker().pickImage(source: ImageSource.gallery);
+          if (imageXFile == null) return;
 
-        Image imageTemporary = Image.file(File(image.path));
-        setState(() => imagesToShow.add(imageTemporary));
-        // print('ADDING IMAGE');
-      } on PlatformException catch (e) {
-        customShowDialog(
-          context,
-          title: 'Failed',
-          description: 'Failed to pick image: $e',
-          actions: [
-            MaterialButton(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+          File imageFile = File(imageXFile.path);
+          Image imageTemporary = Image.file(imageFile);
+          setState(() {
+            imagesToShow.add(imageTemporary);
+            imagesToShowFiles.add(imageFile);
+          });
+        } on PlatformException catch (e) {
+          customShowDialog(
+            context,
+            title: 'Failed',
+            description: 'Failed to pick image: $e',
+            actions: [
+              MaterialButton(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        }
+      } else if (Platform.isLinux) {
+        final XTypeGroup typeGroup = XTypeGroup(
+          label: 'images',
+          extensions: ['jpg', 'png'],
         );
+        final List<XFile> imageFiles =
+            await openFiles(acceptedTypeGroups: [typeGroup]);
+        if (imageFiles.isEmpty) {
+          // Operation was canceled by the user.
+          return;
+        }
+        final XFile imageXFile = imageFiles[0];
+        File imageFile = File(imageXFile.path);
+
+        Image imageTemporary = Image.file(imageFile);
+        setState(() {
+          imagesToShow.add(imageTemporary);
+          imagesToShowFiles.add(imageFile);
+        });
       }
     }
   }
@@ -191,7 +235,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           clipBehavior: Clip.antiAlias,
-                          // reverse: true, // TODO: set controller to scroll to the end everytime an image is added
+                          reverse: reverseImageScroll,
                           child: Row(
                             children: <Widget>[
                               ...List.generate(
@@ -236,7 +280,10 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                           child: FloatingActionButton(
                             mini: true,
                             backgroundColor: kPrimaryColor,
-                            onPressed: pickImage,
+                            onPressed: () {
+                              reverseImageScroll = true;
+                              pickImageFile();
+                            },
                             child: const Icon(
                               Icons.add,
                               color: kPrimaryLightColor,
@@ -268,7 +315,7 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                             ),
                             onPressed: () {
                               // ImagePicker.platform;
-                              pickImage();
+                              pickImageFile();
                             },
                           ),
                         ),
@@ -326,7 +373,14 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         Icons.location_on_outlined,
                         color: kPrimaryLightColor,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LocationScreen(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -354,25 +408,43 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                       ? 'Add Contribution'
                       : 'Update Contribution',
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  String spotName = titleController!.text;
+                  SpotType spotType = SpotType.values.firstWhere(
+                    (element) => element.value == dropdownValue,
+                  );
+                  SpotLocation spotLocation = SpotLocation(
+                    latitude: latitudeController!.text,
+                    longitude: longitudeController!.text,
+                  );
+                  String? spotDescription = descriptionController?.text;
+
+                  // print(imageBytes);
+                  Contribution contribution = Contribution(
+                    spotName: spotName,
+                    spotTypeString: spotType.value,
+                    latitude: spotLocation.latitude,
+                    longitude: spotLocation.longitude,
+                    imagesBase64: widget.base64Images(imagesToShowFiles),
+                  );
+
                   if (widget.curentPage == AppPage.addContribution) {
                     Spot newSpot = Spot(
                       spotID: UniqueKey(),
-                      spotName: titleController!.text,
-                      spotType: SpotType.values.firstWhere(
-                        (element) => element.value == dropdownValue,
-                      ),
-                      spotLocation: SpotLocation(
-                        latitude: latitudeController!.text,
-                        longitude: longitudeController!.text,
-                      ),
+                      spotName: spotName,
+                      spotType: spotType,
+                      spotLocation: spotLocation,
                       rating: 0,
                       images: imagesToShow,
-                      description: descriptionController?.text,
+                      description: spotDescription,
                     );
+
+                    ContributionProvider().addContributionRequest(contribution);
 
                     allSpots.add(newSpot);
                     contributedSpots.add(newSpot);
+
+                    // ContributionProvider
 
                     customShowDialog(
                       context,
@@ -401,14 +473,11 @@ class _AddEditSpotBodyState extends State<AddEditSpotBody> {
                         element.spotID == widget.spotToEdit!.spotID);
 
                     Spot updatedSpot = allSpots[allIndex];
-                    updatedSpot.spotName = titleController!.text;
-                    updatedSpot.spotType = widget.spotToEdit!.spotType;
-                    updatedSpot.spotLocation = SpotLocation(
-                      latitude: latitudeController!.text,
-                      longitude: longitudeController!.text,
-                    );
+                    updatedSpot.spotName = spotName;
+                    updatedSpot.spotType = spotType;
+                    updatedSpot.spotLocation = spotLocation;
                     updatedSpot.images = imagesToShow;
-                    updatedSpot.description = descriptionController!.text;
+                    updatedSpot.description = spotDescription;
 
                     int contributedIndex = contributedSpots.indexWhere(
                       (element) => element.spotID == updatedSpot.spotID,

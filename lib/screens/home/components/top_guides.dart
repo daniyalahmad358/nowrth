@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/screens/home/components/section_title.dart';
 import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/constants/app_paddings.dart';
-import 'package:nowrth/models/guide.dart';
+import 'package:nowrth/models/classes/guide.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 

@@ -21,7 +21,7 @@ class MyHeaderDrawer extends StatelessWidget {
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage('assets/images/profile.jpg'),
+                image: AssetImage('assets/images/user_dp/dp.jpg'),
               ),
             ),
           ),

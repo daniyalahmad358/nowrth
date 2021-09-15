@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/models/in_app_notification.dart';
+import 'package:nowrth/models/classes/in_app_notification.dart';
 
 List<InAppNotification> inAppNotifications = [
   InAppNotification(

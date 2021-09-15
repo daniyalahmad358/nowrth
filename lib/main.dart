@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nowrth/screens/home/home_screen.dart';
 
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool? isAuthentic;
+
     return ChangeNotifierProvider.value(
       value: Auth(),
       child: Consumer<Auth>(
@@ -32,20 +35,18 @@ class MyApp extends StatelessWidget {
                 GoogleFonts.poppinsTextTheme().apply(displayColor: kTextColor),
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: auth.isAuth
-              ? const WelcomeScreen()
-              : FutureBuilder(
-                  future: auth.tryautoLogin(), // Original
-                  // Used to test splash
-                  // future: Future.delayed(const Duration(seconds: 2), () {
-                  //   auth.tryautoLogin();
-                  // }),
-                  builder: (ctx, snapshot) =>
-                      snapshot.connectionState == ConnectionState.waiting
-                          ? const SplashScreen()
-                          : const WelcomeScreen(),
-                  // : const HomeScreen(),
-                ),
+          home: FutureBuilder(
+            future: Future.delayed(const Duration(seconds: 3), () {
+              isAuthentic = auth.isAuth;
+            }),
+            builder: (ctx, snapshot) {
+              return snapshot.connectionState == ConnectionState.waiting
+                  ? const SplashScreen()
+                  : isAuthentic!
+                      ? const HomeScreen()
+                      : const WelcomeScreen();
+            },
+          ),
         ),
       ),
     );

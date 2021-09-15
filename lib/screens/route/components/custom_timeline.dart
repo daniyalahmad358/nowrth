@@ -3,8 +3,11 @@ import 'package:flutter/rendering.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/models/classes/spot_location.dart';
+import 'package:nowrth/screens/route/components/enums/connector_type.dart';
 
-import 'package:nowrth/screens/route/services/sides.dart';
+import 'package:nowrth/screens/route/components/enums/sides.dart';
+import 'package:nowrth/services/spots_distance.dart';
 
 import 'content_widget.dart';
 
@@ -44,6 +47,10 @@ class CustomTimeline extends StatelessWidget {
                     contentWidget: timelineContents[index],
                     barHeight: connectorBarHeight,
                     contentSide: timelineContents[index].contentSide,
+                    sideValue: getSpotRouteDistance(
+                      locationA: const SpotLocation(),
+                      locationB: const SpotLocation(),
+                    ),
                   ),
                 ],
               );
@@ -52,6 +59,10 @@ class CustomTimeline extends StatelessWidget {
           TimelineConnector(
             connectorType: ConnectorType.end,
             barHeight: connectorBarHeight,
+            sideValue: getSpotRouteDistance(
+              locationA: const SpotLocation(),
+              locationB: const SpotLocation(),
+            ),
           ),
         ],
       ),
@@ -64,6 +75,8 @@ class TimelineConnector extends StatelessWidget {
   final double barHeight;
   final TimelineContent? contentWidget;
   final Side? contentSide;
+  final String? sideValue;
+
   // final Widget? contentWidget;
   // TODO: preferred side
 
@@ -73,6 +86,7 @@ class TimelineConnector extends StatelessWidget {
     required this.barHeight,
     this.contentWidget,
     this.contentSide,
+    this.sideValue,
   }) : super(key: key);
 
   @override
@@ -92,16 +106,49 @@ class TimelineConnector extends StatelessWidget {
           : (connectorType == ConnectorType.end)
               ? AlignmentDirectional.topCenter
               : AlignmentDirectional.center,
-      children: [
-        Container(
-          margin: (connectorType == ConnectorType.start)
-              ? const EdgeInsets.only(bottom: 10)
-              : (connectorType == ConnectorType.end)
-                  ? const EdgeInsets.only(top: 10)
-                  : null,
-          height: barHeight,
-          width: 2,
-          color: Colors.blueGrey[200],
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (sideValue != null && contentSide == Side.left)
+              const SizedBox(width: 18),
+            if (sideValue != null && contentSide != Side.left)
+              Container(
+                height: barHeight,
+                alignment: Alignment.bottomCenter,
+                child: RotatedBox(
+                  quarterTurns: -1,
+                  child: Text(
+                    sideValue!,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+            Container(
+              margin: (connectorType == ConnectorType.start)
+                  ? const EdgeInsets.only(bottom: 10)
+                  : (connectorType == ConnectorType.end)
+                      ? const EdgeInsets.only(top: 10)
+                      : null,
+              height: barHeight,
+              width: 2,
+              color: Colors.blueGrey[200],
+            ),
+            if (sideValue != null && contentSide != Side.left)
+              const SizedBox(width: 18),
+            if (sideValue != null && contentSide == Side.left)
+              Container(
+                height: barHeight,
+                alignment: Alignment.bottomCenter,
+                child: RotatedBox(
+                  quarterTurns: 1,
+                  child: Text(
+                    sideValue!,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                ),
+              ),
+          ],
         ),
         if (contentWidget != null)
           Stack(
@@ -127,10 +174,4 @@ class TimelineConnector extends StatelessWidget {
       ],
     );
   }
-}
-
-enum ConnectorType {
-  start,
-  content,
-  end,
 }

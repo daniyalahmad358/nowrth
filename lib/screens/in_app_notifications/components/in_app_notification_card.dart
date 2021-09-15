@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:nowrth/constants/app_shadows.dart';
-import 'package:nowrth/models/in_app_notification.dart';
+import 'package:nowrth/models/classes/in_app_notification.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/constants/app_colors.dart';

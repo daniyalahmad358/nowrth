@@ -1,35 +1,41 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:nowrth/models/guide.dart';
-import 'package:nowrth/models/spot_location.dart';
-import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/models/classes/guide.dart';
+import 'package:nowrth/models/classes/spot_location.dart';
+import 'package:nowrth/models/classes/spot.dart';
 
 import 'package:nowrth/temp/guides.dart';
-import 'package:nowrth/models/spot_type.dart';
+import 'package:nowrth/models/enums/spot_type.dart';
+
+// Temporary function
+
+int imageIndex = 0;
+
+Image newImage() {
+  String imageIndexString = imageIndex.toString();
+  imageIndex++;
+  return Image.asset('assets/images/spot_images/$imageIndexString.jpg');
+}
 
 List<Image> images0 = [
-  Image.asset('assets/images/Red_Mountains.png'),
-  Image.asset('assets/images/Magical_World.png'),
-  Image.asset('assets/images/Red_Mountains.png'),
-  Image.asset('assets/images/Magical_World.png'),
+  newImage(),
+  newImage(),
+  newImage(),
 ];
 List<Image> images1 = [
-  Image.asset('assets/images/Magical_World.png'),
-  Image.asset('assets/images/Red_Mountains.png'),
-  Image.asset('assets/images/Magical_World.png'),
-  Image.asset('assets/images/Red_Mountains.png'),
+  newImage(),
+  newImage(),
+  newImage(),
 ];
 List<Image> images2 = [
-  Image.asset('assets/images/Red_Mountains.png'),
-  Image.asset('assets/images/Magical_World.png'),
-  Image.asset('assets/images/Red_Mountains.png'),
-  Image.asset('assets/images/Magical_World.png'),
+  newImage(),
+  newImage(),
+  newImage(),
 ];
 List<Image> images3 = [
-  Image.asset('assets/images/Magical_World.png'),
-  Image.asset('assets/images/Red_Mountains.png'),
-  Image.asset('assets/images/Magical_World.png'),
-  Image.asset('assets/images/Red_Mountains.png'),
+  newImage(),
+  newImage(),
+  newImage(),
 ];
 
 List<Guide> guidesList0 = [guide0, guide1, guide2, guide3, guide4];

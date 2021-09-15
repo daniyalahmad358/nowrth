@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/app_pages.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/constants/size_config.dart';
-import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/models/enums/contributed_spot_options.dart';
+import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_spot_screen.dart';
 import 'package:nowrth/temp/user_data.dart';
 
@@ -153,10 +154,4 @@ class OptionsMenu extends StatelessWidget {
       ),
     );
   }
-}
-
-enum ContributedSpotOptions {
-  edit,
-  delete,
-  cancel,
 }

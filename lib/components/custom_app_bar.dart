@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/app_pages.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
@@ -65,7 +65,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
         ),
         IconButton(
-          icon: ClipOval(child: Image.asset('assets/images/profile.png')),
+          icon: ClipOval(child: Image.asset('assets/images/user_dp/dp.jpg')),
           onPressed: () {},
         )
       ],
