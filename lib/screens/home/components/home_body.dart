@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'home_header.dart';
@@ -20,9 +19,10 @@ class HomeBody extends StatelessWidget {
           // color: Colors.blueGrey,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: Svg('assets/images/map_illustration.svg'),
+              image:
+                  AssetImage('assets/images/app_images/map_illustration.jpg'),
               colorFilter: ColorFilter.linearToSrgbGamma(),
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.cover,
             ),
           ),
           child: Column(

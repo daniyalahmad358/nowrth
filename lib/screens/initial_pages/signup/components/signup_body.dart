@@ -20,8 +20,8 @@ class SignupBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? email;
-    String? password;
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
 
     SizeConfig().init(context);
 
@@ -41,19 +41,15 @@ class SignupBody extends StatelessWidget {
             ),
             RoundedInputField(
               hintText: 'Your Email',
-              onChanged: (value) {
-                email = value;
-              },
+              controller: emailController,
             ),
             RoundedPasswordField(
-              onChanged: (value) {
-                password = value;
-              },
+              controller: passwordController,
             ),
             RoundButton(
               text: 'SIGNUP',
               press: () {
-                Auth().signUp(email!, password!);
+                Auth().signUp(emailController.text, passwordController.text);
               },
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),

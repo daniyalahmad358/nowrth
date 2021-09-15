@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:nowrth/screens/route/services/sides.dart';
+import 'package:nowrth/screens/route/components/enums/sides.dart';
 
 class TimelineContent extends StatelessWidget {
   final Widget child;

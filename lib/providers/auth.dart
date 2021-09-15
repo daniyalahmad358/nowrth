@@ -2,56 +2,52 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
-import 'package:nowrth/utils/api.dart';
+// import 'package:nowrth/utils/api.dart';
 import 'package:nowrth/utils/http_exception.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'http_client_provider.dart';
+import 'api_provider.dart';
 
 class Auth with ChangeNotifier {
-  var authKey = Api.authKey;
+  // var authKey = Api.authKey;
   ApiProvider apiProvider = ApiProvider();
 
   String? _token;
   String? _userId;
   String? _userEmail;
-  DateTime? _expiryDate;
+  // DateTime? _expiryDate;
   Timer? _authTimer;
 
   bool get isAuth {
-    return token != null;
+    var auth = false;
+    // tryautoLogin().then((value) => auth = value);
+    return auth;
   }
 
-  String? get token {
-    if (_expiryDate != null &&
-        _expiryDate!.isAfter(DateTime.now()) &&
-        _token != null) {
-      return _token!;
-    }
-    return null;
-  }
-
-  String get userId {
-    return _userId!;
-  }
-
-  String get userEmail {
-    return _userEmail!;
-  }
-
+  // String? get token {
+  //   if (_expiryDate != null &&
+  //       _expiryDate!.isAfter(DateTime.now()) &&
+  //       _token != null) {
+  //     return _token!;
+  //   }
+  //   return null;
+  // }
+  // String get userId {
+  //   return _userId!;
+  // }
+  // String get userEmail {
+  //   return _userEmail!;
+  // }
   Future<void> logout() async {
     _token = null;
     _userEmail = null;
     _userId = null;
-    _expiryDate = null;
-
+    // _expiryDate = null;
     if (_authTimer != null) {
       _authTimer!.cancel();
       _authTimer = null;
     }
-
     notifyListeners();
-
     final pref = await SharedPreferences.getInstance();
     pref.clear();
   }
@@ -60,8 +56,8 @@ class Auth with ChangeNotifier {
     if (_authTimer != null) {
       _authTimer!.cancel();
     }
-    final timetoExpiry = _expiryDate!.difference(DateTime.now()).inSeconds;
-    _authTimer = Timer(Duration(seconds: timetoExpiry), logout);
+    // final timetoExpiry = _expiryDate!.difference(DateTime.now()).inSeconds;
+    // _authTimer = Timer(Duration(seconds: timetoExpiry), logout);
   }
 
   Future<bool> tryautoLogin() async {
@@ -71,17 +67,17 @@ class Auth with ChangeNotifier {
     }
 
     final extractedUserData = json.decode(pref.getString('userData') as String)
-        as Map<String, Object>;
+        as Map<String, dynamic>;
 
-    final expiryDate =
-        DateTime.parse(extractedUserData['expiryDate'] as String);
-    if (expiryDate.isBefore(DateTime.now())) {
-      return false;
-    }
+    // final expiryDate =
+    // DateTime.parse(extractedUserData['expiryDate'] as String);
+    // if (expiryDate.isBefore(DateTime.now())) {
+    // return false;
+    // }
     _token = extractedUserData['token'] as String?;
     _userId = extractedUserData['userId'] as String?;
     _userEmail = extractedUserData['userEmail'] as String?;
-    _expiryDate = expiryDate;
+    // _expiryDate = expiryDate;
     notifyListeners();
     _autologout();
 
@@ -89,7 +85,10 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> authentication(
-      String email, String password, String endpoint) async {
+    String email,
+    String password,
+    String endpoint,
+  ) async {
     try {
       final url = 'authentication/$endpoint';
 
@@ -102,16 +101,16 @@ class Auth with ChangeNotifier {
         },
       );
 
-      final responceData = json.decode(response.body);
+      final responseData = json.decode(response.body);
       // print(responceData);
-      if (responceData['error'] != null) {
-        throw HttpException(responceData['error']['message']);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
       }
-      _token = responceData['idToken'];
-      _userId = responceData['localId'];
-      _userEmail = responceData['email'];
-      _expiryDate = DateTime.now()
-          .add(Duration(seconds: int.parse(responceData['expiresIn'])));
+      _token = responseData['token'];
+      _userId = responseData['localId'];
+      _userEmail = responseData['email'];
+      // _expiryDate = DateTime.now()
+      // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
 
       _autologout();
       notifyListeners();
@@ -121,7 +120,7 @@ class Auth with ChangeNotifier {
         'token': _token,
         'userId': _userId,
         'userEmail': _userEmail,
-        'expiryDate': _expiryDate!.toIso8601String(),
+        // 'expiryDate': _expiryDate!.toIso8601String(),
       });
 
       prefs.setString('userData', userData);
@@ -129,6 +128,7 @@ class Auth with ChangeNotifier {
       // print('check' + userData.toString());
     } catch (e) {
       rethrow;
+      // throw e;
     }
   }
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/app_pages.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
 
 import 'package:nowrth/components/drawer/custom_drawer.dart';
-import 'package:nowrth/components/drawer/services/check_on_page.dart';
+import 'package:nowrth/services/check_on_page.dart';
 
 import 'package:nowrth/screens/home/home_screen.dart';
 import 'package:nowrth/screens/liked/liked_screen.dart';

@@ -3,9 +3,9 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/models/classes/spot.dart';
 
-import 'package:nowrth/screens/route/services/content_side_decider.dart';
+import 'package:nowrth/services/content_side_decider.dart';
 
 import 'content_widget.dart';
 import 'custom_timeline.dart';
@@ -32,7 +32,7 @@ class _RouteBodyState extends State<RouteBody> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: Svg('assets/images/map_illustration.svg'),
+          image: Svg('assets/images/app_images/map_illustration.svg'),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.linearToSrgbGamma(),
         ),

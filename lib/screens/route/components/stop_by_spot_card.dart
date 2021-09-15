@@ -5,12 +5,12 @@ import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/models/classes/spot.dart';
 
 import 'package:nowrth/components/rating_widget.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
-import 'package:nowrth/screens/route/services/sides.dart';
+import 'package:nowrth/screens/route/components/enums/sides.dart';
 
 class StopBySpotCard extends StatefulWidget {
   final Spot stopBySpot;

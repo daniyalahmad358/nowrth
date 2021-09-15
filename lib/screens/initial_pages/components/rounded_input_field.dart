@@ -6,11 +6,11 @@ import 'package:nowrth/screens/initial_pages/components/text_field_container.dar
 
 class RoundedInputField extends StatelessWidget {
   final String? hintText;
+  final TextEditingController controller;
   final IconData icon;
-  final ValueChanged<String> onChanged;
   const RoundedInputField({
     Key? key,
-    required this.onChanged,
+    required this.controller,
     this.hintText,
     this.icon = Icons.person,
   }) : super(key: key);
@@ -19,7 +19,7 @@ class RoundedInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
-        onChanged: onChanged,
+        controller: controller,
         cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           icon: Icon(

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/app_pages.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/constants/size_config.dart';
 
 import 'my_drawer_header.dart';

@@ -6,7 +6,7 @@ import 'package:nowrth/components/rating_widget.dart';
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/spot.dart';
+import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful

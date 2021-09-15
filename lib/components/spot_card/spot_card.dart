@@ -4,8 +4,8 @@ import 'package:nowrth/constants/app_shadows.dart';
 import 'package:nowrth/constants/app_paddings.dart';
 import 'package:nowrth/constants/size_config.dart';
 
-import 'package:nowrth/models/spot.dart';
-import 'package:nowrth/models/guide.dart';
+import 'package:nowrth/models/classes/spot.dart';
+import 'package:nowrth/models/classes/guide.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
 class SpotCard extends StatefulWidget {
@@ -35,6 +35,7 @@ class _SpotCardState extends State<SpotCard> {
         decoration: BoxDecoration(
           boxShadow: [kDefualtShadow],
           borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
         ),
         child: Column(
           children: <Widget>[
@@ -50,7 +51,6 @@ class _SpotCardState extends State<SpotCard> {
               padding: EdgeInsets.all(
                 getProportionateScreenWidth(kDefaultPadding),
               ),
-              color: Colors.white,
               child: Column(
                 children: <Widget>[
                   SizedBox(
