@@ -13,10 +13,10 @@ class OrDivider extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight * 0.02),
       width: SizeConfig.screenWidth * 0.8,
       child: Row(
-        children: const <Widget>[
-          CustomDivider(),
+        children: <Widget>[
+          const CustomDivider(),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               'OR',
               style: TextStyle(
@@ -25,7 +25,7 @@ class OrDivider extends StatelessWidget {
               ),
             ),
           ),
-          CustomDivider(),
+          const CustomDivider(),
         ],
       ),
     );

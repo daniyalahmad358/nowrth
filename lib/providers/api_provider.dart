@@ -9,32 +9,53 @@ class ApiProvider {
   String mainUrl = Api.authUrl;
   final Map<String, String> _headers = {'Content-Type': 'application/json'};
 
-  String? get token {
-    SharedPreferences.getInstance().then((value) {
-      // var extractedUserData = json.decode(value.getString('userData') as String)
-      // as Map<String, Object>;
+  String? token;
 
-      Map<String, dynamic> extractedUserData = Map<String, dynamic>.from(
-          json.decode(value.getString('userData') as String));
-
-      return (extractedUserData["token"] as String?);
-    });
-  }
-
-  void checkToken() {
+  void addTokenToheader() {
     if (token != null) {
-      _headers.addEntries([MapEntry('Authorization', 'bearer ' + token!)]);
+      _headers.addEntries([MapEntry('Authorization', 'bearer ${token!}')]);
     }
   }
 
-  Future post({required String url, required body}) {
+  Future<void> setToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    Map<String, dynamic> extractedUserData = Map<String, dynamic>.from(
+        json.decode(sharedPreferences.getString('userData') as String));
+
+    token = (extractedUserData['token'] as String?);
+  }
+
+  Future post({required String url, required body}) async {
+    await setToken();
     String apiUrl = mainUrl + url;
-    checkToken();
+    addTokenToheader();
     return http.post(
       Uri.parse(apiUrl),
       headers: _headers,
       body: json.encode(body),
-      encoding: Encoding.getByName("utf-8"),
+      encoding: Encoding.getByName('utf-8'),
+    );
+  }
+
+  Future put({required String url, required body}) async {
+    await setToken();
+    String apiUrl = mainUrl + url;
+    addTokenToheader();
+    return http.put(
+      Uri.parse(apiUrl),
+      headers: _headers,
+      body: json.encode(body),
+      encoding: Encoding.getByName('utf-8'),
+    );
+  }
+
+  Future get({required String url}) async {
+    await setToken();
+    String apiUrl = mainUrl + url;
+    addTokenToheader();
+    return http.get(
+      Uri.parse(apiUrl),
+      headers: _headers,
     );
   }
 }

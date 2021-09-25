@@ -1,4 +1,4 @@
-enum ContributedSpotOptions {
+enum ContributionOptions {
   edit,
   delete,
   cancel,

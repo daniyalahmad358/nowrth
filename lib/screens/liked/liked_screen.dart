@@ -22,7 +22,7 @@ class LikedScreen extends StatelessWidget {
         atPage: currentPage,
       ),
       body: const LikedBody(),
-      bottomNavigationBar: const CustomBottonNavBar(isAtLiked: true),
+      bottomNavigationBar: const CustomBottomNavBar(isAtLiked: true),
       extendBodyBehindAppBar: true,
       drawer: CustomDrawer(
         currentPage: currentPage,

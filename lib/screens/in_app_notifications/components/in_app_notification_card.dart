@@ -24,14 +24,13 @@ class InAppNotificationCard extends StatelessWidget {
     return Container(
       height: SizeConfig.screenHeight / 12,
       decoration: BoxDecoration(
-        boxShadow:
-            inAppNotification.readStatus ? [kDefualtShadow] : [kUnreadShadow],
+        boxShadow: [kDefualtShadow],
         borderRadius: notiBorderRadius,
       ),
       child: Card(
         borderOnForeground: false,
         shape: RoundedRectangleBorder(borderRadius: notiBorderRadius),
-        elevation: inAppNotification.readStatus ? 0.7 : 1.5,
+        elevation: 0.7,
         margin: const EdgeInsets.all(0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/models/classes/contribution.dart';
 
 import 'package:nowrth/models/enums/app_pages.dart';
 
 import 'package:nowrth/components/custom_app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
-import 'package:nowrth/models/classes/spot.dart';
 
-import 'package:nowrth/screens/contribution/add_edit_spot/components/add_edit_spot_body.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/components/add_edit_contribution_body.dart';
 
-class AddEditSpotScreen extends StatelessWidget {
+class AddEditContributionScreen extends StatelessWidget {
   final AppPage addEditPage;
-  final Spot? spotToEdit;
+  final int? contributionToEditId;
   final Function()? contributionsPageRefresher;
 
-  const AddEditSpotScreen({
+  const AddEditContributionScreen({
     Key? key,
     required this.addEditPage,
     required this.contributionsPageRefresher,
-    this.spotToEdit,
+    this.contributionToEditId,
   }) : super(key: key);
 
   @override
@@ -29,12 +29,12 @@ class AddEditSpotScreen extends StatelessWidget {
             (addEditPage == AppPage.addContribution) ? 'Add Spot' : 'Edit Spot',
         atPage: addEditPage,
       ),
-      body: AddEditSpotBody(
+      body: AddEditContributionBody(
         curentPage: addEditPage,
-        spotToEdit: spotToEdit,
+        contributionToEditId: contributionToEditId,
         contributionsPageRefresher: contributionsPageRefresher,
       ),
-      bottomNavigationBar: const CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottomNavBar(),
       extendBodyBehindAppBar: true,
     );
   }

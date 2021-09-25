@@ -35,6 +35,8 @@ class WelcomeBody extends StatelessWidget {
             SizedBox(height: SizeConfig.screenHeight * 0.05),
             RoundButton(
               text: 'LOGIN',
+              color: kPrimaryColor,
+              textColor: Colors.white,
               press: () {
                 Navigator.push(
                   context,

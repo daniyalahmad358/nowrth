@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
-// const kPrimaryColor = Color(0xFF4DB6AC);
-const kPrimaryColor = Color(0xFF3E4067);
-const kTextColor = Color(0xFF3F4168);
-const kIconColor = Color(0xFF5E5E5E);
-final kGreyColor = Colors.grey[400];
-// const kPrimaryColor = Color(0xFF6F35A5);
-const kPrimaryLightColor = Color(0xFFF1E6FF);
+final Color kPrimaryColor = Colors.blue;
+final Color kPrimaryLightColor = Colors.lightBlue[50]!;
+final Color kSecondaryColor = Colors.lightBlue[100]!;
+final Color kTextColor = kPrimaryColor;
+final Color kTextLightColor = Colors.lightBlueAccent;
+final Color kIconColor = Colors.lightBlueAccent;
+final Color kGreyColor = Colors.grey[400]!;
 
-const kSecondaryColor = Colors.white;
+          // secondaryVariant: kSecondaryColor,
+          // surface: kSecondaryColor,
+          // background: background,
+          // error: error,
+          // onPrimary: onPrimary,
+          // onSecondary: onSecondary,
+          // onSurface: onSurface,
+          // onBackground: onBackground,
+          // onError: onError,
+          // brightness: brightness,
+

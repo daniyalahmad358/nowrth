@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/home/components/already_have_an_account_acheck.dart';
@@ -48,6 +49,8 @@ class SignupBody extends StatelessWidget {
             ),
             RoundButton(
               text: 'SIGNUP',
+              color: kPrimaryColor,
+              textColor: Colors.white,
               press: () {
                 Auth().signUp(emailController.text, passwordController.text);
               },

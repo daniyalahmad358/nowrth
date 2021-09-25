@@ -10,7 +10,7 @@ extension SpotTypeValue on SpotType {
   String get value {
     switch (this) {
       case SpotType.travelSpot:
-        return 'Travel Spot';
+        return 'Picnic Spot';
       case SpotType.hotel:
         return 'Hotel';
       case SpotType.restaurant:

@@ -32,12 +32,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 5,
       toolbarHeight: percentageHeight(9),
       centerTitle: true,
-      // backgroundColor: Colors.white.withOpacity(barOpacity),
       iconTheme: IconThemeData(
-        color: kPrimaryColor,
+        color: kSecondaryColor,
         size: percentageHeight(3.902),
       ),
-      backgroundColor: kPrimaryLightColor.withOpacity(barOpacity),
+      backgroundColor: kPrimaryColor.withOpacity(barOpacity),
       flexibleSpace: ClipRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -46,7 +45,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         titleText,
-        style: TextStyle(color: kTextColor, fontSize: percentageHeight(3.25)),
+        style: TextStyle(
+          color: kSecondaryColor,
+          fontSize: percentageHeight(3.25),
+        ),
       ),
       actions: <Widget>[
         IconButton(

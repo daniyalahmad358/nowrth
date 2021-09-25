@@ -38,7 +38,7 @@ class DetailsScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: const CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottomNavBar(),
       extendBodyBehindAppBar: true,
     );
   }

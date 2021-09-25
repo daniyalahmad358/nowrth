@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/constants/size_config.dart';
-
-import 'package:nowrth/components/spot_card/spot_card.dart';
-import 'package:nowrth/components/spot_card/tr_corner_widget.dart';
+import 'package:nowrth/models/classes/contribution.dart';
+import 'package:nowrth/providers/contribution_provider.dart';
+// import 'package:nowrth/models/classes/contribution.dart';
+// import 'package:nowrth/models/enums/contribution_status.dart';
+import 'package:nowrth/screens/contribution/contributions/components/contribution_tile.dart';
 import 'package:nowrth/screens/contribution/contributions/components/options_menu.dart';
 
 import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
 class ContributionsBody extends StatefulWidget {
-  const ContributionsBody({Key? key}) : super(key: key);
+  final ContributionListItem? addedContribution;
+
+  const ContributionsBody({
+    Key? key,
+    this.addedContribution,
+  }) : super(key: key);
 
   @override
   _ContributionsBodyState createState() => _ContributionsBodyState();
 }
 
 class _ContributionsBodyState extends State<ContributionsBody> {
-  SpotCard makeContributedSpotCard(int index) {
-    SpotCard spotCard = SpotCard(
-      spot: contributedSpots[index],
-      isFullCard: true,
-    );
-    return spotCard;
-  }
-
   IconButton optionsIconButton(index) {
     return IconButton(
       icon: const Icon(
@@ -35,69 +34,46 @@ class _ContributionsBodyState extends State<ContributionsBody> {
       splashRadius: percentageHeight(3.5),
       padding: const EdgeInsets.all(2),
       alignment: Alignment.topCenter,
-      onPressed: () => OptionsMenu.showMenu(
-        context,
-        contributedSpot: contributedSpots[index],
-        spotToEdit: contributedSpots[index],
-        refresher: () {
-          setState(() {});
-        },
-      ),
+      onPressed: () {},
+      /*
+        // => OptionsMenu.showMenu(
+        // context,
+        // contribution: contributions[index],
+        // refresher: () {
+        // setState(() {});
+        // },
+        // ),
+      */
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> contributedSpotCards = List.generate(
-      contributedSpots.length,
-      (index) => (contributedSpots.length == 1)
-          ? Align(
-              alignment: Alignment.topLeft,
-              child: TRCornerWidget(
-                mainWidget: makeContributedSpotCard(index),
-                cornerIconButton: optionsIconButton(index),
-              ),
-            )
-          : TRCornerWidget(
-              mainWidget: makeContributedSpotCard(index),
-              cornerIconButton: optionsIconButton(index),
-            ),
-    );
-
-    return ListView(
-      children: <Widget>[
-        SizedBox(
-          width: SizeConfig.screenWidth,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20.83)),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: percentageHeight(1.62)),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (contributedSpots.length == 2) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(child: contributedSpotCards[0]),
-                          Container(child: contributedSpotCards[1]),
-                        ],
-                      );
-                    }
-
-                    return Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      runSpacing: 25,
-                      children: contributedSpotCards,
-                    );
-                  },
-                ),
+    return FutureBuilder(
+      future: ContributionProvider.getContributionListItems(),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<ContributionListItem>> snapshot) {
+        List<ContributionListItem> contributions = snapshot.data!;
+        if (snapshot.connectionState != ConnectionState.waiting) {
+          if (widget.addedContribution != null) {
+            contributions.insert(0, widget.addedContribution!);
+          }
+          return ListView(
+            children: List.generate(
+              contributions.length,
+              (index) => ContributionTile(
+                index,
+                contributionListItem: contributions[index],
+                pageRefresher: () {
+                  setState(() {});
+                },
               ),
             ),
-          ),
-        ),
-      ],
+          );
+        } else {
+          return const Text('Loading');
+        }
+      },
     );
   }
 }

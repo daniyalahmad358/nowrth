@@ -11,14 +11,15 @@ class InAppNotificationsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ListView(
       children: <Widget>[
         ...List.generate(
           inAppNotifications.length,
           (index) => Padding(
             padding: EdgeInsets.symmetric(
-              vertical: SizeConfig.screenHeight / 120,
-              horizontal: SizeConfig.screenWidth / 15,
+              vertical: percentageHeight(0.3),
+              horizontal: percentageWidth(2),
             ),
             child: InkWell(
               borderRadius: notiBorderRadius,

@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         atPage: currentPage,
       ),
       body: const HomeBody(),
-      bottomNavigationBar: const CustomBottonNavBar(isAtHome: true),
+      bottomNavigationBar: const CustomBottomNavBar(isAtHome: true),
       drawer: CustomDrawer(
         currentPage: currentPage,
         menuItems: menuItems(context, currentPage),

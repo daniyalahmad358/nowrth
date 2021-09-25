@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nowrth/constants/app_colors.dart';
 
 import 'package:nowrth/constants/size_config.dart';
 import 'package:nowrth/providers/auth.dart';
@@ -49,17 +50,22 @@ class LoginBody extends StatelessWidget {
             ),
             RoundButton(
               text: 'LOGIN',
-              press: () {
-                Auth().login(emailController.text, passwordController.text);
+              color: kPrimaryColor,
+              textColor: Colors.white,
+              press: () async {
+                bool? authorized = await Auth()
+                    .login(emailController.text, passwordController.text);
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const HomeScreen();
-                    },
-                  ),
-                );
+                if (authorized ?? false) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const HomeScreen();
+                      },
+                    ),
+                  );
+                }
               },
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),

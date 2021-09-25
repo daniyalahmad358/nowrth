@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:nowrth/components/rating_widget.dart';
+import 'package:nowrth/components/custom_rating_stars.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
@@ -11,7 +11,7 @@ import 'package:nowrth/temp/user_data.dart';
 
 // Has to be stateful
 
-class DetailsBody extends StatefulWidget {
+class DetailsBody extends StatelessWidget {
   final Spot spot;
 
   const DetailsBody({
@@ -28,14 +28,8 @@ class DetailsBody extends StatefulWidget {
   }
 
   @override
-  _DetailsBodyState createState() => _DetailsBodyState();
-}
-
-class _DetailsBodyState extends State<DetailsBody> {
-  final _controller = ScrollController();
-
-  @override
   Widget build(BuildContext context) {
+    final ScrollController _controller = ScrollController();
     // You have to call SizeConfig on your starting page
     SizeConfig().init(context);
     return ListView(
@@ -47,7 +41,7 @@ class _DetailsBodyState extends State<DetailsBody> {
           child: Row(
             children: <Widget>[
               ...List.generate(
-                widget.spot.images.length,
+                spot.images.length,
                 (index) => Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 4.75,
@@ -63,7 +57,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: widget.spot.images[index].image,
+                        image: spot.images[index].image,
                       ),
                     ),
                   ),
@@ -85,7 +79,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    widget.spot.spotName,
+                    spot.spotName,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: percentageHeight(3.252),
@@ -95,19 +89,26 @@ class _DetailsBodyState extends State<DetailsBody> {
                     textAlign: TextAlign.left,
                   ),
                 ),
-                IconButton(
-                  icon: Icon(
-                    (likedSpots.contains(widget.spot))
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: kPrimaryColor,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      (likedSpots.contains(widget.spot))
-                          ? widget.dislikeSpot()
-                          : widget.likeSpot();
-                    });
+                StatefulBuilder(
+                  builder: (
+                    BuildContext context,
+                    void Function(void Function()) setIconState,
+                  ) {
+                    return IconButton(
+                      icon: Icon(
+                        (likedSpots.contains(spot))
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: kPrimaryColor,
+                      ),
+                      onPressed: () {
+                        setIconState(() {
+                          (likedSpots.contains(spot))
+                              ? dislikeSpot()
+                              : likeSpot();
+                        });
+                      },
+                    );
                   },
                 ),
               ],
@@ -123,7 +124,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    widget.spot.spotLocation.fullLocation,
+                    spot.address.fullLocation,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: percentageHeight(2.1138),
@@ -142,17 +143,17 @@ class _DetailsBodyState extends State<DetailsBody> {
                 itemSize: percentageHeight(3.252),
                 allowHalfRating: true,
                 ratingWidget: const CustomRatingStars(),
-                initialRating: widget.spot.rating,
+                initialRating: spot.rating,
                 ignoreGestures: true,
                 onRatingUpdate: (rating) {},
               ),
             ),
             SizedBox(height: percentageHeight(6.5041)),
-            if (widget.spot.description != null)
+            if (spot.description != null)
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'More About ' + widget.spot.spotName,
+                  'More About ${spot.spotName}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: percentageHeight(2.602),
@@ -162,11 +163,11 @@ class _DetailsBodyState extends State<DetailsBody> {
                 ),
               ),
             SizedBox(height: percentageHeight(1.626)),
-            if (widget.spot.description != null)
+            if (spot.description != null)
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  widget.spot.description!,
+                  spot.description!,
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     fontSize: percentageHeight(2.439),

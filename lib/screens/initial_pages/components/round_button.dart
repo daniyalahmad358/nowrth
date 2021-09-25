@@ -11,8 +11,8 @@ class RoundButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.press,
-    this.color = kPrimaryColor,
-    this.textColor = Colors.white,
+    required this.color,
+    required this.textColor,
   }) : super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class RoundButton extends StatelessWidget {
             padding: MaterialStateProperty.all(
               const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
             ),
-            backgroundColor: MaterialStateProperty.all(color),
+            backgroundColor: MaterialStateProperty.all(kPrimaryColor),
           ),
           onPressed: press,
           child: Text(

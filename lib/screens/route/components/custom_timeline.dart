@@ -3,20 +3,20 @@ import 'package:flutter/rendering.dart';
 
 import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/constants/size_config.dart';
-import 'package:nowrth/models/classes/spot_location.dart';
 import 'package:nowrth/screens/route/components/enums/connector_type.dart';
 
 import 'package:nowrth/screens/route/components/enums/sides.dart';
-import 'package:nowrth/services/spots_distance.dart';
 
-import 'content_widget.dart';
+import 'timeline_content.dart';
 
 class CustomTimeline extends StatelessWidget {
   final List<TimelineContent> timelineContents;
+  final List<String> sideValues;
 
   const CustomTimeline({
     Key? key,
     required this.timelineContents,
+    this.sideValues = const [],
   }) : super(key: key);
 
   @override
@@ -47,10 +47,7 @@ class CustomTimeline extends StatelessWidget {
                     contentWidget: timelineContents[index],
                     barHeight: connectorBarHeight,
                     contentSide: timelineContents[index].contentSide,
-                    sideValue: getSpotRouteDistance(
-                      locationA: const SpotLocation(),
-                      locationB: const SpotLocation(),
-                    ),
+                    sideValue: sideValues[index],
                   ),
                 ],
               );
@@ -59,10 +56,7 @@ class CustomTimeline extends StatelessWidget {
           TimelineConnector(
             connectorType: ConnectorType.end,
             barHeight: connectorBarHeight,
-            sideValue: getSpotRouteDistance(
-              locationA: const SpotLocation(),
-              locationB: const SpotLocation(),
-            ),
+            sideValue: sideValues[-1],
           ),
         ],
       ),
@@ -94,7 +88,7 @@ class TimelineConnector extends StatelessWidget {
     Container connectorCircle = Container(
       height: percentageHeight(1.65),
       width: percentageHeight(1.65),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: kTextColor,
         shape: BoxShape.circle,
       ),

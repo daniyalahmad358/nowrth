@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-// import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
-// import 'package:nowrth/constants.dart';
-// import 'package:nowrth/size_config.dart';
-
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -22,7 +18,7 @@ class SplashScreen extends StatelessWidget {
               child: Center(
                 child: Lottie.asset('assets/animations/mountain.json'),
               ),
-            )
+            ),
           ],
         ),
       ),

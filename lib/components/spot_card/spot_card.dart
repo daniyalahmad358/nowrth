@@ -8,7 +8,7 @@ import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/models/classes/guide.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
-class SpotCard extends StatefulWidget {
+class SpotCard extends StatelessWidget {
   const SpotCard({
     Key? key,
     required this.spot,
@@ -20,17 +20,12 @@ class SpotCard extends StatefulWidget {
   final bool isFullCard;
 
   @override
-  _SpotCardState createState() => _SpotCardState();
-}
-
-class _SpotCardState extends State<SpotCard> {
-  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return InkWell(
       borderRadius: BorderRadius.circular(100),
       child: Container(
-        width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
+        width: percentageWidth(isFullCard ? 38.165 : 33.09),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           boxShadow: [kDefualtShadow],
@@ -40,39 +35,39 @@ class _SpotCardState extends State<SpotCard> {
         child: Column(
           children: <Widget>[
             AspectRatio(
-              aspectRatio: widget.isFullCard ? 1.09 : 1.29,
+              aspectRatio: isFullCard ? 1.09 : 1.29,
               child: Image(
-                image: widget.spot.images[0].image,
+                image: spot.images[0].image,
                 fit: BoxFit.cover,
               ),
             ),
             Container(
-              width: percentageWidth(widget.isFullCard ? 38.165 : 33.09),
+              width: percentageWidth(isFullCard ? 38.165 : 33.09),
               padding: EdgeInsets.all(
                 getProportionateScreenWidth(kDefaultPadding),
               ),
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: widget.isFullCard
+                    height: isFullCard
                         ? getProportionateScreenHeight(50)
                         : getProportionateScreenHeight(36),
                     child: Text(
-                      widget.spot.spotName,
+                      spot.spotName,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: widget.isFullCard
+                        fontSize: isFullCard
                             ? getProportionateScreenHeight(17)
                             : getProportionateScreenHeight(12),
                       ),
                     ),
                   ),
                   const VerticalSpacing(of: 10),
-                  if (widget.spot.guides != null)
+                  if (spot.guides != null)
                     GuidesInCard(
-                      guides: widget.spot.guides!,
-                      isCardSizeFull: widget.isFullCard,
+                      guides: spot.guides!,
+                      isCardSizeFull: isFullCard,
                     ),
                 ],
               ),
@@ -84,7 +79,7 @@ class _SpotCardState extends State<SpotCard> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return DetailsScreen(spot: widget.spot);
+              return DetailsScreen(spot: spot);
             },
           ),
         );

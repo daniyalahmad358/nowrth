@@ -7,7 +7,7 @@ import 'package:nowrth/constants/size_config.dart';
 
 import 'package:nowrth/models/classes/spot.dart';
 
-import 'package:nowrth/components/rating_widget.dart';
+import 'package:nowrth/components/custom_rating_stars.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
 import 'package:nowrth/screens/route/components/enums/sides.dart';
@@ -80,7 +80,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                         ),
                       ),
                       Text(
-                        widget.stopBySpot.spotLocation.cityOrTown,
+                        widget.stopBySpot.address.cityOrTown,
                         style: TextStyle(
                           color: isInfoShown ? null : Colors.transparent,
                           fontSize: percentageHeight(2),

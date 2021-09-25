@@ -37,7 +37,6 @@ class CustomDrawer extends StatelessWidget {
                     currentPage: currentPage,
                     menuItems: menuItems,
                   ),
-                  // Text('${SizeConfig.screenHeight}')
                 ],
               ),
             ),
@@ -104,7 +103,7 @@ class MenuItem extends StatelessWidget {
                   iconData,
                   size: percentageHeight(2.94),
                   // color: Colors.grey[300],
-                  color: kPrimaryLightColor,
+                  color: kSecondaryColor,
                 ),
               ),
               Expanded(
@@ -113,7 +112,7 @@ class MenuItem extends StatelessWidget {
                   title,
                   style: TextStyle(
                     // color: Colors.grey[300],
-                    color: kPrimaryLightColor,
+                    color: kSecondaryColor,
                     // fontSize: SizeConfig.screenHeight / 42,
                     fontSize: percentageHeight(2.35),
                   ),
