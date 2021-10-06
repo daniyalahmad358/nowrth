@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'search_fields.dart';
 
@@ -19,7 +18,7 @@ class HomeHeader extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Image.asset(
-            'assets/images/app_images/home_bg.jpg',
+            'assets/images/app_images/home_banner.jpg',
             fit: BoxFit.cover,
             width: double.infinity,
             height: getProportionateScreenHeight(237.7),
@@ -30,36 +29,11 @@ class HomeHeader extends StatelessWidget {
               SizedBox(height: getProportionateScreenHeight(60.4)),
               Text(
                 'Nowrth',
-                style: GoogleFonts.acme(
-                  textStyle: TextStyle(
-                    fontSize: getProportionateScreenHeight(60),
-                    color: Colors.white,
-                    height: 0.5,
-                    shadows: [
-                      Shadow(
-                        color: Colors.grey[800]!,
-                        offset: const Offset(5, 5),
-                        blurRadius: 5,
-                      )
-                    ],
-                  ),
-                ),
+                style: Theme.of(context).textTheme.headline2,
               ),
               Text(
                 'Travel Community App',
-                style: GoogleFonts.ubuntu(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: getProportionateScreenHeight(18),
-                    shadows: [
-                      Shadow(
-                        color: Colors.grey[900]!,
-                        offset: const Offset(2, 2),
-                        blurRadius: 2,
-                      ),
-                    ],
-                  ),
-                ),
+                style: Theme.of(context).textTheme.headline6,
               ),
             ],
           ),

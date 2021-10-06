@@ -1,8 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-
 class SocalIcon extends StatelessWidget {
   final String iconSrc;
   final Function() press;
@@ -22,7 +20,6 @@ class SocalIcon extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 2,
-            color: kPrimaryLightColor,
           ),
           shape: BoxShape.circle,
         ),

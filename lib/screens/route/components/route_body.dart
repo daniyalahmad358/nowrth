@@ -1,18 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/models/classes/spot.dart';
 
 import 'package:nowrth/services/content_side_decider.dart';
 
-import 'content_widget.dart';
+import 'timeline_content.dart';
 import 'custom_timeline.dart';
 import 'stop_by_spot_card.dart';
 
 // Has to be stateful
-class RouteBody extends StatefulWidget {
+class RouteBody extends StatelessWidget {
   final Spot destinationSpot;
 
   const RouteBody({
@@ -20,11 +20,6 @@ class RouteBody extends StatefulWidget {
     required this.destinationSpot,
   }) : super(key: key);
 
-  @override
-  _RouteBodyState createState() => _RouteBodyState();
-}
-
-class _RouteBodyState extends State<RouteBody> {
   @override
   Widget build(BuildContext context) {
     // You have to call SizeConfig on your starting page
@@ -40,19 +35,19 @@ class _RouteBodyState extends State<RouteBody> {
       child: CustomTimeline(
         timelineContents: <TimelineContent>[
           ...List.generate(
-            (widget.destinationSpot.stopBySpots != null)
-                ? widget.destinationSpot.stopBySpots!.length
+            (destinationSpot.stopBySpots != null)
+                ? destinationSpot.stopBySpots!.length
                 : 0,
             (index) => TimelineContent(
               contentSide: stopBySpotCardSideDecider(
-                widget.destinationSpot.stopBySpots![index].spotType,
+                destinationSpot.stopBySpots![index].spotType,
               ),
               child: StopBySpotCard(
                 heroTag: 'stopBySpot_$index',
-                stopBySpot: widget.destinationSpot.stopBySpots![index],
+                stopBySpot: destinationSpot.stopBySpots![index],
                 spotButtonSide: spotButtonSideDecider(
                   stopBySpotCardSideDecider(
-                    widget.destinationSpot.stopBySpots![index].spotType,
+                    destinationSpot.stopBySpots![index].spotType,
                   ),
                 ),
                 // press: () {},

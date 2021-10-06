@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SizeConfig {
+  SizeConfig();
+
+  SizeConfig.fromMediaQuery(MediaQueryData mediaQueryData) {
+    _mediaQueryData = mediaQueryData;
+  }
+
   static MediaQueryData? _mediaQueryData;
   static double? defaultSize;
   static Orientation orientation = _mediaQueryData!.orientation;

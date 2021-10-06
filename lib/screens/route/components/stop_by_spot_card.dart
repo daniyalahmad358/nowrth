@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/app_shadows.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/app_shadows.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/models/classes/spot.dart';
 
-import 'package:nowrth/components/rating_widget.dart';
+import 'package:nowrth/components/custom_rating_stars.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
 import 'package:nowrth/screens/route/components/enums/sides.dart';
@@ -80,7 +79,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                         ),
                       ),
                       Text(
-                        widget.stopBySpot.spotLocation.cityOrTown,
+                        widget.stopBySpot.address.cityOrTown,
                         style: TextStyle(
                           color: isInfoShown ? null : Colors.transparent,
                           fontSize: percentageHeight(2),
@@ -145,11 +144,9 @@ class SpotButton extends StatelessWidget {
       child: FittedBox(
         child: FloatingActionButton(
           heroTag: heroTag,
-          backgroundColor: Colors.white,
           onPressed: infoShowHide,
           child: Icon(
             iconData,
-            color: kPrimaryColor,
           ),
         ),
       ),

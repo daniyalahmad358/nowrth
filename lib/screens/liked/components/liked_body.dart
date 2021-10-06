@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/components/spot_card/spot_card.dart';
 import 'package:nowrth/components/spot_card/tr_corner_widget.dart';
@@ -29,7 +29,6 @@ class _LikedBodyState extends State<LikedBody> {
       icon: const Icon(
         Icons.close_rounded,
       ),
-      color: Colors.white,
       iconSize: percentageHeight(4),
       splashRadius: percentageHeight(3.5),
       alignment: Alignment.topRight,

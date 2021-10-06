@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/global/app_shadows.dart';
 import 'package:nowrth/models/classes/in_app_notification.dart';
-import 'package:nowrth/constants/size_config.dart';
-
-import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class InAppNotificationCard extends StatelessWidget {
   const InAppNotificationCard({
@@ -24,14 +22,13 @@ class InAppNotificationCard extends StatelessWidget {
     return Container(
       height: SizeConfig.screenHeight / 12,
       decoration: BoxDecoration(
-        boxShadow:
-            inAppNotification.readStatus ? [kDefualtShadow] : [kUnreadShadow],
+        boxShadow: const [kDefualtShadow],
         borderRadius: notiBorderRadius,
       ),
       child: Card(
         borderOnForeground: false,
         shape: RoundedRectangleBorder(borderRadius: notiBorderRadius),
-        elevation: inAppNotification.readStatus ? 0.7 : 1.5,
+        elevation: 0.7,
         margin: const EdgeInsets.all(0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,8 +36,6 @@ class InAppNotificationCard extends StatelessWidget {
             Expanded(
               child: Icon(
                 inAppNotification.iconData,
-                color:
-                    inAppNotification.readStatus ? kIconColor : kPrimaryColor,
               ),
             ),
             Expanded(
@@ -48,8 +43,6 @@ class InAppNotificationCard extends StatelessWidget {
               child: Text(
                 inAppNotification.headline,
                 style: TextStyle(
-                  color:
-                      inAppNotification.readStatus ? kIconColor : kPrimaryColor,
                   fontSize: percentageHeight(2.2764),
                   fontWeight: inAppNotification.readStatus
                       ? FontWeight.normal

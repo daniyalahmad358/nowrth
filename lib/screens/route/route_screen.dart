@@ -26,12 +26,11 @@ class RouteScreen extends StatelessWidget {
         atPage: currentPage,
       ),
       body: RouteBody(destinationSpot: destinationSpot),
-      bottomNavigationBar: const CustomBottonNavBar(),
+      bottomNavigationBar: const CustomBottomNavBar(),
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.map_outlined,
         onPressed: () {},
       ),
-      // backgroundColor: Colors.blueGrey,
       extendBodyBehindAppBar: false,
     );
   }

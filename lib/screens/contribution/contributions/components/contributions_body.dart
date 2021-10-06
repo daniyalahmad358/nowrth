@@ -1,103 +1,110 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/size_config.dart';
-
-import 'package:nowrth/components/spot_card/spot_card.dart';
-import 'package:nowrth/components/spot_card/tr_corner_widget.dart';
-import 'package:nowrth/screens/contribution/contributions/components/options_menu.dart';
-
-import 'package:nowrth/temp/user_data.dart';
+import 'package:nowrth/models/classes/contribution.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
+import 'package:nowrth/providers/contribution_provider.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_screen.dart';
+import 'package:nowrth/screens/contribution/contributions/components/contribution_tile.dart';
 
 // Has to be stateful
 class ContributionsBody extends StatefulWidget {
-  const ContributionsBody({Key? key}) : super(key: key);
+  final List<ContributionListItem> allContributions;
+
+  const ContributionsBody({
+    Key? key,
+    required this.allContributions,
+  }) : super(key: key);
+
+  Future<List<ContributionListItem>> empty() async {
+    List<ContributionListItem> x = <ContributionListItem>[];
+    return x;
+  }
 
   @override
   _ContributionsBodyState createState() => _ContributionsBodyState();
 }
 
 class _ContributionsBodyState extends State<ContributionsBody> {
-  SpotCard makeContributedSpotCard(int index) {
-    SpotCard spotCard = SpotCard(
-      spot: contributedSpots[index],
-      isFullCard: true,
-    );
-    return spotCard;
-  }
-
-  IconButton optionsIconButton(index) {
-    return IconButton(
-      icon: const Icon(
-        Icons.more_horiz,
-      ),
-      color: Colors.white,
-      iconSize: percentageHeight(4),
-      splashRadius: percentageHeight(3.5),
-      padding: const EdgeInsets.all(2),
-      alignment: Alignment.topCenter,
-      onPressed: () => OptionsMenu.showMenu(
-        context,
-        contributedSpot: contributedSpots[index],
-        spotToEdit: contributedSpots[index],
-        refresher: () {
-          setState(() {});
-        },
-      ),
-    );
-  }
+  // IconButton optionsIconButton(index) {
+  //   return IconButton(
+  //     icon: const Icon(
+  //       Icons.more_horiz,
+  //     ),
+  //     color: Colors.white,
+  //     iconSize: percentageHeight(4),
+  //     splashRadius: percentageHeight(3.5),
+  //     padding: const EdgeInsets.all(2),
+  //     alignment: Alignment.topCenter,
+  //     onPressed: () {},
+  //     /*
+  //       // => OptionsMenu.showMenu(
+  //       // context,
+  //       // contribution: contributions[index],
+  //       // refresher: () {
+  //       // setState(() {});
+  //       // },
+  //       // ),
+  //     */
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> contributedSpotCards = List.generate(
-      contributedSpots.length,
-      (index) => (contributedSpots.length == 1)
-          ? Align(
-              alignment: Alignment.topLeft,
-              child: TRCornerWidget(
-                mainWidget: makeContributedSpotCard(index),
-                cornerIconButton: optionsIconButton(index),
+    return FutureBuilder(
+      future: (widget.allContributions.isEmpty)
+          ? ContributionProvider.getContributionListItems()
+          : null,
+      builder: (BuildContext context,
+          AsyncSnapshot<List<ContributionListItem>> snapshot) {
+        if (snapshot.connectionState != ConnectionState.waiting) {
+          List<ContributionListItem> contributions;
+          if (widget.allContributions.isNotEmpty) {
+            contributions = widget.allContributions;
+          } else {
+            contributions = snapshot.data!;
+            widget.allContributions.clear();
+            widget.allContributions.addAll(contributions);
+          }
+          return ListView(
+            children: List.generate(
+              contributions.length,
+              (index) => ContributionTile(
+                index,
+                currentContributionLI: contributions[index],
+                editFunction: (int contributionToEditId) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddEditContributionScreen(
+                        addEditPage: AppPage.editContribution,
+                        contributionToEditId: contributionToEditId,
+                        contributionListItems: contributions,
+                        contributionsPageRefresher: () {
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  );
+                },
+                deleteFunction: (int contributionToDeleteId) {
+                  contributions.removeWhere(
+                    (element) => element.id == contributionToDeleteId,
+                  );
+                  ContributionProvider.deleteContribution(
+                    id: contributionToDeleteId,
+                  );
+                  setState(() {});
+                },
+                pageRefresher: () {
+                  setState(() {});
+                },
               ),
-            )
-          : TRCornerWidget(
-              mainWidget: makeContributedSpotCard(index),
-              cornerIconButton: optionsIconButton(index),
             ),
-    );
-
-    return ListView(
-      children: <Widget>[
-        SizedBox(
-          width: SizeConfig.screenWidth,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20.83)),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: percentageHeight(1.62)),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (contributedSpots.length == 2) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(child: contributedSpotCards[0]),
-                          Container(child: contributedSpotCards[1]),
-                        ],
-                      );
-                    }
-
-                    return Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      runSpacing: 25,
-                      children: contributedSpotCards,
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+          );
+        } else {
+          return const Text('Loading');
+        }
+      },
     );
   }
 }

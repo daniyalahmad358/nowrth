@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/models/classes/contribution.dart';
 
 import 'package:nowrth/models/enums/app_pages.dart';
 
@@ -8,12 +9,17 @@ import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/components/drawer/custom_drawer.dart';
 import 'package:nowrth/components/custom_floating_action_button.dart';
 
-import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_spot_screen.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_screen.dart';
 
 import 'package:nowrth/screens/contribution/contributions/components/contributions_body.dart';
 
 class ContributionsScreen extends StatefulWidget {
-  const ContributionsScreen({Key? key}) : super(key: key);
+  final List<ContributionListItem> allContributions;
+
+  const ContributionsScreen({
+    Key? key,
+    required this.allContributions,
+  }) : super(key: key);
 
   @override
   _ContributionsScreenState createState() => _ContributionsScreenState();
@@ -30,9 +36,8 @@ class _ContributionsScreenState extends State<ContributionsScreen> {
         titleText: 'Contributions',
         atPage: currentPage,
       ),
-      body: StatefulBuilder(
-          builder: (context, setStateBody) => const ContributionsBody()),
-      bottomNavigationBar: const CustomBottonNavBar(),
+      body: ContributionsBody(allContributions: widget.allContributions),
+      bottomNavigationBar: const CustomBottomNavBar(),
       drawer: CustomDrawer(
         currentPage: currentPage,
         menuItems: menuItems(context, currentPage),
@@ -43,8 +48,9 @@ class _ContributionsScreenState extends State<ContributionsScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddEditSpotScreen(
+              builder: (context) => AddEditContributionScreen(
                 addEditPage: AppPage.addContribution,
+                contributionListItems: widget.allContributions,
                 contributionsPageRefresher: () {
                   setState(() {});
                 },

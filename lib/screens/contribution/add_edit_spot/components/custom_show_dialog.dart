@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 Future<dynamic> customShowDialog(BuildContext context,
     {required String title,

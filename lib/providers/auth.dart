@@ -10,17 +10,16 @@ import 'api_provider.dart';
 
 class Auth with ChangeNotifier {
   // var authKey = Api.authKey;
-  ApiProvider apiProvider = ApiProvider();
 
   String? _token;
   String? _userId;
-  String? _userEmail;
+  // String? _userEmail;
   // DateTime? _expiryDate;
   Timer? _authTimer;
 
-  bool get isAuth {
+  Future<bool> get isAuth async {
     var auth = false;
-    // tryautoLogin().then((value) => auth = value);
+    auth = await tryautoLogin();
     return auth;
   }
 
@@ -40,14 +39,14 @@ class Auth with ChangeNotifier {
   // }
   Future<void> logout() async {
     _token = null;
-    _userEmail = null;
+    // _userEmail = null;
     _userId = null;
     // _expiryDate = null;
     if (_authTimer != null) {
       _authTimer!.cancel();
       _authTimer = null;
     }
-    notifyListeners();
+    // notifyListeners();
     final pref = await SharedPreferences.getInstance();
     pref.clear();
   }
@@ -64,27 +63,33 @@ class Auth with ChangeNotifier {
     final pref = await SharedPreferences.getInstance();
     if (!pref.containsKey('userData')) {
       return false;
+    } else {
+      // final extractedUserData = json.decode(pref.getString('userData') as String)
+      //     as Map<String, dynamic>;
+
+      Map<String, dynamic> extractedUserData = Map<String, dynamic>.from(
+          json.decode(pref.getString('userData') as String));
+
+      // final expiryDate =
+      // DateTime.parse(extractedUserData['expiryDate'] as String);
+      // if (expiryDate.isBefore(DateTime.now())) {
+      // return false;
+      // }
+      _token = extractedUserData['token'] as String?;
+      _userId = extractedUserData['userId'] as String?;
+
+      if (_token == null || _userId == null) {
+        return false;
+      } else {
+        // _expiryDate = expiryDate;
+        // notifyListeners();
+        _autologout();
+      }
     }
-
-    final extractedUserData = json.decode(pref.getString('userData') as String)
-        as Map<String, dynamic>;
-
-    // final expiryDate =
-    // DateTime.parse(extractedUserData['expiryDate'] as String);
-    // if (expiryDate.isBefore(DateTime.now())) {
-    // return false;
-    // }
-    _token = extractedUserData['token'] as String?;
-    _userId = extractedUserData['userId'] as String?;
-    _userEmail = extractedUserData['userEmail'] as String?;
-    // _expiryDate = expiryDate;
-    notifyListeners();
-    _autologout();
-
     return true;
   }
 
-  Future<void> authentication(
+  Future<bool?> authentication(
     String email,
     String password,
     String endpoint,
@@ -92,47 +97,47 @@ class Auth with ChangeNotifier {
     try {
       final url = 'authentication/$endpoint';
 
-      final response = await apiProvider.post(
+      final response = await ApiProvider.post(
         url: url,
         body: {
-          "userName": email,
-          "email": email,
-          "password": password,
+          'userName': email,
+          'email': email,
+          'password': password,
         },
       );
+      if (response.body.isNotEmpty) {
+        final responseData = json.decode(response.body);
+        if (responseData['error'] != null) {
+          throw HttpException(responseData['error']['message']);
+        }
+        _token = responseData['token'];
+        _userId = responseData['userId'];
+        // _expiryDate = DateTime.now()
+        // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
 
-      final responseData = json.decode(response.body);
-      // print(responceData);
-      if (responseData['error'] != null) {
-        throw HttpException(responseData['error']['message']);
+        _autologout();
+        // notifyListeners();
+
+        final prefs = await SharedPreferences.getInstance();
+        final userData = json.encode(
+          {
+            'token': _token,
+            'userId': _userId,
+            // 'expiryDate': _expiryDate!.toIso8601String(),
+          },
+        );
+
+        prefs.setString('userData', userData);
+      } else {
+        throw Exception('Error: Empty Response Body');
       }
-      _token = responseData['token'];
-      _userId = responseData['localId'];
-      _userEmail = responseData['email'];
-      // _expiryDate = DateTime.now()
-      // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
-
-      _autologout();
-      notifyListeners();
-
-      final prefs = await SharedPreferences.getInstance();
-      final userData = json.encode({
-        'token': _token,
-        'userId': _userId,
-        'userEmail': _userEmail,
-        // 'expiryDate': _expiryDate!.toIso8601String(),
-      });
-
-      prefs.setString('userData', userData);
-
-      // print('check' + userData.toString());
     } catch (e) {
       rethrow;
-      // throw e;
     }
+    return true;
   }
 
-  Future<void> login(String email, String password) {
+  Future<bool?> login(String email, String password) {
     return authentication(email, password, 'login');
   }
 

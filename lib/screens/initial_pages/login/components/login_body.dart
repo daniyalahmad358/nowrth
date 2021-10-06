@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/home/components/already_have_an_account_acheck.dart';
@@ -41,7 +41,7 @@ class LoginBody extends StatelessWidget {
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),
             RoundedInputField(
-              hintText: 'Your Email',
+              hintText: 'Email Address',
               controller: emailController,
             ),
             RoundedPasswordField(
@@ -49,17 +49,22 @@ class LoginBody extends StatelessWidget {
             ),
             RoundButton(
               text: 'LOGIN',
-              press: () {
-                Auth().login(emailController.text, passwordController.text);
+              color: Theme.of(context).primaryColor,
+              textColor: Colors.white,
+              press: () async {
+                bool? authorized = await Auth()
+                    .login(emailController.text, passwordController.text);
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const HomeScreen();
-                    },
-                  ),
-                );
+                if (authorized ?? false) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const HomeScreen();
+                      },
+                    ),
+                  );
+                }
               },
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.03),

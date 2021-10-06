@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class MyHeaderDrawer extends StatelessWidget {
   const MyHeaderDrawer({Key? key}) : super(key: key);
@@ -9,7 +8,7 @@ class MyHeaderDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kPrimaryColor.withOpacity(0.5),
+      // color: kPrimaryColor.withOpacity(0.5),
       height: SizeConfig.screenHeight * (2 / 7),
       padding: EdgeInsets.only(top: SizeConfig.screenHeight / 35),
       child: Column(
@@ -28,16 +27,12 @@ class MyHeaderDrawer extends StatelessWidget {
           Text(
             'Rapid Tech',
             style: TextStyle(
-              color: Colors.grey[200],
-              // color: kPrimaryLightColor,
               fontSize: SizeConfig.screenHeight / 35,
             ),
           ),
           Text(
             'info@rapidtech.dev',
             style: TextStyle(
-              color: Colors.grey[200],
-              // color: kPrimaryLightColor,
               fontSize: SizeConfig.screenHeight / 50,
             ),
           ),

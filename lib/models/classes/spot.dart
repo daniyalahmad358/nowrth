@@ -9,7 +9,8 @@ class Spot {
   final UniqueKey spotID;
   String spotName;
   SpotType spotType;
-  SpotLocation spotLocation;
+  Coordinates spotCoordinates;
+  Address address;
   List<Image> images;
   double rating;
   List<Guide>? guides;
@@ -23,7 +24,8 @@ class Spot {
     required this.spotID,
     required this.spotName,
     required this.spotType,
-    required this.spotLocation,
+    required this.spotCoordinates,
+    required this.address,
     required this.rating,
     required this.images,
     this.guides,

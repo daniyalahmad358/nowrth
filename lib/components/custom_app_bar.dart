@@ -1,11 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:nowrth/global/app_shadows.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final BuildContext context;
@@ -28,16 +28,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return AppBar(
-      shadowColor: kPrimaryColor.withOpacity(0.25),
+      shadowColor: kDefualtShadow.color.withOpacity(0.25),
       elevation: 5,
       toolbarHeight: percentageHeight(9),
       centerTitle: true,
-      // backgroundColor: Colors.white.withOpacity(barOpacity),
       iconTheme: IconThemeData(
-        color: kPrimaryColor,
         size: percentageHeight(3.902),
       ),
-      backgroundColor: kPrimaryLightColor.withOpacity(barOpacity),
       flexibleSpace: ClipRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -46,7 +43,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         titleText,
-        style: TextStyle(color: kTextColor, fontSize: percentageHeight(3.25)),
+        style: TextStyle(
+          fontSize: percentageHeight(3.25),
+        ),
       ),
       actions: <Widget>[
         IconButton(
