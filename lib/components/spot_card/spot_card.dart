@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/app_shadows.dart';
+import 'package:nowrth/global/app_shadows.dart';
 
-import 'package:nowrth/constants/app_paddings.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/app_paddings.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/models/classes/guide.dart';
@@ -28,9 +28,8 @@ class SpotCard extends StatelessWidget {
         width: percentageWidth(isFullCard ? 38.165 : 33.09),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          boxShadow: [kDefualtShadow],
+          boxShadow: const [kDefualtShadow],
           borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
         ),
         child: Column(
           children: <Widget>[

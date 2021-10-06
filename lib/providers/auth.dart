@@ -10,7 +10,6 @@ import 'api_provider.dart';
 
 class Auth with ChangeNotifier {
   // var authKey = Api.authKey;
-  ApiProvider apiProvider = ApiProvider();
 
   String? _token;
   String? _userId;
@@ -47,7 +46,7 @@ class Auth with ChangeNotifier {
       _authTimer!.cancel();
       _authTimer = null;
     }
-    notifyListeners();
+    // notifyListeners();
     final pref = await SharedPreferences.getInstance();
     pref.clear();
   }
@@ -64,26 +63,29 @@ class Auth with ChangeNotifier {
     final pref = await SharedPreferences.getInstance();
     if (!pref.containsKey('userData')) {
       return false;
+    } else {
+      // final extractedUserData = json.decode(pref.getString('userData') as String)
+      //     as Map<String, dynamic>;
+
+      Map<String, dynamic> extractedUserData = Map<String, dynamic>.from(
+          json.decode(pref.getString('userData') as String));
+
+      // final expiryDate =
+      // DateTime.parse(extractedUserData['expiryDate'] as String);
+      // if (expiryDate.isBefore(DateTime.now())) {
+      // return false;
+      // }
+      _token = extractedUserData['token'] as String?;
+      _userId = extractedUserData['userId'] as String?;
+
+      if (_token == null || _userId == null) {
+        return false;
+      } else {
+        // _expiryDate = expiryDate;
+        // notifyListeners();
+        _autologout();
+      }
     }
-
-    // final extractedUserData = json.decode(pref.getString('userData') as String)
-    //     as Map<String, dynamic>;
-
-    Map<String, dynamic> extractedUserData = Map<String, dynamic>.from(
-        json.decode(pref.getString('userData') as String));
-
-    // final expiryDate =
-    // DateTime.parse(extractedUserData['expiryDate'] as String);
-    // if (expiryDate.isBefore(DateTime.now())) {
-    // return false;
-    // }
-    _token = extractedUserData['token'] as String;
-    _userId = extractedUserData['userId'] as String?;
-    // _userEmail = extractedUserData['userEmail'] as String?;
-    // _expiryDate = expiryDate;
-    // notifyListeners();
-    _autologout();
-
     return true;
   }
 
@@ -95,7 +97,7 @@ class Auth with ChangeNotifier {
     try {
       final url = 'authentication/$endpoint';
 
-      final response = await apiProvider.post(
+      final response = await ApiProvider.post(
         url: url,
         body: {
           'userName': email,
@@ -114,7 +116,7 @@ class Auth with ChangeNotifier {
         // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
 
         _autologout();
-        notifyListeners();
+        // notifyListeners();
 
         final prefs = await SharedPreferences.getInstance();
         final userData = json.encode(

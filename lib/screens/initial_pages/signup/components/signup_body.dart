@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/providers/auth.dart';
 
 import 'package:nowrth/screens/home/components/already_have_an_account_acheck.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/screens/initial_pages/components/rounded_input_field.dart';
 import 'package:nowrth/screens/initial_pages/components/rounded_password_field.dart';
@@ -41,7 +40,7 @@ class SignupBody extends StatelessWidget {
               height: SizeConfig.screenHeight * 0.35,
             ),
             RoundedInputField(
-              hintText: 'Your Email',
+              hintText: 'Email Address',
               controller: emailController,
             ),
             RoundedPasswordField(
@@ -49,7 +48,7 @@ class SignupBody extends StatelessWidget {
             ),
             RoundButton(
               text: 'SIGNUP',
-              color: kPrimaryColor,
+              color: Theme.of(context).primaryColor,
               textColor: Colors.white,
               press: () {
                 Auth().signUp(emailController.text, passwordController.text);

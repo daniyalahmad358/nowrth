@@ -6,18 +6,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:nowrth/utils/api.dart';
 
 class ApiProvider {
-  String mainUrl = Api.authUrl;
-  final Map<String, String> _headers = {'Content-Type': 'application/json'};
+  static String mainUrl = Api.authUrl;
+  static final Map<String, String> _headers = {
+    'Content-Type': 'application/json'
+  };
 
-  String? token;
+  static String? token;
 
-  void addTokenToheader() {
+  static void addTokenToheader() {
     if (token != null) {
       _headers.addEntries([MapEntry('Authorization', 'bearer ${token!}')]);
     }
   }
 
-  Future<void> setToken() async {
+  static Future<void> setToken() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map<String, dynamic> extractedUserData = Map<String, dynamic>.from(
         json.decode(sharedPreferences.getString('userData') as String));
@@ -25,7 +27,7 @@ class ApiProvider {
     token = (extractedUserData['token'] as String?);
   }
 
-  Future post({required String url, required body}) async {
+  static Future post({required String url, required body}) async {
     await setToken();
     String apiUrl = mainUrl + url;
     addTokenToheader();
@@ -37,7 +39,7 @@ class ApiProvider {
     );
   }
 
-  Future put({required String url, required body}) async {
+  static Future put({required String url, required body}) async {
     await setToken();
     String apiUrl = mainUrl + url;
     addTokenToheader();
@@ -49,11 +51,21 @@ class ApiProvider {
     );
   }
 
-  Future get({required String url}) async {
+  static Future get({required String url}) async {
     await setToken();
     String apiUrl = mainUrl + url;
     addTokenToheader();
     return http.get(
+      Uri.parse(apiUrl),
+      headers: _headers,
+    );
+  }
+
+  static Future delete({required String url}) async {
+    await setToken();
+    String apiUrl = mainUrl + url;
+    addTokenToheader();
+    return http.delete(
       Uri.parse(apiUrl),
       headers: _headers,
     );

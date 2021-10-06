@@ -2,9 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'my_drawer_header.dart';
 
@@ -24,8 +23,8 @@ class CustomDrawer extends StatelessWidget {
       width: percentageHeight(35),
       child: Theme(
         data: Theme.of(context).copyWith(
-          canvasColor: kPrimaryColor.withOpacity(0.5),
-        ),
+            // canvasColor: kPrimaryColor.withOpacity(0.5),
+            ),
         child: Drawer(
           child: ClipRect(
             child: BackdropFilter(
@@ -85,7 +84,7 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: selected ? kPrimaryColor.withOpacity(0.5) : Colors.transparent,
+      // color: selected ? kPrimaryColor.withOpacity(0.5) : Colors.transparent,
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -102,8 +101,6 @@ class MenuItem extends StatelessWidget {
                 child: Icon(
                   iconData,
                   size: percentageHeight(2.94),
-                  // color: Colors.grey[300],
-                  color: kSecondaryColor,
                 ),
               ),
               Expanded(
@@ -111,8 +108,6 @@ class MenuItem extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                    // color: Colors.grey[300],
-                    color: kSecondaryColor,
                     // fontSize: SizeConfig.screenHeight / 42,
                     fontSize: percentageHeight(2.35),
                   ),

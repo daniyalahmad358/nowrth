@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class OrDivider extends StatelessWidget {
   const OrDivider({Key? key}) : super(key: key);
@@ -13,19 +12,18 @@ class OrDivider extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight * 0.02),
       width: SizeConfig.screenWidth * 0.8,
       child: Row(
-        children: <Widget>[
-          const CustomDivider(),
+        children: const <Widget>[
+          CustomDivider(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               'OR',
               style: TextStyle(
-                color: kPrimaryColor,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          const CustomDivider(),
+          CustomDivider(),
         ],
       ),
     );
@@ -39,7 +37,6 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Expanded(
       child: Divider(
-        color: Color(0xFFD9D9D9),
         height: 1.5,
       ),
     );

@@ -11,12 +11,14 @@ import 'package:nowrth/screens/contribution/add_edit_spot/components/add_edit_co
 class AddEditContributionScreen extends StatelessWidget {
   final AppPage addEditPage;
   final int? contributionToEditId;
-  final Function()? contributionsPageRefresher;
+  final List<ContributionListItem> contributionListItems;
+  final Function() contributionsPageRefresher;
 
   const AddEditContributionScreen({
     Key? key,
     required this.addEditPage,
     required this.contributionsPageRefresher,
+    required this.contributionListItems,
     this.contributionToEditId,
   }) : super(key: key);
 
@@ -33,6 +35,7 @@ class AddEditContributionScreen extends StatelessWidget {
         curentPage: addEditPage,
         contributionToEditId: contributionToEditId,
         contributionsPageRefresher: contributionsPageRefresher,
+        contributionListItems: contributionListItems,
       ),
       bottomNavigationBar: const CustomBottomNavBar(),
       extendBodyBehindAppBar: true,

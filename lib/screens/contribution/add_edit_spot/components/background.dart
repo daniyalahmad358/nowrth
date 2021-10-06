@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class Background extends StatelessWidget {
   final Widget child;

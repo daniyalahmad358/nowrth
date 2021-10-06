@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:nowrth/constants/app_colors.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
@@ -17,8 +17,8 @@ class TextFieldContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: SizeConfig.screenWidth * 0.8,
       decoration: BoxDecoration(
-        color: kPrimaryLightColor,
         borderRadius: BorderRadius.circular(29),
+        border: Border.all(color: Theme.of(context).dividerColor),
       ),
       child: child,
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/screens/in_app_notifications/components/in_app_notification_card.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/temp/in_app_notifications.dart';
 

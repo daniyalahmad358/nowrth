@@ -14,11 +14,11 @@ import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_
 import 'package:nowrth/screens/contribution/contributions/components/contributions_body.dart';
 
 class ContributionsScreen extends StatefulWidget {
-  final ContributionListItem? addedContribution;
+  final List<ContributionListItem> allContributions;
 
   const ContributionsScreen({
     Key? key,
-    this.addedContribution,
+    required this.allContributions,
   }) : super(key: key);
 
   @override
@@ -36,7 +36,7 @@ class _ContributionsScreenState extends State<ContributionsScreen> {
         titleText: 'Contributions',
         atPage: currentPage,
       ),
-      body: ContributionsBody(addedContribution: widget.addedContribution),
+      body: ContributionsBody(allContributions: widget.allContributions),
       bottomNavigationBar: const CustomBottomNavBar(),
       drawer: CustomDrawer(
         currentPage: currentPage,
@@ -50,6 +50,7 @@ class _ContributionsScreenState extends State<ContributionsScreen> {
             MaterialPageRoute(
               builder: (context) => AddEditContributionScreen(
                 addEditPage: AppPage.addContribution,
+                contributionListItems: widget.allContributions,
                 contributionsPageRefresher: () {
                   setState(() {});
                 },
