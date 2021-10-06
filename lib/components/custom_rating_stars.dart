@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-
 class CustomRatingStars implements RatingWidget {
   final Color? starColor;
   const CustomRatingStars({
@@ -11,25 +9,18 @@ class CustomRatingStars implements RatingWidget {
     this.starColor,
   });
 
-  Color? getStarColor() {
-    return (starColor == null) ? kPrimaryColor : starColor;
-  }
-
   @override
-  Widget get full => Icon(
+  Widget get full => const Icon(
         Icons.star,
-        color: getStarColor(),
       );
 
   @override
-  Widget get half => Icon(
+  Widget get half => const Icon(
         Icons.star_half,
-        color: getStarColor(),
       );
 
   @override
-  Widget get empty => Icon(
+  Widget get empty => const Icon(
         Icons.star_outline,
-        color: getStarColor(),
       );
 }

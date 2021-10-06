@@ -18,7 +18,7 @@ class Address {
     required this.country,
   });
 
-  String get fullLocation {
+  String get fullAddress {
     return '$cityOrTown, $country';
   }
 }

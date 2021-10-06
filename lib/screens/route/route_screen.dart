@@ -31,7 +31,6 @@ class RouteScreen extends StatelessWidget {
         iconData: Icons.map_outlined,
         onPressed: () {},
       ),
-      // backgroundColor: Colors.blueGrey,
       extendBodyBehindAppBar: false,
     );
   }

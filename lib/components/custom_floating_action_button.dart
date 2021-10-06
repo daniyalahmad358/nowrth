@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   final IconData iconData;
@@ -23,9 +22,7 @@ class CustomFloatingActionButton extends StatelessWidget {
         child: FloatingActionButton(
           child: Icon(
             iconData,
-            color: Colors.white,
           ),
-          backgroundColor: kPrimaryColor,
           onPressed: onPressed,
         ),
       ),

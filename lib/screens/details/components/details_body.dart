@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:nowrth/components/custom_rating_stars.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/temp/user_data.dart';
@@ -83,7 +82,6 @@ class DetailsBody extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: percentageHeight(3.252),
-                      color: kTextColor,
                     ),
                     maxLines: 2,
                     textAlign: TextAlign.left,
@@ -99,7 +97,6 @@ class DetailsBody extends StatelessWidget {
                         (likedSpots.contains(spot))
                             ? Icons.favorite
                             : Icons.favorite_border,
-                        color: kPrimaryColor,
                       ),
                       onPressed: () {
                         setIconState(() {
@@ -118,17 +115,15 @@ class DetailsBody extends StatelessWidget {
                 Icon(
                   Icons.location_on,
                   size: percentageHeight(2.34),
-                  color: Colors.blueGrey[300],
                 ),
                 SizedBox(width: percentageHeight(0.488)),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    spot.address.fullLocation,
+                    spot.address.fullAddress,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: percentageHeight(2.1138),
-                      color: Colors.blueGrey[300],
                     ),
                     maxLines: 1,
                     textAlign: TextAlign.left,

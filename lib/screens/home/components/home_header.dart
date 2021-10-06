@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'search_fields.dart';
 

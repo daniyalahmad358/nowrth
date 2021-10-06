@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 import 'package:nowrth/screens/route/components/enums/connector_type.dart';
 
 import 'package:nowrth/screens/route/components/enums/sides.dart';
@@ -11,12 +10,12 @@ import 'timeline_content.dart';
 
 class CustomTimeline extends StatelessWidget {
   final List<TimelineContent> timelineContents;
-  final List<String> sideValues;
+  final List<String?>? sideValues;
 
   const CustomTimeline({
     Key? key,
     required this.timelineContents,
-    this.sideValues = const [],
+    this.sideValues,
   }) : super(key: key);
 
   @override
@@ -47,7 +46,7 @@ class CustomTimeline extends StatelessWidget {
                     contentWidget: timelineContents[index],
                     barHeight: connectorBarHeight,
                     contentSide: timelineContents[index].contentSide,
-                    sideValue: sideValues[index],
+                    sideValue: sideValues?[index],
                   ),
                 ],
               );
@@ -56,7 +55,7 @@ class CustomTimeline extends StatelessWidget {
           TimelineConnector(
             connectorType: ConnectorType.end,
             barHeight: connectorBarHeight,
-            sideValue: sideValues[-1],
+            sideValue: sideValues?[-1] ?? '',
           ),
         ],
       ),
@@ -88,8 +87,7 @@ class TimelineConnector extends StatelessWidget {
     Container connectorCircle = Container(
       height: percentageHeight(1.65),
       width: percentageHeight(1.65),
-      decoration: BoxDecoration(
-        color: kTextColor,
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
       ),
     );

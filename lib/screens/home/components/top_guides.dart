@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:nowrth/screens/home/components/section_title.dart';
-import 'package:nowrth/constants/app_shadows.dart';
-import 'package:nowrth/constants/app_paddings.dart';
+import 'package:nowrth/global/app_shadows.dart';
+import 'package:nowrth/global/app_paddings.dart';
 import 'package:nowrth/models/classes/guide.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/temp/top_guides.dart';
 
@@ -18,7 +18,7 @@ class TopGuidesFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SectionTitle(title: 'Top Guides on Nowrth', press: () {}),
+        SectionTitle(title: 'Top Contributors on Nowrth', press: () {}),
         const VerticalSpacing(of: 20),
         Container(
           margin: EdgeInsets.symmetric(
@@ -28,8 +28,7 @@ class TopGuidesFrame extends StatelessWidget {
           // height: getProportionateScreenHeight(119.17),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-            boxShadow: [kDefualtShadow],
+            boxShadow: const [kDefualtShadow],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

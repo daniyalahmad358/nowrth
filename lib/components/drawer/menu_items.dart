@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
+import 'package:nowrth/models/classes/contribution.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
 
 import 'package:nowrth/components/drawer/custom_drawer.dart';
@@ -55,18 +55,21 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       selected: isOnPage(currentPage, AppPage.contributions),
       onTap: !isOnPage(currentPage, AppPage.contributions)
           ? () {
+              List<ContributionListItem> contributionListItems = [];
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ContributionsScreen(),
+                  builder: (context) => ContributionsScreen(
+                    allContributions: contributionListItems,
+                  ),
                 ),
               );
             }
           : null,
     ),
-    Divider(
-      color: kPrimaryColor.withOpacity(0.8),
-    ),
+    const Divider(
+        // color: kPrimaryColor.withOpacity(0.8),
+        ),
     MenuItem(
       title: 'Notifications',
       iconData: Icons.notifications_outlined,
@@ -88,9 +91,9 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       selected: isOnPage(currentPage, AppPage.settings),
       onTap: !isOnPage(currentPage, AppPage.settings) ? null : null,
     ),
-    Divider(
-      color: kPrimaryColor.withOpacity(0.8),
-    ),
+    const Divider(
+        // color: kPrimaryColor.withOpacity(0.8),
+        ),
     MenuItem(
       title: 'About',
       iconData: Icons.info_outlined,

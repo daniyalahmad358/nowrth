@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_paddings.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/app_paddings.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({
@@ -14,16 +14,13 @@ class SearchField extends StatelessWidget {
       width: getProportionateScreenWidth(260.83),
       height: getProportionateScreenHeight(41.67),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(5),
-        border: Border.all(
-          color: const Color(0xFF3E4067),
-        ),
-        boxShadow: [
+        border: Border.all(),
+        boxShadow: const [
           BoxShadow(
-            offset: const Offset(3, 3),
+            offset: Offset(3, 3),
             blurRadius: 10,
-            color: Colors.black.withOpacity(0.16),
+            // color: Colors.black.withOpacity(0.16),
             spreadRadius: -2,
           )
         ],
@@ -34,7 +31,6 @@ class SearchField extends StatelessWidget {
           hintText: 'Search your destination…',
           hintStyle: TextStyle(
             fontSize: getProportionateScreenHeight(12),
-            color: const Color(0xFF464A7E),
           ),
           suffixIcon: const Icon(Icons.search),
           contentPadding: EdgeInsets.symmetric(

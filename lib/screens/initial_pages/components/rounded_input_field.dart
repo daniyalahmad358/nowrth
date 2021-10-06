@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-
 import 'package:nowrth/screens/initial_pages/components/text_field_container.dart';
 
 class RoundedInputField extends StatelessWidget {
@@ -12,7 +10,7 @@ class RoundedInputField extends StatelessWidget {
     Key? key,
     required this.controller,
     this.hintText,
-    this.icon = Icons.person,
+    this.icon = Icons.email,
   }) : super(key: key);
 
   @override
@@ -20,11 +18,9 @@ class RoundedInputField extends StatelessWidget {
     return TextFieldContainer(
       child: TextField(
         controller: controller,
-        cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           icon: Icon(
             icon,
-            color: kPrimaryColor,
           ),
           hintText: hintText,
           border: InputBorder.none,

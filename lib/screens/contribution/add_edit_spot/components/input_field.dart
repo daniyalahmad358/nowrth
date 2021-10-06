@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/constants/app_colors.dart';
-
 class InputField extends StatelessWidget {
   final int maxLines;
   final String? hintText;
@@ -26,7 +24,6 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextField readyTextField = TextField(
       controller: controller,
-      cursorColor: kPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(
         contentPadding: innerPad,

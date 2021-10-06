@@ -1,11 +1,13 @@
+// import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
-import 'package:nowrth/constants/app_colors.dart';
-import 'package:nowrth/constants/size_config.dart';
+import 'package:flutter/widgets.dart';
+import 'package:nowrth/global/size_config.dart';
 
 class RoundButton extends StatelessWidget {
   final String text;
   final Function() press;
-  final Color color, textColor;
+  final Color color;
+  final Color textColor;
 
   const RoundButton({
     Key? key,
@@ -25,10 +27,10 @@ class RoundButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(29),
         child: TextButton(
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(
+            backgroundColor: MaterialStateProperty.all<Color>(color),
+            padding: MaterialStateProperty.all<EdgeInsets>(
               const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
             ),
-            backgroundColor: MaterialStateProperty.all(kPrimaryColor),
           ),
           onPressed: press,
           child: Text(

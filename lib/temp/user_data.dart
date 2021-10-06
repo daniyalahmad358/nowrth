@@ -1,8 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:nowrth/models/classes/contribution.dart';
 import 'package:nowrth/models/classes/spot.dart';
-import 'package:nowrth/models/classes/spot_location.dart';
-import 'package:nowrth/models/enums/contribution_status.dart';
 
 import 'package:nowrth/temp/spot/spot.dart';
 

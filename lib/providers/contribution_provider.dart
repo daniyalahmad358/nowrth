@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/widgets.dart';
 import 'package:nowrth/models/classes/spot_location.dart';
 import 'package:nowrth/models/classes/spot_type.dart';
 
@@ -12,42 +10,60 @@ import 'package:nowrth/utils/image_utils.dart';
 
 // class ContributionProvider with ChangeNotifier {
 abstract class ContributionProvider {
-  static final ApiProvider apiProvider = ApiProvider();
-  static const String initUrl = 'contribution/';
+  static const String _initUrl = 'contribution/';
+  static const String _data_ = 'data';
+  static const String _id_ = 'id';
+  static const String _name_ = 'name';
+  static const String _iconCode_ = 'iconCode';
+  static const String _address_ = 'address';
+  static const String _description_ = 'description';
+  static const String _images_ = 'images';
+  static const String _thumbnail_ = 'thumbnail';
+
+  static const String _spotTypeId_ = 'spotTypeId';
+  static const String _spotType_ = 'spotType';
+  static const String _coordinates_ = 'coordinates';
+  static const String _latitude_ = 'latitude';
+  static const String _longitude_ = 'longitude';
+
+  static const String _spotTypeIconCode_ = 'spotTypeIconCode';
+  static const String _statusIconCode_ = 'statusIconCode';
+  static const String _error_ = 'error';
+  static const String _message_ = 'message';
 
   static Future<ContributionListItem> addContributionRequest({
     required String name,
     required SpotType spotType,
     required Coordinates coordinates,
+    required Address address,
     required String description,
     required List<String> imageBase64s,
   }) async {
     try {
       String endpoint = 'create';
 
-      final url = initUrl + endpoint;
+      final url = _initUrl + endpoint;
 
-      final response = await apiProvider.post(
+      final response = await ApiProvider.post(
         url: url,
         body: {
-          'name': name,
-          'spotTypeId': spotType.id,
-          'latitude': coordinates.latitude,
-          'longitude': coordinates.longitude,
-          'description': description,
-          'images': imageBase64s,
+          _name_: name,
+          _spotTypeId_: spotType.id,
+          _latitude_: coordinates.latitude,
+          _longitude_: coordinates.longitude,
+          _address_: address.fullAddress,
+          _description_: description,
+          _images_: imageBase64s,
         },
       );
 
-      final responseData = json.decode(response.body);
-      if (responseData['error'] != null) {
-        throw HttpException(responseData['error']['message']);
+      final responseBody = json.decode(response.body);
+      if (responseBody[_error_] != null) {
+        throw HttpException(responseBody[_error_][_message_]);
       }
 
-      int _id = responseData['data']['id'];
-      Address _address = responseData['data']['address'];
-      int _statusIconCode = responseData['data']['statusIconCode'];
-      int _spotTypeIconCode = responseData['data']['spotTypeIconCode'];
+      int _id = responseBody[_data_];
+      // int _statusIconCode = responseData[_data][_statusIconCode_];
 
       /*
         // _expiryDate = DateTime.now()
@@ -58,10 +74,10 @@ abstract class ContributionProvider {
       return ContributionListItem(
         id: _id,
         name: name,
-        address: _address,
+        address: address,
         thumbnail: ImageUtils.base64ToImg(imageBase64s[0]),
-        statusIconCode: _statusIconCode,
-        spotTypeIconCode: _spotTypeIconCode,
+        spotTypeIconCode: spotType.iconCode,
+        statusIconCode: 58927,
       );
     } catch (e) {
       rethrow;
@@ -70,48 +86,41 @@ abstract class ContributionProvider {
 
   static Future<ContributionListItem> updateContributionRequest({
     required Contribution contribution,
-    required List<String> imageBase64s,
   }) async {
-    String endpoint = 'update';
-
     try {
-      final url = initUrl + endpoint;
+      String endpoint = 'update';
 
-      final response = await apiProvider.post(
+      final url = _initUrl + endpoint;
+
+      final response = await ApiProvider.put(
         url: url,
         body: {
-          'id': contribution.id,
-          'name': contribution.name,
-          'spotType': contribution.spotType,
-          'latitude': contribution.coordinates.latitude,
-          'longitude': contribution.coordinates.longitude,
-          'description': contribution.description,
-          'images': imageBase64s,
+          _id_: contribution.id,
+          _name_: contribution.name,
+          _spotTypeId_: contribution.spotType.id,
+          _latitude_: contribution.coordinates.latitude,
+          _longitude_: contribution.coordinates.longitude,
+          _address_: contribution.address.fullAddress,
+          _description_: contribution.description,
+          _images_: contribution.imageBase64s,
         },
       );
 
-      final responseData = json.decode(response.body);
-      if (responseData['error'] != null) {
-        throw HttpException(responseData['error']['message']);
+      final responseBody = json.decode(response.body);
+      if (responseBody[_error_] != null) {
+        throw HttpException(responseBody[_error_][_message_]);
       }
 
-      Address _address = responseData['data']['address'];
-      int _statusIconCode = responseData['data']['statusIconCode'];
-      int _spotTypeIconCode = responseData['data']['spotTypeIconCode'];
-
+      // int _statusIconCode = responseBody[_data_][_statusIconCode_];
       /*
         // _expiryDate = DateTime.now()
         // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
         // notifyListeners();
       */
 
-      return ContributionListItem(
-        id: contribution.id,
-        name: contribution.name,
-        address: _address,
-        thumbnail: ImageUtils.base64ToImg(imageBase64s[0]),
-        statusIconCode: _statusIconCode,
-        spotTypeIconCode: _spotTypeIconCode,
+      return ContributionListItem.fromContribution(
+        contribution: contribution,
+        newStatusIconCode: 61533,
       );
     } catch (e) {
       rethrow;
@@ -119,29 +128,35 @@ abstract class ContributionProvider {
   }
 
   static Future<List<ContributionListItem>> getContributionListItems() async {
-    String endpoint = 'create';
+    String endpoint = 'GetAll';
     try {
-      final url = initUrl + endpoint;
-      final response = await apiProvider.get(
-        url: url,
-      );
-      final responseData = json.decode(response.body);
-      if (responseData['error'] != null) {
-        throw HttpException(responseData['error']['message']);
+      final url = _initUrl + endpoint;
+      final response = await ApiProvider.get(url: url);
+      final responseBody = json.decode(response.body);
+      if (responseBody[_error_] != null) {
+        throw HttpException(responseBody[_error_][_message_]);
       }
 
-      List responseList = responseData['data'];
+      List responseData = responseBody[_data_];
 
       return List<ContributionListItem>.generate(
-        responseList.length,
-        (i) => ContributionListItem(
-          id: responseList[i]['id'],
-          name: responseList[i]['name'],
-          address: responseList[i]['address'],
-          statusIconCode: responseList[i]['statusIconCode'],
-          thumbnail: ImageUtils.base64ToImg(responseList[i]['thumbnail']),
-          spotTypeIconCode: responseList[i]['spotTypeIconCode'],
-        ),
+        responseData.length,
+        (i) {
+          final String address = responseData[i][_address_];
+          final int firstCommaIndex = address.indexOf(', ');
+
+          return ContributionListItem(
+            id: responseData[i][_id_],
+            name: responseData[i][_name_],
+            address: Address(
+              cityOrTown: address.substring(0, firstCommaIndex),
+              country: address.substring(firstCommaIndex + 2),
+            ),
+            thumbnail: ImageUtils.base64ToImg(responseData[i][_thumbnail_]),
+            spotTypeIconCode: responseData[i][_spotTypeIconCode_],
+            statusIconCode: responseData[i][_statusIconCode_],
+          );
+        },
       );
     } catch (e) {
       rethrow;
@@ -152,15 +167,13 @@ abstract class ContributionProvider {
     String endpoint = 'get';
 
     try {
-      final url = initUrl + endpoint + '?id=$id';
+      final url = _initUrl + endpoint + '?id=$id';
 
-      final response = await apiProvider.get(
-        url: url,
-      );
+      final response = await ApiProvider.get(url: url);
 
       final responseBody = json.decode(response.body);
-      if (responseBody['error'] != null) {
-        throw HttpException(responseBody['error']['message']);
+      if (responseBody[_error_] != null) {
+        throw HttpException(responseBody[_error_][_message_]);
       }
 
       /*
@@ -169,34 +182,62 @@ abstract class ContributionProvider {
           // notifyListeners();
         */
 
-      final responseData = responseBody['data'];
-      final spotType = responseData['spotType'];
-      final coordinates = responseData['coordinates'];
+      final responseData = responseBody[_data_];
+      final spotType = responseData[_spotType_];
+      final coordinates = responseData[_coordinates_];
+      final String address = responseData[_address_];
+      final int firstCommaIndex = address.indexOf(', ');
 
-      String _name = responseData['name'];
+      String _name = responseData[_name_];
       SpotType _spotType = SpotType(
-        id: spotType['id'],
-        name: spotType['name'],
+        id: spotType[_id_],
+        name: spotType[_name_],
+        iconCode: spotType[_iconCode_],
       );
       Coordinates _coordinates = Coordinates(
-        latitude: coordinates['latitude'],
-        longitude: coordinates[' longitude'],
+        latitude: coordinates[_latitude_].toDouble(),
+        longitude: coordinates[_longitude_].toDouble(),
       );
-      String _description = responseData['description'];
-      List<String> _imageBase64s = responseData['images'];
-      int _statusIconCode = responseData['statusIconCode'];
-      int _spotTypeIconCode = spotType['spotTypeIconCode'];
+      Address _address = Address(
+        cityOrTown: address.substring(0, firstCommaIndex),
+        country: address.substring(firstCommaIndex + 2),
+      );
+      String _description = responseData[_description_];
+      List _imageBase64s = responseData[_images_];
 
       return Contribution(
         id: id,
         name: _name,
         spotType: _spotType,
         coordinates: _coordinates,
+        address: _address,
         description: _description,
-        imageBase64s: _imageBase64s,
-        statusIconCode: _statusIconCode,
-        spotTypeIconCode: _spotTypeIconCode,
+        imageBase64s: _imageBase64s.cast<String>(),
       );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future<bool?> deleteContribution({required int id}) async {
+    String endpoint = 'delete';
+
+    try {
+      final url = _initUrl + endpoint + '?id=$id';
+
+      final response = await ApiProvider.delete(url: url);
+
+      final responseBody = json.decode(response.body);
+      if (responseBody[_error_] != null) {
+        throw HttpException(responseBody[_error_][_message_]);
+      }
+
+      /*
+        // _expiryDate = DateTime.now()
+        // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
+        // notifyListeners();
+      */
+      // final responseData = responseBody[_data_];
     } catch (e) {
       rethrow;
     }

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:nowrth/constants/app_colors.dart';
 
-import 'package:nowrth/constants/size_config.dart';
+import 'package:nowrth/global/size_config.dart';
 import 'package:nowrth/models/classes/contribution.dart';
-import 'package:nowrth/models/enums/app_pages.dart';
-import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_screen.dart';
 
 class ContributionTile extends StatelessWidget {
   final int index;
   final Function() pageRefresher;
-  final ContributionListItem contributionListItem;
+  final Function(int id) editFunction;
+  final Function(int id) deleteFunction;
+  final ContributionListItem currentContributionLI;
 
   const ContributionTile(
     this.index, {
     Key? key,
     required this.pageRefresher,
-    required this.contributionListItem,
+    required this.editFunction,
+    required this.deleteFunction,
+    required this.currentContributionLI,
   }) : super(key: key);
 
   @override
@@ -40,12 +41,12 @@ class ContributionTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Image(
-                image: contributionListItem.thumbnail,
+                image: currentContributionLI.thumbnail,
                 fit: BoxFit.cover,
               ),
             ),
             title: Text(
-              contributionListItem.name,
+              currentContributionLI.name,
               style: TextStyle(
                 fontSize: percentageHeight(2.25),
                 fontWeight: FontWeight.w600,
@@ -53,9 +54,9 @@ class ContributionTile extends StatelessWidget {
             ),
             subtitle: SizedBox(
               child: Text(
-                contributionListItem.address.cityOrTown +
+                currentContributionLI.address.cityOrTown +
                     ', ' +
-                    contributionListItem.address.country,
+                    currentContributionLI.address.country,
                 style: TextStyle(
                   fontSize: percentageHeight(1.75),
                 ),
@@ -63,11 +64,14 @@ class ContributionTile extends StatelessWidget {
             ),
             trailing: Column(
               children: [
-                Icon(IconData(contributionListItem.statusIconCode)),
+                Icon(IconData(
+                  currentContributionLI.statusIconCode,
+                  fontFamily: 'MaterialIcons',
+                )),
                 SizedBox(height: percentageHeight(0.5)),
                 Icon(
                   IconData(
-                    contributionListItem.spotTypeIconCode,
+                    currentContributionLI.spotTypeIconCode,
                     fontFamily: 'MaterialIcons',
                   ),
                   size: 20,
@@ -85,38 +89,35 @@ class ContributionTile extends StatelessWidget {
           ),
           secondaryActions: [
             SlideAction(
-              color: Colors.blue,
-              child: const Icon(Icons.edit, size: 20, color: Colors.white),
+              // color: Colors.blue,
+              child: const Icon(
+                Icons.edit, size: 20,
+                // color: Colors.white,
+              ),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddEditContributionScreen(
-                      addEditPage: AppPage.editContribution,
-                      contributionToEditId: contributionListItem.id,
-                      contributionsPageRefresher: pageRefresher,
-                    ),
-                  ),
-                );
+                editFunction(currentContributionLI.id);
               },
             ),
             SlideAction(
-              color: Colors.red,
-              child: const Icon(Icons.delete, size: 20, color: Colors.white),
+              // color: Colors.red,
+              child: const Icon(
+                Icons.delete, size: 20,
+                // color: Colors.white,
+              ),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
                     buttonPadding: EdgeInsets.zero,
                     title: Text(
-                      'Delete ${contributionListItem.name}',
+                      'Delete ${currentContributionLI.name}',
                       style: TextStyle(
                         fontSize: percentageHeight(2.4),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     content: Text(
-                      '${contributionListItem.name} will be deleted permanently',
+                      '${currentContributionLI.name} will be deleted permanently',
                       style: TextStyle(fontSize: percentageHeight(2.1)),
                     ),
                     actions: [
@@ -131,15 +132,18 @@ class ContributionTile extends StatelessWidget {
                               },
                             ),
                           ),
-                          Container(width: 1, height: 30, color: kGreyColor),
+                          const SizedBox(
+                            width: 1,
+                            height: 30,
+                            // color: kGreyColor,
+                          ),
                           Expanded(
                             child: MaterialButton(
                               padding: const EdgeInsets.symmetric(vertical: 15),
                               child: const Text('Confirm'),
                               onPressed: () {
                                 Navigator.pop(context);
-                                // contributions.remove(contribution);
-                                pageRefresher();
+                                deleteFunction(currentContributionLI.id);
                               },
                             ),
                           ),

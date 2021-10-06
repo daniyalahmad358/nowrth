@@ -16,18 +16,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: CustomAppBar(
-        context,
-        barOpacity: 0.0,
-        atPage: currentPage,
-      ),
-      body: const HomeBody(),
-      bottomNavigationBar: const CustomBottomNavBar(isAtHome: true),
-      drawer: CustomDrawer(
-        currentPage: currentPage,
-        menuItems: menuItems(context, currentPage),
+    return Theme(
+      data: Theme.of(context),
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/app_images/home_bg.jpg'),
+            colorFilter: ColorFilter.linearToSrgbGamma(),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Scaffold(
+          extendBodyBehindAppBar: true,
+          backgroundColor: Colors.transparent,
+          appBar: CustomAppBar(
+            context,
+            barOpacity: 0.0,
+            atPage: currentPage,
+          ),
+          body: const HomeBody(),
+          bottomNavigationBar: const CustomBottomNavBar(isAtHome: true),
+          drawer: CustomDrawer(
+            currentPage: currentPage,
+            menuItems: menuItems(context, currentPage),
+          ),
+        ),
       ),
     );
   }

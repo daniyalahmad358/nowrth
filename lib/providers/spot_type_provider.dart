@@ -7,15 +7,13 @@ import 'package:nowrth/utils/http_exception.dart';
 
 // class ContributionProvider with ChangeNotifier {
 class SpotTypesProvider {
-  ApiProvider apiProvider = ApiProvider();
-
   Future<List<SpotType>> getSpotTypes() async {
     String endpoint = 'GetAll';
 
     try {
       final url = 'SpotType/$endpoint';
 
-      final response = await apiProvider.get(url: url);
+      final response = await ApiProvider.get(url: url);
 
       final responseData = json.decode(response.body);
       if (responseData['error'] != null) {
@@ -28,6 +26,7 @@ class SpotTypesProvider {
         (i) => SpotType(
           id: responseList[i]['id'],
           name: responseList[i]['name'],
+          iconCode: responseList[i]['iconCode'],
         ),
       );
       return spotTypes;

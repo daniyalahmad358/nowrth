@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-final Color kPrimaryColor = Colors.blue;
-final Color kPrimaryLightColor = Colors.lightBlue[50]!;
+final Color kPrimaryColor = Colors.lightBlue[100]!;
+final Color kPrimaryVariant = Colors.blue[100]!;
 final Color kSecondaryColor = Colors.lightBlue[100]!;
+final Color kSecondaryVariant = Colors.lightBlue[200]!;
 final Color kTextColor = kPrimaryColor;
 final Color kTextLightColor = Colors.lightBlueAccent;
 final Color kIconColor = Colors.lightBlueAccent;

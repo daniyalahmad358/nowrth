@@ -1,8 +1,8 @@
 // import 'package:flutter/material.dart';
-// import 'package:nowrth/constants/app_colors.dart';
+// import 'package:nowrth/global/app_colors.dart';
 // import 'package:nowrth/models/classes/contribution.dart';
 // import 'package:nowrth/models/enums/app_pages.dart';
-// import 'package:nowrth/constants/size_config.dart';
+// import 'package:nowrth/global/size_config.dart';
 // import 'package:nowrth/models/enums/contributed_spot_options.dart';
 // import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_screen.dart';
 

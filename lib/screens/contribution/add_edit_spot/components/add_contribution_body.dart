@@ -23,90 +23,42 @@ import 'package:nowrth/screens/contribution/add_edit_spot/components/utils/succe
 import 'package:nowrth/providers/contribution_provider.dart';
 import 'package:nowrth/utils/image_utils.dart';
 
-class AddEditContributionBody extends StatelessWidget {
+class AddContributionBody extends StatelessWidget {
   final AppPage curentPage;
   final List<ContributionListItem> contributionListItems;
-  final int? contributionToEditId;
-  final Function() contributionsPageRefresher;
+  final Function()? contributionsPageRefresher;
 
-  const AddEditContributionBody({
+  const AddContributionBody({
     Key? key,
     required this.curentPage,
     required this.contributionListItems,
-    required this.contributionsPageRefresher,
-    this.contributionToEditId,
+    this.contributionsPageRefresher,
   }) : super(key: key);
-
-  Future<List> getAllFutures() async {
-    Contribution? _contributionToEdit = (curentPage == AppPage.editContribution)
-        ? await ContributionProvider.getContribution(id: contributionToEditId!)
-        : null;
-    List<SpotType> _spotTypes = await SpotTypesProvider().getSpotTypes();
-    return [_spotTypes, _contributionToEdit];
-  }
 
   @override
   Widget build(BuildContext context) {
-    Contribution? contributionToEdit;
     late List<ContributionListItem> _contributionListItems =
         contributionListItems;
     late List<SpotType> spotTypes;
     late List<SpotType> spotTypesToShow;
     late bool reverseImageScroll = false;
     late List<String> imageBase64s = [];
-    late SpotType dropdownValue;
-    late TextEditingController titleController;
-    late TextEditingController latitudeController;
-    late TextEditingController longitudeController;
-    late TextEditingController addressController;
-    late TextEditingController descriptionController;
-
-    String buttonTextString = (curentPage == AppPage.addContribution)
-        ? 'Add Contribution'
-        : 'Update Contribution';
-
-    bool buttonEnabled = true;
-
     SizeConfig().init(context);
 
     return FutureBuilder(
-      future: getAllFutures(),
+      future: SpotTypesProvider().getSpotTypes(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        late SpotType dropdownValue;
+        TextEditingController titleController = TextEditingController();
+        TextEditingController latitudeController = TextEditingController();
+        TextEditingController longitudeController = TextEditingController();
+        TextEditingController addressController = TextEditingController();
+        TextEditingController descriptionController = TextEditingController();
+
         if (snapshot.connectionState != ConnectionState.waiting) {
-          spotTypes = snapshot.data?[0];
+          spotTypes = snapshot.data;
           spotTypesToShow = [...spotTypes];
-          contributionToEdit = snapshot.data?[1];
-
-          titleController = TextEditingController(
-            text: contributionToEdit?.name ?? '',
-          );
-          latitudeController = TextEditingController(
-            text: contributionToEdit?.coordinates.latitude.toString() ?? '',
-          );
-          longitudeController = TextEditingController(
-            text: contributionToEdit?.coordinates.longitude.toString() ?? '',
-          );
-          addressController = TextEditingController(
-            text: (contributionToEdit != null)
-                ? contributionToEdit!.address.cityOrTown +
-                    ', ' +
-                    contributionToEdit!.address.country
-                : '',
-          );
-          descriptionController = TextEditingController(
-            text: contributionToEdit?.description ?? '',
-          );
-
-          if (contributionToEdit != null) {
-            dropdownValue = spotTypesToShow.firstWhere(
-              (element) => element.id == contributionToEdit!.spotType.id,
-            );
-            spotTypesToShow.remove(dropdownValue);
-            spotTypesToShow.insert(0, dropdownValue);
-            imageBase64s = contributionToEdit!.imageBase64s;
-          } else {
-            dropdownValue = spotTypesToShow[0];
-          }
+          dropdownValue = spotTypesToShow[0];
         }
         return Background(
           child: SingleChildScrollView(
@@ -160,9 +112,10 @@ class AddEditContributionBody extends StatelessWidget {
                                   onChanged: (SpotType? newValue) {
                                     setSpotTypeState(() {
                                       spotTypesToShow = [...spotTypes];
-                                      spotTypesToShow.remove(newValue);
+                                      spotTypesToShow.remove(dropdownValue);
                                       dropdownValue = newValue!;
                                       spotTypesToShow.insert(0, dropdownValue);
+                                      SizeConfig().init(context);
                                     });
                                   },
                                 );
@@ -249,8 +202,6 @@ class AddEditContributionBody extends StatelessWidget {
                                             context: context,
                                             setCallerState: setImageViewerState,
                                             imageBase64s: imageBase64s,
-                                            contributionToEdit:
-                                                contributionToEdit,
                                           );
                                         },
                                         child: const Icon(
@@ -276,7 +227,7 @@ class AddEditContributionBody extends StatelessWidget {
                                         // splashColor: Colors.transparent,
                                         // hoverColor: Colors.transparent,
                                         // backgroundColor:
-                                        //     kPrimaryColor.withOpacity(0.2),
+                                        // kPrimaryColor.withOpacity(0.2),
                                         child: Icon(
                                           Icons.camera_alt_outlined,
                                           size: percentageHeight(5),
@@ -285,8 +236,6 @@ class AddEditContributionBody extends StatelessWidget {
                                           addImageBase64(
                                             context: context,
                                             setCallerState: setImageViewerState,
-                                            contributionToEdit:
-                                                contributionToEdit,
                                             imageBase64s: imageBase64s,
                                           );
                                         },
@@ -382,141 +331,75 @@ class AddEditContributionBody extends StatelessWidget {
                           controller: descriptionController,
                         ),
                       ),
-                      StatefulBuilder(builder: (
-                        BuildContext context,
-                        void Function(void Function()) setButtonState,
-                      ) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(vertical: 7.5),
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            minWidth: percentageWidth(79.5),
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            child: Text(buttonTextString),
-                            onPressed: (buttonEnabled)
-                                ? () async {
-                                    setButtonState(() {
-                                      buttonEnabled = false;
-                                      buttonTextString = 'Sending Request';
-                                    });
-                                    final int? firstCommaIndex =
-                                        addressController.text.indexOf(', ');
-
-                                    String _spotName = titleController.text;
-                                    SpotType _spotType = dropdownValue;
-                                    Coordinates _spotCoordinates = Coordinates(
-                                      latitude:
-                                          double.parse(latitudeController.text),
-                                      longitude: double.parse(
-                                        longitudeController.text,
-                                      ),
-                                    );
-                                    Address _spotAddress = Address(
-                                      cityOrTown:
-                                          addressController.text.substring(
-                                        0,
-                                        firstCommaIndex,
-                                      ),
-                                      country: addressController.text.substring(
-                                        firstCommaIndex! + 2,
-                                      ),
-                                    );
-                                    String _spotDescription =
-                                        descriptionController.text;
-
-                                    if (curentPage == AppPage.addContribution) {
-                                      ContributionListItem
-                                          _contributionListItem =
-                                          await ContributionProvider
-                                              .addContributionRequest(
-                                        name: _spotName,
-                                        spotType: _spotType,
-                                        coordinates: _spotCoordinates,
-                                        address: _spotAddress,
-                                        description: _spotDescription,
-                                        imageBase64s: imageBase64s,
-                                      );
-
-                                      if (_contributionListItem.id > 0) {
-                                        customShowDialog(
-                                          context,
-                                          title: 'Contribution Request Sent',
-                                          description:
-                                              'Your request to add the spot has been sent successfully. It will be confirmed after validation.',
-                                          actions: [
-                                            MaterialButton(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                vertical: 15,
-                                              ),
-                                              child: const Text('OK'),
-                                              onPressed: () {
-                                                successfulRoute(
-                                                  context: context,
-                                                  list: _contributionListItems,
-                                                  itemToAdd:
-                                                      _contributionListItem,
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      }
-                                    } else if (curentPage ==
-                                        AppPage.editContribution) {
-                                      Contribution editedContribution =
-                                          Contribution(
-                                        id: contributionToEdit!.id,
-                                        name: _spotName,
-                                        spotType: _spotType,
-                                        coordinates: _spotCoordinates,
-                                        address: _spotAddress,
-                                        description: _spotDescription,
-                                        imageBase64s: imageBase64s,
-                                      );
-
-                                      ContributionListItem
-                                          _contributionListItem =
-                                          await ContributionProvider
-                                              .updateContributionRequest(
-                                        contribution: editedContribution,
-                                      );
-
-                                      customShowDialog(
-                                        context,
-                                        title: 'Update Request Sent',
-                                        description:
-                                            'Your request to update the spot has been sent successfully. It will be confirmed after validation.',
-                                        actions: [
-                                          MaterialButton(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 15,
-                                            ),
-                                            child: const Text('OK'),
-                                            onPressed: () {
-                                              successfulRoute(
-                                                context: context,
-                                                list: _contributionListItems,
-                                                itemToAdd:
-                                                    _contributionListItem,
-                                              );
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                    setButtonState(() {
-                                      buttonTextString = 'Sent';
-                                    });
-                                    contributionsPageRefresher();
-                                  }
-                                // ignore: dead_code
-                                : null,
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 7.5),
+                        child: MaterialButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        );
-                      })
+                          minWidth: percentageWidth(79.5),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: const Text('Add Contribution'),
+                          onPressed: () async {
+                            final int? firstCommaIndex =
+                                addressController.text.indexOf(', ');
+
+                            String _spotName = titleController.text;
+                            SpotType _spotType = dropdownValue;
+                            Coordinates _spotCoordinates = Coordinates(
+                              latitude: double.parse(latitudeController.text),
+                              longitude: double.parse(
+                                longitudeController.text,
+                              ),
+                            );
+                            Address _spotAddress = Address(
+                              cityOrTown: addressController.text.substring(
+                                0,
+                                firstCommaIndex,
+                              ),
+                              country: addressController.text.substring(
+                                firstCommaIndex! + 2,
+                              ),
+                            );
+                            String _spotDescription =
+                                descriptionController.text;
+
+                            ContributionListItem _contributionListItem =
+                                await ContributionProvider
+                                    .addContributionRequest(
+                              name: _spotName,
+                              spotType: _spotType,
+                              coordinates: _spotCoordinates,
+                              address: _spotAddress,
+                              description: _spotDescription,
+                              imageBase64s: imageBase64s,
+                            );
+
+                            if (_contributionListItem.id > 0) {
+                              customShowDialog(
+                                context,
+                                title: 'Contribution Request Sent',
+                                description:
+                                    'Your request to add the spot has been sent successfully. It will be confirmed after validation.',
+                                actions: [
+                                  MaterialButton(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 15),
+                                    child: const Text('OK'),
+                                    onPressed: () {
+                                      successfulRoute(
+                                        context: context,
+                                        list: _contributionListItems,
+                                        itemToAdd: _contributionListItem,
+                                      );
+                                    },
+                                  ),
+                                ],
+                              );
+                            }
+                          },
+                        ),
+                      )
                     ],
                   ),
           ),
