@@ -11,12 +11,28 @@ import 'package:nowrth/screens/home/home_screen.dart';
 import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
 import 'package:nowrth/screens/splash/splash_screen.dart';
 
+//TODO: Remove size test
+import 'package:desktop_window/desktop_window.dart';
+
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(const EzApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class EzApp extends StatefulWidget {
+  const EzApp({Key? key}) : super(key: key);
+  @override
+  MyApp createState() => MyApp();
+}
+
+// class MyApp extends StatelessWidget {
+class MyApp extends State<EzApp> {
+  // const MyApp({Key? key}) : super(key: key);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +40,7 @@ class MyApp extends StatelessWidget {
     return FutureBuilder(
       future: Future.delayed(const Duration(seconds: 3), () async {
         isAuthentic = await Auth.isAuth;
+        await DesktopWindow.setWindowSize(const Size(300, 580));
         return isAuthentic;
       }),
       builder: (ctx, AsyncSnapshot snapshot) => MaterialApp(
