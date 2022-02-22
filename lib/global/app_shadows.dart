@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nowrth/global/app_theme.dart';
 
-const kDefualtShadow = BoxShadow(
-  offset: Offset(5, 5),
+final kDefaultShadow = BoxShadow(
+  offset: const Offset(5, 5),
   blurRadius: 10,
-  // color: const Color(0xFFE9E9E9).withOpacity(0.56),
+  color: AppTheme.currentTheme.shadowColor,
 );
 
-const kBottomNavBarShadow = BoxShadow(
-  offset: Offset(0, -5),
+final kBottomNavBarOuterShadow = BoxShadow(
+  offset: const Offset(0, -5),
   blurRadius: 10,
-  // color: kPrimaryColor.withOpacity(0.25),
+  color: AppTheme.currentTheme.shadowColor,
+);
+final kBottomNavBarInnerShadow = BoxShadow(
+  blurRadius: 10,
+  color: AppTheme.currentTheme.shadowColor,
 );
 
-const kAppBarShadow = BoxShadow(
-  offset: Offset(0, 5),
+final kAppBarShadow = BoxShadow(
+  offset: const Offset(0, 5),
   blurRadius: 10,
-  // color: kPrimaryColor.withOpacity(0.25),
+  color: AppTheme.currentTheme.shadowColor.withOpacity(1.0),
 );
 
 const kUnreadShadow = BoxShadow(
   offset: Offset(5, 5),
   blurRadius: 10,
   // color: kPrimaryColor.withOpacity(0.4),
+);
+
+final Shadow homeHeadline6Shadow = Shadow(
+  color: Colors.grey[900]!,
+  offset: const Offset(2, 2),
+  blurRadius: 2,
 );

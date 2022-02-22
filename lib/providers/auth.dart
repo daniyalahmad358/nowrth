@@ -8,22 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'api_provider.dart';
 
-class Auth with ChangeNotifier {
-  // var authKey = Api.authKey;
+abstract class Auth with ChangeNotifier {
+  // static var authKey = Api.authKey;
+  // static String? _userEmail;
+  // static DateTime? _expiryDate;
 
-  String? _token;
-  String? _userId;
-  // String? _userEmail;
-  // DateTime? _expiryDate;
-  Timer? _authTimer;
-
-  Future<bool> get isAuth async {
-    var auth = false;
-    auth = await tryautoLogin();
-    return auth;
-  }
-
-  // String? get token {
+  // static String? get token {
   //   if (_expiryDate != null &&
   //       _expiryDate!.isAfter(DateTime.now()) &&
   //       _token != null) {
@@ -37,7 +27,18 @@ class Auth with ChangeNotifier {
   // String get userEmail {
   //   return _userEmail!;
   // }
-  Future<void> logout() async {
+
+  static String? _token;
+  static String? _userId;
+  static Timer? _authTimer;
+
+  static Future<bool> get isAuth async {
+    var auth = false;
+    auth = await tryAutoLogin();
+    return auth;
+  }
+
+  static Future<void> logout() async {
     _token = null;
     // _userEmail = null;
     _userId = null;
@@ -51,15 +52,15 @@ class Auth with ChangeNotifier {
     pref.clear();
   }
 
-  void _autologout() {
+  static void _autoLogout() {
     if (_authTimer != null) {
       _authTimer!.cancel();
     }
-    // final timetoExpiry = _expiryDate!.difference(DateTime.now()).inSeconds;
-    // _authTimer = Timer(Duration(seconds: timetoExpiry), logout);
+    // final timeToExpiry = _expiryDate!.difference(DateTime.now()).inSeconds;
+    // _authTimer = Timer(Duration(seconds: timeToExpiry), logout);
   }
 
-  Future<bool> tryautoLogin() async {
+  static Future<bool> tryAutoLogin() async {
     final pref = await SharedPreferences.getInstance();
     if (!pref.containsKey('userData')) {
       return false;
@@ -83,13 +84,13 @@ class Auth with ChangeNotifier {
       } else {
         // _expiryDate = expiryDate;
         // notifyListeners();
-        _autologout();
+        _autoLogout();
       }
     }
     return true;
   }
 
-  Future<bool?> authentication(
+  static Future<bool?> authentication(
     String email,
     String password,
     String endpoint,
@@ -105,43 +106,42 @@ class Auth with ChangeNotifier {
           'password': password,
         },
       );
-      if (response.body.isNotEmpty) {
-        final responseData = json.decode(response.body);
-        if (responseData['error'] != null) {
-          throw HttpException(responseData['error']['message']);
-        }
-        _token = responseData['token'];
-        _userId = responseData['userId'];
-        // _expiryDate = DateTime.now()
-        // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
-
-        _autologout();
-        // notifyListeners();
-
-        final prefs = await SharedPreferences.getInstance();
-        final userData = json.encode(
-          {
-            'token': _token,
-            'userId': _userId,
-            // 'expiryDate': _expiryDate!.toIso8601String(),
-          },
-        );
-
-        prefs.setString('userData', userData);
-      } else {
-        throw Exception('Error: Empty Response Body');
+      final responseData = json.decode(response.body);
+      if (responseData['error'] != null) {
+        throw HttpException(responseData['error']['message']);
       }
+      _token = responseData['token'];
+      _userId = responseData['userId'];
+      _autoLogout();
+      // _expiryDate = DateTime.now()
+      // .add(Duration(seconds: int.parse(responseData['expiresIn'])));
+      // notifyListeners();
+
+      final prefs = await SharedPreferences.getInstance();
+      final userData = json.encode(
+        {
+          'token': _token,
+          'userId': _userId,
+          // 'expiryDate': _expiryDate!.toIso8601String(),
+        },
+      );
+
+      prefs.setString('userData', userData);
     } catch (e) {
       rethrow;
     }
     return true;
   }
 
-  Future<bool?> login(String email, String password) {
+  static Future<bool?> login(String email, String password) {
     return authentication(email, password, 'login');
   }
 
-  Future<void> signUp(String email, String password) {
+  static Future<bool?> signUp(
+      {required String firstName,
+      required String lastName,
+      required String email,
+      required String password}) {
     return authentication(email, password, 'register');
   }
 }

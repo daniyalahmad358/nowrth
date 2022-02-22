@@ -4,12 +4,11 @@ import 'package:nowrth/models/classes/contribution.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
 
 import 'package:nowrth/components/drawer/custom_drawer.dart';
+import 'package:nowrth/providers/route_providers.dart';
 import 'package:nowrth/services/check_on_page.dart';
 
-import 'package:nowrth/screens/home/home_screen.dart';
-import 'package:nowrth/screens/liked/liked_screen.dart';
 import 'package:nowrth/screens/contribution/contributions/contributions_screen.dart';
-import 'package:nowrth/screens/in_app_notifications/in_app_notifcations_screen.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
 List<Widget> menuItems(BuildContext context, AppPage currentPage) {
   return <Widget>[
@@ -19,12 +18,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       selected: isOnPage(currentPage, AppPage.home),
       onTap: !isOnPage(currentPage, AppPage.home)
           ? () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-              );
+              CusNavigator.pushNamedRemTilHome(context, AppPage.home.name);
             }
           : null,
     ),
@@ -34,12 +28,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       selected: isOnPage(currentPage, AppPage.liked),
       onTap: !isOnPage(currentPage, AppPage.liked)
           ? () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const LikedScreen(),
-                ),
-              );
+              CusNavigator.pushNamedRemTilHome(context, AppPage.liked.name);
             }
           : null,
     ),
@@ -56,12 +45,13 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
       onTap: !isOnPage(currentPage, AppPage.contributions)
           ? () {
               List<ContributionListItem> contributionListItems = [];
-              Navigator.push(
+              AllContributionsLIProvider.allContributionsLi =
+                  contributionListItems;
+
+              CusNavigator.pushRemTilHome(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ContributionsScreen(
-                    allContributions: contributionListItems,
-                  ),
+                  builder: (context) => const ContributionsScreen(),
                 ),
               );
             }
@@ -73,14 +63,12 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
     MenuItem(
       title: 'Notifications',
       iconData: Icons.notifications_outlined,
-      selected: isOnPage(currentPage, AppPage.notifications),
-      onTap: !isOnPage(currentPage, AppPage.notifications)
+      selected: isOnPage(currentPage, AppPage.inAppNotifications),
+      onTap: !isOnPage(currentPage, AppPage.inAppNotifications)
           ? () {
-              Navigator.push(
+              CusNavigator.pushNamedRemTilHome(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const InAppNotificationsScreen(),
-                ),
+                AppPage.inAppNotifications.name,
               );
             }
           : null,

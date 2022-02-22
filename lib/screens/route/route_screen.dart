@@ -5,33 +5,33 @@ import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/components/custom_app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
+import 'package:nowrth/providers/route_providers.dart';
 
-import 'components/route_body.dart';
+import 'route_body.dart';
 
 class RouteScreen extends StatelessWidget {
-  final Spot destinationSpot;
-  final currentPage = AppPage.liked;
+  final currentPage = AppPage.route;
 
   const RouteScreen({
     Key? key,
-    required this.destinationSpot,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Spot selectedSpot = SelectedSpotProvider.getSelectedSpot;
     return Scaffold(
       appBar: CustomAppBar(
-        context,
-        titleText: destinationSpot.spotName,
-        atPage: currentPage,
+        titleText: selectedSpot.spotName,
+        currentPage: currentPage,
       ),
-      body: RouteBody(destinationSpot: destinationSpot),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      body: RouteBody(destinationSpot: selectedSpot),
+      bottomNavigationBar: CustomBottomNavBar(currentPage: currentPage),
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.map_outlined,
         onPressed: () {},
       ),
       extendBodyBehindAppBar: false,
+      extendBody: false,
     );
   }
 }

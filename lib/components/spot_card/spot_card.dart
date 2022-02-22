@@ -7,6 +7,7 @@ import 'package:nowrth/global/size_config.dart';
 import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/models/classes/guide.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
 class SpotCard extends StatelessWidget {
   const SpotCard({
@@ -28,7 +29,8 @@ class SpotCard extends StatelessWidget {
         width: percentageWidth(isFullCard ? 38.165 : 33.09),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          boxShadow: const [kDefualtShadow],
+          color: Theme.of(context).cardColor,
+          boxShadow: [kDefaultShadow],
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
@@ -75,7 +77,8 @@ class SpotCard extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).push(
+        CusNavigator.pushRemTilHome(
+          context,
           MaterialPageRoute(
             builder: (BuildContext context) {
               return DetailsScreen(spot: spot);

@@ -1,45 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:nowrth/global/app_shadows.dart';
 import 'package:nowrth/global/size_config.dart';
-
-import 'package:nowrth/screens/liked/liked_screen.dart';
-import 'package:nowrth/screens/home/home_screen.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  final bool isAtHome;
-  final bool isAtLiked;
+  final ImageProvider? bottomImage;
+  final AppPage currentPage;
   const CustomBottomNavBar({
     Key? key,
-    this.isAtHome = false,
-    this.isAtLiked = false,
+    required this.currentPage,
+    this.bottomImage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-      child: Container(
-        width: percentageWidth(70),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-        child: BottomNavigationBar(
-          currentIndex: (isAtHome) ? 0 : 1,
-          onTap: (int i) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    (i == 0) ? const HomeScreen() : const LikedScreen(),
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Container(
+            height: percentageHeight(4),
+            decoration: BoxDecoration(
+              boxShadow: [kBottomNavBarOuterShadow],
+            ),
+          ),
+        ),
+        Stack(
+          children: [
+            Positioned(
+              bottom: 0,
+              child: Container(
+                height: 11,
+                width: percentageWidth(100),
+                decoration: BoxDecoration(
+                  image: bottomImage != null
+                      ? DecorationImage(
+                          image: bottomImage!,
+                          colorFilter: const ColorFilter.linearToSrgbGamma(),
+                          fit: BoxFit.fitWidth,
+                        )
+                      : null,
+                  color: bottomImage == null
+                      ? Theme.of(context).scaffoldBackgroundColor
+                      : null,
+                ),
               ),
-            );
-          },
-          items: const [
-            BottomNavigationBarItem(
-                label: 'Home', icon: Icon(Icons.home), tooltip: ''),
-            BottomNavigationBarItem(
-                label: 'Liked', icon: Icon(Icons.favorite), tooltip: ''),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 7, right: 7, bottom: 10),
+              decoration: BoxDecoration(
+                boxShadow: [kDefaultShadow],
+              ),
+              child: ClipRRect(
+                clipBehavior: Clip.antiAlias,
+                borderRadius: BorderRadius.circular(10),
+                child: BottomNavigationBar(
+                  currentIndex: (currentPage == AppPage.home)
+                      ? 0
+                      : /*(currentPage == AppPage.liked)*/ 1, // TODO: Uncomment this line when you add more items to the BottomNavigation bar
+                  onTap: (int i) {
+                    if (!(i == 0 && currentPage == AppPage.home) &&
+                        !(i == 1 && currentPage == AppPage.liked)) {
+                      CusNavigator.pushNamedRemTilHome(
+                        context,
+                        (i == 0) ? AppPage.home.name : AppPage.liked.name,
+                      );
+                    }
+                  },
+                  items: const [
+                    BottomNavigationBarItem(
+                        label: 'Home', icon: Icon(Icons.home), tooltip: ''),
+                    BottomNavigationBarItem(
+                        label: 'Liked',
+                        icon: Icon(Icons.favorite),
+                        tooltip: ''),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

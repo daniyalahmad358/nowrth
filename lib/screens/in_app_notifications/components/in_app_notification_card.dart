@@ -22,7 +22,7 @@ class InAppNotificationCard extends StatelessWidget {
     return Container(
       height: SizeConfig.screenHeight / 12,
       decoration: BoxDecoration(
-        boxShadow: const [kDefualtShadow],
+        boxShadow: [kDefaultShadow],
         borderRadius: notiBorderRadius,
       ),
       child: Card(

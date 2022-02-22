@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/models/classes/contribution.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/providers/contribution_provider.dart';
+import 'package:nowrth/providers/route_providers.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_screen.dart';
 import 'package:nowrth/screens/contribution/contributions/components/contribution_tile.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
 // Has to be stateful
 class ContributionsBody extends StatefulWidget {
@@ -72,16 +74,13 @@ class _ContributionsBodyState extends State<ContributionsBody> {
                 index,
                 currentContributionLI: contributions[index],
                 editFunction: (int contributionToEditId) {
-                  Navigator.push(
+                  ContributionToEditIdProvider.contributionToEditId =
+                      contributionToEditId;
+                  CusNavigator.pushRemTilHome(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddEditContributionScreen(
-                        addEditPage: AppPage.editContribution,
-                        contributionToEditId: contributionToEditId,
-                        contributionListItems: contributions,
-                        contributionsPageRefresher: () {
-                          setState(() {});
-                        },
+                      builder: (context) => const AddEditContributionScreen(
+                        page: AppPage.editContribution,
                       ),
                     ),
                   );

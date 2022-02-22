@@ -6,8 +6,10 @@ import 'package:nowrth/models/classes/spot.dart';
 
 import 'package:nowrth/components/custom_app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
-import 'package:nowrth/screens/details/components/details_body.dart';
+import 'package:nowrth/providers/route_providers.dart';
+import 'package:nowrth/screens/details/details_body.dart';
 import 'package:nowrth/screens/route/route_screen.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({
@@ -22,24 +24,25 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        context,
         titleText: spot.spotName,
-        atPage: currentPage,
+        currentPage: currentPage,
       ),
       body: DetailsBody(spot: spot),
       floatingActionButton: CustomFloatingActionButton(
         iconData: Icons.timeline,
         onPressed: () {
-          Navigator.push(
+          SelectedSpotProvider.selectedSpot = spot;
+          CusNavigator.pushRemTilHome(
             context,
             MaterialPageRoute(
-              builder: (context) => RouteScreen(destinationSpot: spot),
+              builder: (context) => const RouteScreen(),
             ),
           );
         },
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: CustomBottomNavBar(currentPage: currentPage),
       extendBodyBehindAppBar: true,
+      extendBody: true,
     );
   }
 }

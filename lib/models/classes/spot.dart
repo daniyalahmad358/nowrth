@@ -17,7 +17,7 @@ class Spot {
   List<Spot>? stopBySpots;
   String? description;
 
-  String? spotTypeDesiplayText;
+  String? spotTypeDisplayText;
   IconData? iconData;
 
   Spot({
@@ -35,31 +35,31 @@ class Spot {
     switch (spotType) {
       case SpotType.travelSpot:
         {
-          spotTypeDesiplayText = 'Travel Spot';
+          spotTypeDisplayText = 'Travel Spot';
           iconData = Icons.landscape;
         }
         break;
       case SpotType.hotel:
         {
-          spotTypeDesiplayText = 'Hotel';
+          spotTypeDisplayText = 'Hotel';
           iconData = Icons.hotel;
         }
         break;
       case SpotType.restaurant:
         {
-          spotTypeDesiplayText = 'Restaurant';
+          spotTypeDisplayText = 'Restaurant';
           iconData = Icons.fastfood;
         }
         break;
       case SpotType.fuelStation:
         {
-          spotTypeDesiplayText = 'Fuel Station';
+          spotTypeDisplayText = 'Fuel Station';
           iconData = Icons.local_gas_station;
         }
         break;
       case SpotType.bank:
         {
-          spotTypeDesiplayText = 'Bank';
+          spotTypeDisplayText = 'Bank';
           iconData = Icons.money;
         }
         break;

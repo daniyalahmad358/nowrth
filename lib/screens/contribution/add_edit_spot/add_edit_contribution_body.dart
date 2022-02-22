@@ -24,21 +24,22 @@ import 'package:nowrth/providers/contribution_provider.dart';
 import 'package:nowrth/utils/image_utils.dart';
 
 class AddEditContributionBody extends StatelessWidget {
-  final AppPage curentPage;
+  final AppPage currentPage;
   final List<ContributionListItem> contributionListItems;
   final int? contributionToEditId;
-  final Function() contributionsPageRefresher;
+  final void Function() contributionsPageRefresher;
 
   const AddEditContributionBody({
     Key? key,
-    required this.curentPage,
+    required this.currentPage,
     required this.contributionListItems,
     required this.contributionsPageRefresher,
     this.contributionToEditId,
   }) : super(key: key);
 
   Future<List> getAllFutures() async {
-    Contribution? _contributionToEdit = (curentPage == AppPage.editContribution)
+    Contribution? _contributionToEdit = (currentPage ==
+            AppPage.editContribution)
         ? await ContributionProvider.getContribution(id: contributionToEditId!)
         : null;
     List<SpotType> _spotTypes = await SpotTypesProvider().getSpotTypes();
@@ -61,7 +62,7 @@ class AddEditContributionBody extends StatelessWidget {
     late TextEditingController addressController;
     late TextEditingController descriptionController;
 
-    String buttonTextString = (curentPage == AppPage.addContribution)
+    String buttonTextString = (currentPage == AppPage.addContribution)
         ? 'Add Contribution'
         : 'Update Contribution';
 
@@ -426,7 +427,8 @@ class AddEditContributionBody extends StatelessWidget {
                                     String _spotDescription =
                                         descriptionController.text;
 
-                                    if (curentPage == AppPage.addContribution) {
+                                    if (currentPage ==
+                                        AppPage.addContribution) {
                                       ContributionListItem
                                           _contributionListItem =
                                           await ContributionProvider
@@ -464,7 +466,7 @@ class AddEditContributionBody extends StatelessWidget {
                                           ],
                                         );
                                       }
-                                    } else if (curentPage ==
+                                    } else if (currentPage ==
                                         AppPage.editContribution) {
                                       Contribution editedContribution =
                                           Contribution(

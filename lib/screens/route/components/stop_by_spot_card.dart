@@ -10,6 +10,7 @@ import 'package:nowrth/components/custom_rating_stars.dart';
 import 'package:nowrth/screens/details/details_screen.dart';
 
 import 'package:nowrth/screens/route/components/enums/sides.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
 class StopBySpotCard extends StatefulWidget {
   final Spot stopBySpot;
@@ -42,20 +43,23 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
       child: Stack(
         children: <Widget>[
           InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailsScreen(spot: widget.stopBySpot),
-                ),
-              );
-            },
+            onTap: isInfoShown
+                ? () {
+                    CusNavigator.pushRemTilHome(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DetailsScreen(spot: widget.stopBySpot),
+                      ),
+                    );
+                  }
+                : null,
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: isInfoShown ? Colors.white : Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: isInfoShown ? [kDefualtShadow] : null,
+                boxShadow: isInfoShown ? [kDefaultShadow] : null,
                 border: isInfoShown
                     ? Border.all(color: Colors.blueGrey[100]!)
                     : null,
@@ -72,7 +76,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        widget.stopBySpot.spotTypeDesiplayText!,
+                        widget.stopBySpot.spotTypeDisplayText!,
                         style: TextStyle(
                           color: isInfoShown ? null : Colors.transparent,
                           fontSize: percentageHeight(2),
@@ -140,7 +144,7 @@ class SpotButton extends StatelessWidget {
       height: percentageHeight(7),
       width: percentageHeight(7),
       margin: const EdgeInsets.symmetric(horizontal: 7),
-      // decoration: BoxDecoration(boxShadow: [kDefualtShadow]),
+      // decoration: BoxDecoration(boxShadow: [kDefaultShadow]),
       child: FittedBox(
         child: FloatingActionButton(
           heroTag: heroTag,

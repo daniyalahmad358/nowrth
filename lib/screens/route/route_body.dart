@@ -7,9 +7,9 @@ import 'package:nowrth/models/classes/spot.dart';
 
 import 'package:nowrth/services/content_side_decider.dart';
 
-import 'timeline_content.dart';
-import 'custom_timeline.dart';
-import 'stop_by_spot_card.dart';
+import 'components/timeline_content.dart';
+import 'components/custom_timeline.dart';
+import 'components/stop_by_spot_card.dart';
 
 // Has to be stateful
 class RouteBody extends StatelessWidget {
