@@ -33,7 +33,7 @@ class HomeHeader extends StatelessWidget {
                 style: Theme.of(context).primaryTextTheme.headline2,
               ),
               Text(
-                'Travel Community App',
+                'Tourism Community App',
                 style: Theme.of(context).primaryTextTheme.headline6!.copyWith(
                   shadows: [homeHeadline6Shadow],
                 ),

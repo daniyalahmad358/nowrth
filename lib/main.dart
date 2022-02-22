@@ -16,23 +16,19 @@ import 'package:desktop_window/desktop_window.dart';
 
 void main() {
   // runApp(const MyApp());
-  runApp(const EzApp());
+  runApp(const MyApp());
 }
 
-class EzApp extends StatefulWidget {
-  const EzApp({Key? key}) : super(key: key);
+//TODO: Remove statefulness
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
-  MyApp createState() => MyApp();
+  _MyApp createState() => _MyApp();
 }
 
 // class MyApp extends StatelessWidget {
-class MyApp extends State<EzApp> {
+class _MyApp extends State<MyApp> {
   // const MyApp({Key? key}) : super(key: key);
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
