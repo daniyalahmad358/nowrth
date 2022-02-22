@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SocalIcon extends StatelessWidget {
+class SocialIcon extends StatelessWidget {
   final String iconSrc;
   final Function() press;
-  const SocalIcon({
+  const SocialIcon({
     Key? key,
     required this.iconSrc,
     required this.press,

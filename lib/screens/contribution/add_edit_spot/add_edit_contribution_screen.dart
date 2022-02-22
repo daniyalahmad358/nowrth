@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/models/classes/contribution.dart';
 
 import 'package:nowrth/models/enums/app_pages.dart';
 
 import 'package:nowrth/components/custom_app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
+import 'package:nowrth/providers/route_providers.dart';
 
-import 'package:nowrth/screens/contribution/add_edit_spot/components/add_edit_contribution_body.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/add_edit_contribution_body.dart';
 
 class AddEditContributionScreen extends StatelessWidget {
-  final AppPage addEditPage;
-  final int? contributionToEditId;
-  final List<ContributionListItem> contributionListItems;
-  final Function() contributionsPageRefresher;
+  final AppPage page;
 
   const AddEditContributionScreen({
     Key? key,
-    required this.addEditPage,
-    required this.contributionsPageRefresher,
-    required this.contributionListItems,
-    this.contributionToEditId,
+    required this.page,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        context,
-        titleText:
-            (addEditPage == AppPage.addContribution) ? 'Add Spot' : 'Edit Spot',
-        atPage: addEditPage,
+        titleText: (page == AppPage.addContribution) ? 'Add Spot' : 'Edit Spot',
+        currentPage: page,
       ),
       body: AddEditContributionBody(
-        curentPage: addEditPage,
-        contributionToEditId: contributionToEditId,
-        contributionsPageRefresher: contributionsPageRefresher,
-        contributionListItems: contributionListItems,
+        currentPage: page,
+        contributionToEditId:
+            ContributionToEditIdProvider.getContributionToEditId,
+        contributionsPageRefresher:
+            ContributionsPageRefresherProvider.getContributionsPageRefresher,
+        contributionListItems: AllContributionsLIProvider.getAllContributionsLi,
       ),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: CustomBottomNavBar(currentPage: page),
       extendBodyBehindAppBar: true,
+      extendBody: true,
     );
   }
 }

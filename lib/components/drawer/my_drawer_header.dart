@@ -8,14 +8,13 @@ class MyHeaderDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: kPrimaryColor.withOpacity(0.5),
-      height: SizeConfig.screenHeight * (2 / 7),
-      padding: EdgeInsets.only(top: SizeConfig.screenHeight / 35),
+      height: percentageHeight(28),
+      padding: const EdgeInsets.only(top: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(bottom: SizeConfig.screenHeight / 62),
+            margin: const EdgeInsets.only(bottom: 10),
             height: SizeConfig.screenHeight / 9,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
@@ -26,15 +25,14 @@ class MyHeaderDrawer extends StatelessWidget {
           ),
           Text(
             'Rapid Tech',
-            style: TextStyle(
-              fontSize: SizeConfig.screenHeight / 35,
-            ),
+            style: Theme.of(context).primaryTextTheme.headline6,
           ),
           Text(
             'info@rapidtech.dev',
-            style: TextStyle(
-              fontSize: SizeConfig.screenHeight / 50,
-            ),
+            style: Theme.of(context).primaryTextTheme.bodyText2!.copyWith(
+                  fontSize: percentageHeight(2),
+                  fontWeight: FontWeight.w300,
+                ),
           ),
         ],
       ),

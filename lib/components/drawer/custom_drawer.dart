@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:nowrth/components/drawer/menu_items.dart';
 
 import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/global/size_config.dart';
@@ -9,36 +10,28 @@ import 'my_drawer_header.dart';
 
 class CustomDrawer extends StatelessWidget {
   final AppPage currentPage;
-  final List<Widget> menuItems;
   const CustomDrawer({
     Key? key,
     required this.currentPage,
-    required this.menuItems,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SizedBox(
+    return Container(
+      color: Theme.of(context).primaryColor.withOpacity(0.5),
       width: percentageHeight(35),
-      child: Theme(
-        data: Theme.of(context).copyWith(
-            // canvasColor: kPrimaryColor.withOpacity(0.5),
-            ),
-        child: Drawer(
-          child: ClipRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: ListView(
-                children: <Widget>[
-                  const MyHeaderDrawer(),
-                  CustomDrawerMenu(
-                    currentPage: currentPage,
-                    menuItems: menuItems,
-                  ),
-                ],
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: ListView(
+            children: <Widget>[
+              const MyHeaderDrawer(),
+              CustomDrawerMenu(
+                currentPage: currentPage,
+                menuItems: menuItems(context, currentPage),
               ),
-            ),
+            ],
           ),
         ),
       ),
@@ -60,7 +53,7 @@ class CustomDrawerMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        top: SizeConfig.screenHeight / 41,
+        top: percentageHeight(2.5),
       ),
       child: Column(children: menuItems),
     );
@@ -83,38 +76,36 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      // color: selected ? kPrimaryColor.withOpacity(0.5) : Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          if (onTap != null) onTap!();
-        },
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: percentageHeight(2.44),
-            horizontal: percentageWidth(4.35),
-          ),
-          child: Row(
-            children: <Widget>[
-              Expanded(
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        if (onTap != null) onTap!();
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: percentageHeight(2.44),
+          horizontal: percentageWidth(4.35),
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: IconTheme(
+                data: Theme.of(context).primaryIconTheme.copyWith(
+                      size: percentageHeight(3.2),
+                    ),
                 child: Icon(
                   iconData,
-                  size: percentageHeight(2.94),
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    // fontSize: SizeConfig.screenHeight / 42,
-                    fontSize: percentageHeight(2.35),
-                  ),
-                ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Text(
+                title,
+                style: Theme.of(context).primaryTextTheme.bodyText2,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/models/enums/app_pages.dart';
 
 import 'package:nowrth/screens/initial_pages/components/round_button.dart';
+import 'package:nowrth/utils/cus_navigator.dart';
 
-import 'package:nowrth/screens/initial_pages/login/login_screen.dart';
-import 'package:nowrth/screens/initial_pages/signup/signup_screen.dart';
-
-import 'background.dart';
+import 'components/background.dart';
 
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({Key? key}) : super(key: key);
@@ -23,8 +22,8 @@ class WelcomeBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "LET'S HEAD NOWRTH",
-              style: Theme.of(context).textTheme.headline6,
+              "Let's head Nowrth",
+              style: Theme.of(context).textTheme.headline5,
             ),
             SizedBox(height: SizeConfig.screenHeight * 0.05),
             SvgPicture.asset(
@@ -37,14 +36,7 @@ class WelcomeBody extends StatelessWidget {
               color: Theme.of(context).primaryColor,
               textColor: Colors.white,
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginScreen();
-                    },
-                  ),
-                );
+                CusNavigator.pushNamedRemAll(context, AppPage.login.name);
               },
             ),
             RoundButton(
@@ -52,14 +44,7 @@ class WelcomeBody extends StatelessWidget {
               color: Theme.of(context).primaryColorLight,
               textColor: Theme.of(context).primaryColor,
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SignUpScreen();
-                    },
-                  ),
-                );
+                CusNavigator.pushNamedRemAll(context, AppPage.signup.name);
               },
             ),
           ],

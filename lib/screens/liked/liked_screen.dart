@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nowrth/components/drawer/menu_items.dart';
 
 import 'package:nowrth/models/enums/app_pages.dart';
 
@@ -7,7 +6,7 @@ import 'package:nowrth/components/custom_app_bar.dart';
 import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/components/drawer/custom_drawer.dart';
 
-import 'components/liked_body.dart';
+import 'liked_body.dart';
 
 class LikedScreen extends StatelessWidget {
   final currentPage = AppPage.liked;
@@ -17,17 +16,14 @@ class LikedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        context,
         titleText: 'Liked Spots',
-        atPage: currentPage,
+        currentPage: currentPage,
       ),
       body: const LikedBody(),
-      bottomNavigationBar: const CustomBottomNavBar(isAtLiked: true),
+      bottomNavigationBar: CustomBottomNavBar(currentPage: currentPage),
+      drawer: CustomDrawer(currentPage: currentPage),
       extendBodyBehindAppBar: true,
-      drawer: CustomDrawer(
-        currentPage: currentPage,
-        menuItems: menuItems(context, currentPage),
-      ),
+      extendBody: true,
     );
   }
 }

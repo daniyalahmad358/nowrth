@@ -1,8 +1,10 @@
-// import 'package:flutter/material.dart';
+bool get inTestMode {
+  return true;
+}
 
+// import 'package:flutter/material.dart';
 // class Constants {
 //   static String appName = 'Flutter Travel';
-
 //   //Colors for theme
 //   static Color lightPrimary = const Color(0xfffcfcff);
 //   static Color darkPrimary = Colors.black;
@@ -11,7 +13,6 @@
 //   static Color lightBG = const Color(0xfffcfcff);
 //   static Color darkBG = Colors.black;
 //   static Color badgeColor = Colors.red;
-
 //   static ThemeData lightTheme = ThemeData(
 //     backgroundColor: lightBG,
 //     primaryColor: lightPrimary,
@@ -29,7 +30,6 @@
 //       // ),
 //     ),
 //   );
-
 // /*
 //   static ThemeData darkTheme = ThemeData(
 //     brightness: Brightness.dark,
@@ -50,5 +50,4 @@
 //     ),
 //   );
 // */
-
 // }

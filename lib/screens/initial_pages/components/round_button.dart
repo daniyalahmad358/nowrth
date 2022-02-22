@@ -5,7 +5,7 @@ import 'package:nowrth/global/size_config.dart';
 
 class RoundButton extends StatelessWidget {
   final String text;
-  final Function() press;
+  final Function()? press;
   final Color color;
   final Color textColor;
 

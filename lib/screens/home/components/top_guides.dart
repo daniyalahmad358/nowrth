@@ -27,8 +27,9 @@ class TopGuidesFrame extends StatelessWidget {
           padding: EdgeInsets.all(getProportionateScreenWidth(20)),
           // height: getProportionateScreenHeight(119.17),
           decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20),
-            boxShadow: const [kDefualtShadow],
+            boxShadow: [kDefaultShadow],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

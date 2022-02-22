@@ -3,10 +3,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:nowrth/utils/api.dart';
+import 'package:nowrth/global/api.dart';
 
 class ApiProvider {
-  static String mainUrl = Api.authUrl;
+  static String mainUrl = Api.apiUrl;
   static final Map<String, String> _headers = {
     'Content-Type': 'application/json'
   };

@@ -29,7 +29,7 @@ class _LikedBodyState extends State<LikedBody> {
       icon: const Icon(
         Icons.close_rounded,
       ),
-      iconSize: percentageHeight(4),
+      iconSize: percentageHeight(3.9),
       splashRadius: percentageHeight(3.5),
       alignment: Alignment.topRight,
       padding: const EdgeInsets.all(4),
@@ -68,24 +68,21 @@ class _LikedBodyState extends State<LikedBody> {
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: percentageHeight(1.62)),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (likedSpots.length == 2) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          likedTravelSpotCards[0],
-                          likedTravelSpotCards[1],
-                        ],
-                      );
-                    }
-
-                    return Wrap(
-                      alignment: WrapAlignment.spaceBetween,
-                      runSpacing: 25,
-                      children: likedTravelSpotCards,
-                    );
-                  },
+                child: IconTheme(
+                  data: Theme.of(context).primaryIconTheme,
+                  child: (likedSpots.length == 2)
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            likedTravelSpotCards[0],
+                            likedTravelSpotCards[1],
+                          ],
+                        )
+                      : Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          runSpacing: 25,
+                          children: likedTravelSpotCards,
+                        ),
                 ),
               ),
             ),
