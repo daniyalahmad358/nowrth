@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import 'package:nowrth/global/size_config.dart';
 import 'package:nowrth/screens/route/components/enums/connector_type.dart';

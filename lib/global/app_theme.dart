@@ -84,14 +84,15 @@ abstract class AppTheme {
       background: null,
       onBackground: null,
       secondary: null,
-      secondaryVariant: null,
+      // secondaryVariant: null,
       error: null,
       onError: null,
       onPrimary: null,
       onSecondary: null,
       onSurface: null,
       primary: null,
-      primaryVariant: null,
+      // primaryVariant: null,
+      secondaryContainer: null,
     );
   }
 

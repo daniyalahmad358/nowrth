@@ -105,6 +105,7 @@ String? validationError(passwordStatus) {
         return 'Contains at least 1 invalid character';
       }
     case PasswordStatus.valid:
+    default:
       {
         return null;
       }

@@ -241,5 +241,7 @@ abstract class ContributionProvider {
     } catch (e) {
       rethrow;
     }
+
+    return true; //TODO: make sure this is correct
   }
 }

@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:nowrth/global/size_config.dart';
 
@@ -24,13 +22,13 @@ import 'package:nowrth/providers/contribution_provider.dart';
 import 'package:nowrth/utils/image_utils.dart';
 
 class AddContributionBody extends StatelessWidget {
-  final AppPage curentPage;
+  final AppPage currentPage;
   final List<ContributionListItem> contributionListItems;
   final Function()? contributionsPageRefresher;
 
   const AddContributionBody({
     Key? key,
-    required this.curentPage,
+    required this.currentPage,
     required this.contributionListItems,
     this.contributionsPageRefresher,
   }) : super(key: key);
