@@ -3,19 +3,25 @@ import 'package:nowrth/global/route_history.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
 
 class CusNavigator {
+  /*
   static void _removeFromStackTill(String routeName) {
     for (int i = routeHistory.length - 1;
         i > routeHistory.indexOf(routeName);
         i++) {
       routeHistory.removeAt(i);
     }
-  }
-
+  }  
   static bool _existsInStack(String routeName) {
-    if (routeHistory.contains(routeName)) {
-      return true;
-    }
-    return false;
+    return routeHistory.contains(routeName);
+  }
+  */
+
+  static dynamic push<T extends Object?>(
+    BuildContext context,
+    Route<T> route, {
+    Object? arguments,
+  }) {
+    return Navigator.push(context, route);
   }
 
   static dynamic pushNamed<T extends Object?>(
@@ -23,11 +29,6 @@ class CusNavigator {
     String routeName, {
     Object? arguments,
   }) {
-    if (_existsInStack(routeName)) {
-      _removeFromStackTill(routeName);
-      return Navigator.popUntil(context, ModalRoute.withName(routeName));
-    }
-
     routeHistory.add(routeName);
     return Navigator.pushNamed(context, routeName, arguments: arguments);
   }

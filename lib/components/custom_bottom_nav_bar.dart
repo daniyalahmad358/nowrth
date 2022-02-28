@@ -56,9 +56,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 borderRadius: BorderRadius.circular(10),
                 child: BottomNavigationBar(
-                  currentIndex: (currentPage == AppPage.home)
-                      ? 0
-                      : /*(currentPage == AppPage.liked)*/ 1, // TODO: Uncomment this line when you add more items to the BottomNavigation bar
+                  currentIndex: getPageNavIndex(currentPage),
                   onTap: (int i) {
                     if (!(i == 0 && currentPage == AppPage.home) &&
                         !(i == 1 && currentPage == AppPage.liked)) {
@@ -84,4 +82,9 @@ class CustomBottomNavBar extends StatelessWidget {
       ],
     );
   }
+}
+
+int getPageNavIndex(AppPage page) {
+  // TODO: When you add more items to the BottomNavigation bar add more return values accordingly
+  return (page == AppPage.home) ? 0 : 1;
 }

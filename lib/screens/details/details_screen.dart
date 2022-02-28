@@ -5,7 +5,7 @@ import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/models/classes/spot.dart';
 
 import 'package:nowrth/components/custom_app_bar.dart';
-import 'package:nowrth/components/custom_bottom_nav_bar.dart';
+// import 'package:nowrth/components/custom_bottom_nav_bar.dart';
 import 'package:nowrth/providers/route_providers.dart';
 import 'package:nowrth/screens/details/details_body.dart';
 import 'package:nowrth/screens/route/route_screen.dart';
@@ -32,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
         iconData: Icons.timeline,
         onPressed: () {
           SelectedSpotProvider.selectedSpot = spot;
-          CusNavigator.pushRemTilHome(
+          CusNavigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => const RouteScreen(),
@@ -40,9 +40,9 @@ class DetailsScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: CustomBottomNavBar(currentPage: currentPage),
-      extendBodyBehindAppBar: true,
-      extendBody: true,
+      // bottomNavigationBar: CustomBottomNavBar(currentPage: currentPage),
+      // extendBodyBehindAppBar: true,
+      // extendBody: true,
     );
   }
 }

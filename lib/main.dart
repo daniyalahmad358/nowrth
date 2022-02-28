@@ -5,7 +5,6 @@ import 'package:nowrth/providers/auth.dart';
 import 'package:nowrth/global/constants.dart';
 import 'package:nowrth/global/app_theme.dart';
 import 'package:nowrth/global/all_routes.dart';
-import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/screens/home/home_screen.dart';
 import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
@@ -41,7 +40,6 @@ class _MyApp extends State<MyApp> {
       }),
       builder: (ctx, AsyncSnapshot snapshot) => MaterialApp(
         builder: (BuildContext context, Widget? child) {
-          SizeConfig().init(context);
           return Theme(data: AppTheme.currentTheme, child: child!);
         },
         debugShowCheckedModeBanner: false,
