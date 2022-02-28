@@ -15,7 +15,7 @@ class MyHeaderDrawer extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: const EdgeInsets.only(bottom: 10),
-            height: SizeConfig.screenHeight / 9,
+            height: percentageHeight(11.5),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
@@ -24,7 +24,7 @@ class MyHeaderDrawer extends StatelessWidget {
             ),
           ),
           Text(
-            'Rapid Tech',
+            'Daniyal Tech',
             style: Theme.of(context).primaryTextTheme.headline6,
           ),
           Text(

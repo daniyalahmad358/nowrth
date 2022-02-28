@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           .withOpacity(barOpacity),
       shadowColor: kDefaultShadow.color.withOpacity(0.25),
       elevation: 5,
-      toolbarHeight: percentageHeight(9),
+      toolbarHeight: 52,
       centerTitle: true,
       flexibleSpace: ClipRect(
         child: BackdropFilter(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
-import 'package:nowrth/global/size_config.dart';
+// import 'package:nowrth/global/size_config.dart';
 
 abstract class AppTheme {
   static ThemeData customThemeData = ThemeData(
@@ -11,7 +11,6 @@ abstract class AppTheme {
     // appBarTheme: ThemeData.light().appBarTheme,
     textTheme: TextTheme(
       headline2: TextStyle(
-        // fontSize: getProportionateScreenHeight(60),
         fontFamily: 'Acme',
         color: Colors.white,
         height: 0.5,
@@ -26,7 +25,7 @@ abstract class AppTheme {
       headline6: TextStyle(
         fontFamily: 'Acme',
         color: Colors.white,
-        // fontSize: getProportionateScreenHeight(18),
+        fontSize: 17,
         shadows: [
           Shadow(
             color: Colors.grey[900]!,
@@ -56,7 +55,7 @@ abstract class AppTheme {
     return baseTextTheme.copyWith(
       headline2: TextStyle(
         fontFamily: 'Acme',
-        fontSize: getProportionateScreenHeight(60),
+        fontSize: 57,
         color: Colors.white,
         height: 0.5,
         shadows: [
@@ -67,10 +66,10 @@ abstract class AppTheme {
           )
         ],
       ),
-      headline6: TextStyle(
+      headline6: const TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.normal,
-        fontSize: getProportionateScreenHeight(18.3),
+        fontSize: 16,
       ),
       bodyText1: baseTextTheme.bodyText1!.copyWith(color: Colors.white),
       bodyText2: baseTextTheme.bodyText2!.copyWith(color: Colors.white),
@@ -104,7 +103,6 @@ abstract class AppTheme {
       actionsIconTheme: baseTheme.iconTheme.copyWith(color: Colors.white),
       iconTheme: baseTheme.iconTheme.copyWith(
         color: Colors.white,
-        size: percentageHeight(4),
       ),
     );
   }

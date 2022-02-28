@@ -45,7 +45,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
           InkWell(
             onTap: isInfoShown
                 ? () {
-                    CusNavigator.pushRemTilHome(
+                    CusNavigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>

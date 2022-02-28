@@ -77,7 +77,7 @@ class SpotCard extends StatelessWidget {
         ),
       ),
       onTap: () {
-        CusNavigator.pushRemTilHome(
+        CusNavigator.push(
           context,
           MaterialPageRoute(
             builder: (BuildContext context) {
