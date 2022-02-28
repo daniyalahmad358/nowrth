@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/global/size_config.dart'; // TODO: When server is up
 
-class Background extends StatelessWidget {
+class Backgrounded extends StatelessWidget {
   final Widget child;
-  const Background({
+  const Backgrounded({
     Key? key,
     required this.child,
   }) : super(key: key);

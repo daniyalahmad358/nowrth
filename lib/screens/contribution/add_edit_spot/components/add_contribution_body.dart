@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/global/size_config.dart'; // TODO: When server is up
 
 import 'package:nowrth/models/classes/contribution.dart';
 import 'package:nowrth/models/classes/spot_location.dart';
@@ -10,7 +10,7 @@ import 'package:nowrth/models/classes/spot_type.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/providers/spot_type_provider.dart';
 
-import 'package:nowrth/screens/contribution/add_edit_spot/components/background.dart';
+import 'package:nowrth/screens/contribution/add_edit_spot/components/backgrounded.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/custom_show_dialog.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/field_container.dart';
 import 'package:nowrth/screens/contribution/add_edit_spot/components/get_location.dart';
@@ -58,7 +58,7 @@ class AddContributionBody extends StatelessWidget {
           spotTypesToShow = [...spotTypes];
           dropdownValue = spotTypesToShow[0];
         }
-        return Background(
+        return Backgrounded(
           child: SingleChildScrollView(
             child: (snapshot.connectionState == ConnectionState.waiting)
                 ? const Text('Loading')

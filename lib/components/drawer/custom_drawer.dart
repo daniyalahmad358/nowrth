@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/components/drawer/menu_items.dart';
 
 import 'package:nowrth/models/enums/app_pages.dart';
-import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/global/size_config.dart'; // Needed
 
 import 'my_drawer_header.dart';
 
@@ -17,7 +17,6 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Container(
       color: Theme.of(context).primaryColor.withOpacity(0.5),
       width: percentageHeight(35),
@@ -52,8 +51,8 @@ class CustomDrawerMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        top: percentageHeight(2.5),
+      margin: const EdgeInsets.only(
+        top: 15,
       ),
       child: Column(children: menuItems),
     );
@@ -82,16 +81,16 @@ class MenuItem extends StatelessWidget {
         if (onTap != null) onTap!();
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: percentageHeight(2.44),
-          horizontal: percentageWidth(4.35),
+        padding: const EdgeInsets.symmetric(
+          vertical: 14,
+          horizontal: 13,
         ),
         child: Row(
           children: <Widget>[
             Expanded(
               child: IconTheme(
                 data: Theme.of(context).primaryIconTheme.copyWith(
-                      size: percentageHeight(3.2),
+                      size: 19,
                     ),
                 child: Icon(
                   iconData,

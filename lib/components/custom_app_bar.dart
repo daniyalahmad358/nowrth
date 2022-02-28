@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:nowrth/global/app_shadows.dart';
 import 'package:nowrth/models/enums/app_pages.dart';
-import 'package:nowrth/global/size_config.dart';
 import 'package:nowrth/utils/cus_navigator.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -23,7 +22,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return AppBar(
       backgroundColor: Theme.of(context)
           .appBarTheme
@@ -41,7 +39,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         titleText,
-        style: TextStyle(fontSize: percentageHeight(3.25)),
+        style: const TextStyle(fontSize: 18),
       ),
       actions: <Widget>[
         IconButton(

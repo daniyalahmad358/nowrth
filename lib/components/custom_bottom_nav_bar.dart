@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nowrth/global/app_shadows.dart';
-import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/global/size_config.dart'; // Needed
 import 'package:nowrth/models/enums/app_pages.dart';
 import 'package:nowrth/utils/cus_navigator.dart';
 
@@ -20,7 +20,7 @@ class CustomBottomNavBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Container(
-            height: percentageHeight(4),
+            height: 20,
             decoration: BoxDecoration(
               boxShadow: [kBottomNavBarOuterShadow],
             ),

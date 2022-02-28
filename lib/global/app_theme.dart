@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
-// import 'package:nowrth/global/size_config.dart';
 
 abstract class AppTheme {
   static ThemeData customThemeData = ThemeData(
