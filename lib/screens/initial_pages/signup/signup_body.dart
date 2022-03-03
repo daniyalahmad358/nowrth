@@ -65,7 +65,7 @@ class SignupBody extends StatelessWidget {
                               horizontal: 20,
                               vertical: 5,
                             ),
-                            width: percentageWidth(39),
+                            width: percentageWidth(42),
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.horizontal(
                                 left: Radius.circular(29),
@@ -111,7 +111,7 @@ class SignupBody extends StatelessWidget {
                               horizontal: 15,
                               vertical: 5,
                             ),
-                            width: percentageWidth(39),
+                            width: percentageWidth(41),
                             decoration: BoxDecoration(
                               borderRadius: const BorderRadius.horizontal(
                                 right: Radius.circular(29),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/global/app_shadows.dart';
 
 import 'package:nowrth/global/app_paddings.dart';
-import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/global/size_config.dart'; // Needed
 
 import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/models/classes/guide.dart';
@@ -26,7 +26,7 @@ class SpotCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(100),
       child: Container(
-        width: percentageWidth(isFullCard ? 38.165 : 33.09),
+        width: isFullCard ? 115 : 100,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
@@ -43,7 +43,7 @@ class SpotCard extends StatelessWidget {
               ),
             ),
             Container(
-              width: percentageWidth(isFullCard ? 38.165 : 33.09),
+              width: isFullCard ? 115 : 100,
               padding: EdgeInsets.all(
                 getProportionateScreenWidth(kDefaultPadding),
               ),
@@ -103,7 +103,7 @@ class GuidesInCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: percentageWidth(6.762),
+      height: 20,
       child: Stack(
         children: <Widget>[
           ...List.generate(
@@ -111,7 +111,7 @@ class GuidesInCard extends StatelessWidget {
             (index) {
               // totalGuide++;
               return Positioned(
-                left: (percentageWidth(5) * index).toDouble(),
+                left: (15 * index).toDouble(),
                 child: buildGuideFace(index),
               );
             },
@@ -125,8 +125,8 @@ class GuidesInCard extends StatelessWidget {
     return ClipOval(
       child: Image.asset(
         guides[index].image,
-        height: percentageWidth(6.762),
-        width: percentageWidth(6.762),
+        height: 20,
+        width: 20,
         fit: BoxFit.cover,
       ),
     );

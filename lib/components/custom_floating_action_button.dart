@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:nowrth/global/size_config.dart';
-
 class CustomFloatingActionButton extends StatelessWidget {
   final IconData iconData;
   final Function() onPressed;
@@ -14,10 +12,9 @@ class CustomFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SizedBox(
-      height: percentageHeight(8.13),
-      width: percentageHeight(8.13),
+      height: 45,
+      width: 45,
       child: FittedBox(
         child: FloatingActionButton(
           child: Icon(

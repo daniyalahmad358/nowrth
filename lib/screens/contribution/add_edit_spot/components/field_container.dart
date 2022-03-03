@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:nowrth/global/size_config.dart';
+import 'package:nowrth/global/size_config.dart'; // Needed
 
 class FieldContainer extends StatelessWidget {
   final Widget child;
