@@ -10,6 +10,8 @@ import 'package:nowrth/screens/home/home_screen.dart';
 import 'package:nowrth/screens/initial_pages/welcome/welcome_screen.dart';
 import 'package:nowrth/screens/splash/splash_screen.dart';
 
+import 'dart:io' show Platform;
+
 //TODO: Remove size test
 import 'package:desktop_window/desktop_window.dart';
 
@@ -35,7 +37,9 @@ class _MyApp extends State<MyApp> {
     return FutureBuilder(
       future: Future.delayed(const Duration(seconds: 3), () async {
         isAuthentic = await Auth.isAuth;
-        await DesktopWindow.setWindowSize(const Size(300, 580));
+        if (Platform.isLinux) {
+          await DesktopWindow.setWindowSize(const Size(300, 580));
+        }
         return isAuthentic;
       }),
       builder: (ctx, AsyncSnapshot snapshot) => MaterialApp(
