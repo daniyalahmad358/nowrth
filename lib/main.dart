@@ -20,7 +20,7 @@ void main() {
   runApp(const MyApp());
 }
 
-//TODO: Remove statefulness
+//TODO: Remove stateful-ness
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
   @override

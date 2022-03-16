@@ -21,8 +21,8 @@ class CustomTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double connectorBarHeight = (timelineContents.length > 4)
-        ? (percentageHeight(78) / (6)).roundToDouble()
-        : (percentageHeight(78) / (timelineContents.length + 2))
+        ? ((percentageHeight(100)) / 6).roundToDouble()
+        : ((percentageHeight(100) - 10) / (timelineContents.length + 3))
             .roundToDouble();
     return SingleChildScrollView(
       reverse: true,
@@ -30,6 +30,9 @@ class CustomTimeline extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         verticalDirection: VerticalDirection.up,
         children: <Widget>[
+          const SizedBox(
+            height: 30,
+          ),
           TimelineConnector(
             connectorType: ConnectorType.start,
             barHeight: connectorBarHeight,
@@ -55,6 +58,9 @@ class CustomTimeline extends StatelessWidget {
             connectorType: ConnectorType.end,
             barHeight: connectorBarHeight,
             sideValue: sideValues?[-1] ?? '',
+          ),
+          const SizedBox(
+            height: 5,
           ),
         ],
       ),
@@ -86,8 +92,9 @@ class TimelineConnector extends StatelessWidget {
     Container connectorCircle = Container(
       height: percentageHeight(1.65),
       width: percentageHeight(1.65),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         shape: BoxShape.circle,
+        color: Colors.blueGrey[200],
       ),
     );
 
@@ -117,16 +124,16 @@ class TimelineConnector extends StatelessWidget {
               ),
             Container(
               margin: (connectorType == ConnectorType.start)
-                  ? const EdgeInsets.only(bottom: 10)
+                  ? const EdgeInsets.only(bottom: 5)
                   : (connectorType == ConnectorType.end)
-                      ? const EdgeInsets.only(top: 10)
+                      ? const EdgeInsets.only(top: 5)
                       : null,
               height: barHeight,
               width: 2,
               color: Colors.blueGrey[200],
             ),
             if (sideValue != null && contentSide != Side.left)
-              const SizedBox(width: 18),
+              const SizedBox(width: 14),
             if (sideValue != null && contentSide == Side.left)
               Container(
                 height: barHeight,
@@ -147,16 +154,16 @@ class TimelineConnector extends StatelessWidget {
             children: [
               Container(
                 margin: (contentSide == Side.right)
-                    ? EdgeInsets.only(left: percentageHeight(10))
-                    : EdgeInsets.only(right: percentageHeight(10)),
+                    ? const EdgeInsets.only(left: 29)
+                    : const EdgeInsets.only(right: 29),
                 height: 2,
-                width: percentageHeight(10),
+                width: 35,
                 color: Colors.blueGrey[200],
               ),
               Container(
                 margin: (contentSide == Side.right)
-                    ? EdgeInsets.only(left: percentageHeight(30))
-                    : EdgeInsets.only(right: percentageHeight(30)),
+                    ? EdgeInsets.only(left: 174)
+                    : EdgeInsets.only(right: 174),
                 child: contentWidget!,
               ),
             ],

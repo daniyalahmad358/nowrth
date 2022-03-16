@@ -50,7 +50,6 @@ class RouteBody extends StatelessWidget {
                     destinationSpot.stopBySpots![index].spotType,
                   ),
                 ),
-                // press: () {},
               ),
             ),
           )

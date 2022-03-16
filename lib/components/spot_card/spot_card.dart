@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nowrth/global/app_shadows.dart';
 
 import 'package:nowrth/global/app_paddings.dart';
-import 'package:nowrth/global/size_config.dart'; // Needed
 
 import 'package:nowrth/models/classes/spot.dart';
 import 'package:nowrth/models/classes/guide.dart';
@@ -22,7 +21,6 @@ class SpotCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return InkWell(
       borderRadius: BorderRadius.circular(100),
       child: Container(
@@ -44,27 +42,21 @@ class SpotCard extends StatelessWidget {
             ),
             Container(
               width: isFullCard ? 115 : 100,
-              padding: EdgeInsets.all(
-                getProportionateScreenWidth(kDefaultPadding),
-              ),
+              padding: const EdgeInsets.all(kDefaultPadding),
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: isFullCard
-                        ? getProportionateScreenHeight(50)
-                        : getProportionateScreenHeight(36),
+                    height: isFullCard ? 50 : 36,
                     child: Text(
                       spot.spotName,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: isFullCard
-                            ? getProportionateScreenHeight(17)
-                            : getProportionateScreenHeight(12),
+                        fontSize: isFullCard ? 17 : 12,
                       ),
                     ),
                   ),
-                  const VerticalSpacing(of: 10),
+                  const SizedBox(height: 10),
                   if (spot.guides != null)
                     GuidesInCard(
                       guides: spot.guides!,

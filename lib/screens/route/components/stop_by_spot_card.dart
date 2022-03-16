@@ -24,18 +24,20 @@ class StopBySpotCard extends StatefulWidget {
     required this.spotButtonSide,
   }) : super(key: key);
 
+  void moveToDetails(BuildContext context, widget) {
+    CusNavigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailsScreen(spot: widget.stopBySpot),
+      ),
+    );
+  }
+
   @override
   _StopBySpotCardState createState() => _StopBySpotCardState();
 }
 
 class _StopBySpotCardState extends State<StopBySpotCard> {
-  bool isInfoShown = false;
-  void infoShowHide() {
-    setState(() {
-      isInfoShown = !isInfoShown;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -43,33 +45,23 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
       child: Stack(
         children: <Widget>[
           InkWell(
-            onTap: isInfoShown
-                ? () {
-                    CusNavigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            DetailsScreen(spot: widget.stopBySpot),
-                      ),
-                    );
-                  }
-                : null,
+            onTap: () {
+              widget.moveToDetails(context, widget);
+            },
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: isInfoShown ? Colors.white : Colors.transparent,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: isInfoShown ? [kDefaultShadow] : null,
-                border: isInfoShown
-                    ? Border.all(color: Colors.blueGrey[100]!)
-                    : null,
+                boxShadow: [kDefaultShadow],
+                border: Border.all(color: Colors.blueGrey[100]!),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SizedBox(
                     width: (widget.spotButtonSide == Side.left)
-                        ? percentageHeight(8)
+                        ? percentageHeight(6)
                         : null,
                   ),
                   Column(
@@ -78,23 +70,19 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                       Text(
                         widget.stopBySpot.spotTypeDisplayText!,
                         style: TextStyle(
-                          color: isInfoShown ? null : Colors.transparent,
                           fontSize: percentageHeight(2),
                         ),
                       ),
                       Text(
                         widget.stopBySpot.address.cityOrTown,
                         style: TextStyle(
-                          color: isInfoShown ? null : Colors.transparent,
                           fontSize: percentageHeight(2),
                         ),
                       ),
                       RatingBar(
                         itemSize: percentageHeight(2),
                         allowHalfRating: true,
-                        ratingWidget: CustomRatingStars(
-                          starColor: isInfoShown ? null : Colors.transparent,
-                        ),
+                        ratingWidget: const CustomRatingStars(),
                         initialRating: widget.stopBySpot.rating,
                         ignoreGestures: true,
                         onRatingUpdate: (rating) {},
@@ -103,7 +91,7 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
                   ),
                   SizedBox(
                     width: (widget.spotButtonSide == Side.right)
-                        ? percentageHeight(8)
+                        ? percentageHeight(6)
                         : null,
                   ),
                 ],
@@ -116,9 +104,11 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
             left: (widget.spotButtonSide == Side.left) ? 0.0 : null,
             right: (widget.spotButtonSide == Side.right) ? 0.0 : null,
             child: SpotButton(
-              infoShowHide: infoShowHide,
               heroTag: widget.heroTag,
               iconData: widget.stopBySpot.iconData!,
+              press: () {
+                widget.moveToDetails(context, widget);
+              },
             ),
           ),
         ],
@@ -128,27 +118,31 @@ class _StopBySpotCardState extends State<StopBySpotCard> {
 }
 
 class SpotButton extends StatelessWidget {
-  final void Function() infoShowHide;
+  // final void Function() infoShowHide;
   final String heroTag;
   final IconData iconData;
+  final Function press;
+
   const SpotButton({
     Key? key,
-    required this.infoShowHide,
     required this.heroTag,
     required this.iconData,
+    required this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: percentageHeight(7),
-      width: percentageHeight(7),
-      margin: const EdgeInsets.symmetric(horizontal: 7),
+      height: percentageHeight(6),
+      width: percentageHeight(6),
+      margin: const EdgeInsets.symmetric(horizontal: 6),
       // decoration: BoxDecoration(boxShadow: [kDefaultShadow]),
       child: FittedBox(
         child: FloatingActionButton(
           heroTag: heroTag,
-          onPressed: infoShowHide,
+          onPressed: () {
+            press();
+          },
           child: Icon(
             iconData,
           ),
