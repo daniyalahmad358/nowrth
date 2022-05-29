@@ -37,7 +37,7 @@ class _MyApp extends State<MyApp> {
     return FutureBuilder(
       future: Future.delayed(const Duration(seconds: 3), () async {
         isAuthentic = await Auth.isAuth;
-        if (Platform.isLinux) {
+        if (!(Platform.isAndroid || Platform.isIOS)) {
           await DesktopWindow.setWindowSize(const Size(300, 580));
         }
         return isAuthentic;

@@ -59,13 +59,13 @@ class CustomDrawerMenu extends StatelessWidget {
   }
 }
 
-class MenuItem extends StatelessWidget {
+class CustomMenuItem extends StatelessWidget {
   final String title;
   final IconData iconData;
   final bool selected;
   final void Function()? onTap;
 
-  const MenuItem({
+  const CustomMenuItem({
     Key? key,
     required this.title,
     required this.iconData,

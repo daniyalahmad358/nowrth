@@ -12,7 +12,7 @@ import 'package:nowrth/utils/cus_navigator.dart';
 
 List<Widget> menuItems(BuildContext context, AppPage currentPage) {
   return <Widget>[
-    MenuItem(
+    CustomMenuItem(
       title: 'Home',
       iconData: Icons.home_outlined,
       selected: isOnPage(currentPage, AppPage.home),
@@ -22,7 +22,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
             }
           : null,
     ),
-    MenuItem(
+    CustomMenuItem(
       title: 'Liked',
       iconData: Icons.favorite_border,
       selected: isOnPage(currentPage, AppPage.liked),
@@ -32,13 +32,13 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
             }
           : null,
     ),
-    MenuItem(
+    CustomMenuItem(
       title: 'Tours',
       iconData: Icons.explore_outlined,
       selected: isOnPage(currentPage, AppPage.tours),
       onTap: !isOnPage(currentPage, AppPage.tours) ? null : null,
     ),
-    MenuItem(
+    CustomMenuItem(
       title: 'Contributions',
       iconData: Icons.add_circle_outline,
       selected: isOnPage(currentPage, AppPage.contributions),
@@ -60,7 +60,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
     const Divider(
         // color: kPrimaryColor.withOpacity(0.8),
         ),
-    MenuItem(
+    CustomMenuItem(
       title: 'Notifications',
       iconData: Icons.notifications_outlined,
       selected: isOnPage(currentPage, AppPage.inAppNotifications),
@@ -73,7 +73,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
             }
           : null,
     ),
-    MenuItem(
+    CustomMenuItem(
       title: 'Settings',
       iconData: Icons.settings_outlined,
       selected: isOnPage(currentPage, AppPage.settings),
@@ -82,7 +82,7 @@ List<Widget> menuItems(BuildContext context, AppPage currentPage) {
     const Divider(
         // color: kPrimaryColor.withOpacity(0.8),
         ),
-    MenuItem(
+    CustomMenuItem(
       title: 'About',
       iconData: Icons.info_outlined,
       selected: isOnPage(currentPage, AppPage.about),

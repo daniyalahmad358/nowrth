@@ -52,7 +52,7 @@ class SpotCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: isFullCard ? 17 : 12,
+                        fontSize: isFullCard ? 17 : 13,
                       ),
                     ),
                   ),

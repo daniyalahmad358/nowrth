@@ -162,8 +162,8 @@ class TimelineConnector extends StatelessWidget {
               ),
               Container(
                 margin: (contentSide == Side.right)
-                    ? EdgeInsets.only(left: 174)
-                    : EdgeInsets.only(right: 174),
+                    ? const EdgeInsets.only(left: 174)
+                    : const EdgeInsets.only(right: 174),
                 child: contentWidget!,
               ),
             ],

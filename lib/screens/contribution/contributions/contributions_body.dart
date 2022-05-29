@@ -53,9 +53,11 @@ class _ContributionsBodyState extends State<ContributionsBody> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: (widget.allContributions.isEmpty)
-          ? ContributionProvider.getContributionListItems()
-          : null,
+      future:
+          // (widget.allContributions.isEmpty)
+          // ? ContributionProvider.getContributionListItems()
+          // :
+          null,
       builder: (BuildContext context,
           AsyncSnapshot<List<ContributionListItem>> snapshot) {
         if (snapshot.connectionState != ConnectionState.waiting) {

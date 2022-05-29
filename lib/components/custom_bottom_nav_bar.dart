@@ -60,19 +60,28 @@ class CustomBottomNavBar extends StatelessWidget {
                   onTap: (int i) {
                     if (!(i == 0 && currentPage == AppPage.home) &&
                         !(i == 1 && currentPage == AppPage.liked)) {
-                      CusNavigator.pushNamedRemTilHome(
-                        context,
-                        (i == 0) ? AppPage.home.name : AppPage.liked.name,
-                      );
+                      (i == 0)
+                          ? CusNavigator.pushNamedRemAll(
+                              context,
+                              AppPage.home.name,
+                            )
+                          : CusNavigator.pushNamedRemTilHome(
+                              context,
+                              AppPage.liked.name,
+                            );
                     }
                   },
                   items: const [
                     BottomNavigationBarItem(
-                        label: 'Home', icon: Icon(Icons.home), tooltip: ''),
+                      label: 'Home',
+                      icon: Icon(Icons.home),
+                      tooltip: '',
+                    ),
                     BottomNavigationBarItem(
-                        label: 'Liked',
-                        icon: Icon(Icons.favorite),
-                        tooltip: ''),
+                      label: 'Liked',
+                      icon: Icon(Icons.favorite),
+                      tooltip: '',
+                    ),
                   ],
                 ),
               ),

@@ -3,7 +3,7 @@ import 'package:nowrth/models/enums/app_pages.dart';
 // import 'package:flutter_svg/svg.dart';
 import 'package:nowrth/providers/auth.dart';
 
-import 'package:nowrth/screens/home/components/already_have_an_account_check.dart';
+import 'package:nowrth/screens/initial_pages/components/already_have_an_account_check.dart';
 import 'package:nowrth/global/size_config.dart';
 
 import 'package:nowrth/screens/initial_pages/components/rounded_input_field.dart';
